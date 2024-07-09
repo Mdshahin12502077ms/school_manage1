@@ -23,6 +23,7 @@ Route::get('/', function () {
 
   //branch all url
   Route::get('add_branch',[BranchController::class,'Branch_add']);
+  Route::post('branch/insert',[BranchController::class,'insert']);
 
   //district all url
   Route::get('add_division',[settingController::class,'division_add']);
@@ -37,6 +38,8 @@ Route::get('/', function () {
   Route::get('edit/district/{id}',[settingController::class,'district_edit']);
   Route::post('district/update/{id}',[settingController::class,'update_district']);
   Route::get('district/delete/{id}',[settingController::class,'Delete_district']);
+
+
 
   //default settings
   Route::get('get_districts',[settingController::class,'getDistrictByDivision']);

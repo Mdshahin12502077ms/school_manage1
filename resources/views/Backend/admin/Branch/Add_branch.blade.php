@@ -21,11 +21,11 @@
                                 Add Branch
                             </div>
                             <div class="card-body">
-                                <form class="mb-5" action="" method="" enctype="multipart/form-data">
+                                <form class="mb-5" action="{{url('branch/insert')}}" method="POST" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="row">
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-3">
                                             <label for="exampleInputEmail1" class="form-label">বিভাগের নাম (Division
                                                 Name):*</label>
 
@@ -37,16 +37,16 @@
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">জেলার নাম (District
                                                 Name):*</label>
                                             <select name="district_id" class="form-control"
                                                 id="district"style="font-size:15px">
-                                                <option value=""> </option>
+                                                <option value="">select District </option>
                                             </select>
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">উপজেলা (Upazila):*
                                             </label>
                                             <input type="text" name="sub_district" class="form-control"
@@ -55,28 +55,28 @@
 
 
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">থানা (Thana):*
                                             </label>
                                             <input type="text" name="thana" class="form-control"
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">পোষ্ট অফিস (Post Office):*
                                             </label>
                                             <input type="text" name="post_office" class="form-control"
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">পোস্ট কোড (Post Code):*
                                             </label>
-                                            <input type="text" name="sub_code" class="form-control"
+                                            <input type="text" name="post_code" class="form-control"
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-12 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">প্রতিষ্ঠানের নাম (Institute
                                                 Name):*
                                             </label>
@@ -84,7 +84,7 @@
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-12 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">পরিচালকের নাম (Propietor
                                                 Name):*
                                             </label>
@@ -92,29 +92,29 @@
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">পিতার নাম (Father's Name):*
                                             </label>
                                             <input type="text" name="fathers_name" class="form-control"
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">মাতার নাম (Mother's Name):*
                                             </label>
                                             <input type="text" name="mothers_name" class="form-control"
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">প্রতিষ্ঠানের বয়স(Institute
                                                 Age):
                                             </label>
-                                            <input type="text" name="institute_name" class="form-control"
+                                            <input type="text" name="institute_age" class="form-control"
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">কম্পিউটারের সংখ্যা (No Of
                                                 Computers):*
                                             </label>
@@ -122,14 +122,14 @@
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">ই-মেইল (E-mail):*
                                             </label>
                                             <input type="email" name="e_mail" class="form-control"
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">মোবাইল নম্বর (Mobile
                                                 Number):*
                                             </label>
@@ -137,7 +137,7 @@
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">অতিরিক্ত যোগাযোগের নাম
                                                 (Additional Contact Name):*
                                             </label>
@@ -145,10 +145,10 @@
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">রক্তের গ্রুপ (Blood Group)
                                             </label>
-                                            <select name="" id=""
+                                            <select name="blood_group" id=""
                                                 class="form-control"style="font-size:15px">
                                                 <option value="">Select Blood Group</option>
                                                 <option value="A+">A+</option>
@@ -162,127 +162,103 @@
                                             </select>
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">অতিরিক্ত যোগাযোগের সম্পর্ক
                                                 (Additional Contact Relation):*
                                             </label>
-                                            <input type="text" name="sub_district" class="form-control"
+                                            <input type="text" name="extra_rel_contact" class="form-control"
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label"> অতিরিক্ত মোবাইল নম্বর
                                                 (Additional Mobile Number):*
                                             </label>
-                                            <input type="text" name="sub_district" class="form-control"
+                                            <input type="text" name="additional_mobile_no" class="form-control"
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label"> মালিক/সি,ই,ও প্রোফাইল
                                                 (Propietor/CEO Profile):*
                                             </label>
-                                            <input type="file" name="sub_district" class="form-control"
+                                            <input type="file" name="ceo_profile" class="form-control"
                                                 placeholder="Enter your sub District"
-                                                accept="image/*"style="font-size:15px;padding:20px">
+                                                accept="image/*"style="font-size:15px;">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label"> জাতীয় পরিচয়পত্র
                                                 (National id):
                                             </label>
-                                            <input type="file" name="sub_district" class="form-control"
+                                            <input type="file" name="national_id" class="form-control"
                                                 placeholder="Enter your sub District"
                                                 accept="image/*"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">Document: ( 'HSC' শিক্ষাগত
                                                 ও দক্ষত সনদ Educational & Skill )
                                             </label>
-                                            <input type="file" name="sub_district" class="form-control"
+                                            <input type="file" name="educational_skill" class="form-control"
                                                 placeholder="Enter your sub District"
                                                 accept="image/*"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label"> প্রতিষ্ঠানের ছবি:
                                                 (Institute Photo):
                                             </label>
-                                            <input type="file" name="sub_district" class="form-control"
+                                            <input type="file" name="institute_image" class="form-control"
                                                 placeholder="Enter your sub District"
                                                 accept="image/*"style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label"> ট্রেড লাইসেন্স (Trade
                                                 License):
                                             </label>
-                                            <input type="file" name="sub_district" class="form-control"
+                                            <input type="file" name="trade_licence" class="form-control"
                                                 placeholder="Enter your sub District"
                                                 accept="image/*"style="font-size:15px">
                                         </div>
 
-
-
-                                        <div class="form-group col-md-4"id="image_fields">
-                                            <label for="exampleInputFile">ট্রেড লাইসেন্স (Trade
-                                                License):</label>
-
-                                                <div class="input-group">
-                                                    <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-                                                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
-                                                    <font style="color:red">
-                                                        {{ $errors->has('image') ? $errors->first('image') : '' }}</font>
-                                                </div>
-
-
-                                            </div>
-                                        </div>
-
-
-
-
-
-
-
-
-                                        <div class="mb-3 col-md-6" id="extra_file">
-                                            <label for="exampleInputEmail1" class="form-label"> ট্রেড লাইসেন্স (Trade
-                                                License):
+                                        <div class="mb-3 col-md-6 mt-4" id="extra_file">
+                                            <label for="exampleInputEmail1" class="form-label"> আরো ফাইল যুক্ত করুন (Click to Add More):
                                             </label>
-                                            <input type="file" name="extra_file[]" class="form-control"
+                                            <input type="file" name="extra_file[]" multiple class="form-control"
 
-                                                accept="image/*"style="font-size:15px;padding:20px">
+                                                accept="image/*"style="font-size:15px;">
                                                 <div>
-                                                    <button type="button"class="btn btn-info mt-4" id="addMore">Add More File</button>
+                                                    <button type="button"class="btn btn-info mt-4 btn-lg" id="addMore" style="font-size:18px;color:white">Add More File</button>
                                                    </div>
 
                                         </div>
 
 
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label"style="font-size:15px" >
                                                 পরিচালকের ফেসবুক লিংক (Proprietor/CEO Facebook URL):*
                                             </label>
-                                            <input type="text" name="sub_district" class="form-control"
+                                            <input type="text" name="ceo_facebook" class="form-control"
                                                 placeholder="Enter your sub District" style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6">
+                                        <div class="mb-3 form-group col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label"style="font-size:15px">
                                                 ঠিকানা (Address):*
                                             </label>
-                                            <textarea name="" id="" class="form-controll"></textarea>
+                                            <br>
+                                            <textarea name="address" id="" class="form-control" placeholder="enter Proprietor address" style="border:1px solid black"></textarea>
                                         </div>
 
 
 
 
                                         <div class="col-md-12"> <button type="submit"
-                                                class="btn btn-primary">Submit</button></div>
+                                                class="btn btn-primary btn-lg" style="font-size:18px;color:white">Submit</button></div>
 
                                 </form>
                             </div>

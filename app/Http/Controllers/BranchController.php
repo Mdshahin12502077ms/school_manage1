@@ -13,6 +13,8 @@ class BranchController extends Controller
         $get_division=Division::get();
         return view('Backend.admin.Branch.Add_branch',compact('get_division'));
     }
-
+public function insert(Request $request){
+ $branch=new B
+}
 
 }

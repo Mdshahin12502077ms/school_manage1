@@ -11,4 +11,7 @@ class District extends Model
     public function division(){
         return $this->belongsTo(Division::class,'division_id','id');
     }
+    public function Branch(){
+        return $this->hasMany(Branch::class,'district_id','id');
+    }
 }
