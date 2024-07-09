@@ -21,7 +21,7 @@
                                 Add Branch
                             </div>
                             <div class="card-body">
-                                <form class="mb-5" action="" method="post" enctype="multipart/form-data">
+                                <form class="mb-5" action="" method="" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="row">
@@ -42,7 +42,7 @@
                                                 Name):*</label>
                                             <select name="district_id" class="form-control"
                                                 id="district"style="font-size:15px">
-                                                <option value="">Select District</option>
+                                                <option value=""> </option>
                                             </select>
                                         </div>
 
@@ -185,7 +185,7 @@
                                             </label>
                                             <input type="file" name="sub_district" class="form-control"
                                                 placeholder="Enter your sub District"
-                                                accept="image/*"style="font-size:15px">
+                                                accept="image/*"style="font-size:15px;padding:20px">
                                         </div>
 
                                         <div class="mb-3 col-md-6">
@@ -224,8 +224,47 @@
                                                 accept="image/*"style="font-size:15px">
                                         </div>
 
+
+
+                                        <div class="form-group col-md-4"id="image_fields">
+                                            <label for="exampleInputFile">ট্রেড লাইসেন্স (Trade
+                                                License):</label>
+
+                                                <div class="input-group">
+                                                    <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
+                                                    <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button>
+                                                    <font style="color:red">
+                                                        {{ $errors->has('image') ? $errors->first('image') : '' }}</font>
+                                                </div>
+
+
+                                            </div>
+                                        </div>
+
+
+
+
+
+
+
+
+                                        <div class="mb-3 col-md-6" id="extra_file">
+                                            <label for="exampleInputEmail1" class="form-label"> ট্রেড লাইসেন্স (Trade
+                                                License):
+                                            </label>
+                                            <input type="file" name="extra_file[]" class="form-control"
+
+                                                accept="image/*"style="font-size:15px;padding:20px">
+                                                <div>
+                                                    <button type="button"class="btn btn-info mt-4" id="addMore">Add More File</button>
+                                                   </div>
+
+                                        </div>
+
+
+
                                         <div class="mb-3 col-md-6">
-                                            <label for="exampleInputEmail1" class="form-label"style="font-size:15px">
+                                            <label for="exampleInputEmail1" class="form-label"style="font-size:15px" >
                                                 পরিচালকের ফেসবুক লিংক (Proprietor/CEO Facebook URL):*
                                             </label>
                                             <input type="text" name="sub_district" class="form-control"
@@ -238,6 +277,10 @@
                                             </label>
                                             <textarea name="" id="" class="form-controll"></textarea>
                                         </div>
+
+
+
+
                                         <div class="col-md-12"> <button type="submit"
                                                 class="btn btn-primary">Submit</button></div>
 
@@ -264,17 +307,26 @@
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
                 });
-                $.ajaxSetup({
-                   type:"GET",
+                $.ajax({
+                   type:'GET',
                    url:'get_districts',
                    data:{division_id:division_id },
                    success:function(data){
-                       $('#district').html(data);
+                    $('#district').html(data);
+
                    }
 
 
             });
             });
         });
+        </script>
+
+        <script>
+              $(document).ready(function() {
+                $('#addMore').click(function(){
+                $('#extra_file').append(' <input type="file" name="extra_file[]" class="form-control"accept="image/*"style="font-size:15px;padding:20px">')
+                });
+              });
         </script>
     @endsection

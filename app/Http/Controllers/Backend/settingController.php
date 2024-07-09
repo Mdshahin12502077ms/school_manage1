@@ -90,8 +90,12 @@ class settingController extends Controller
      }
 
      public function getDistrictByDivision(Request $request){
-        $districts=District::where('division_id',$request->division_id)->get();
-        dd($districts);
-        return response()->json($districts);
+        $district_name='';
+         $district= District::where('division_id',$request->division_id)->get();
+         foreach( $district as $district){
+            $district_name.="<option value='".$district->id."'>".$district->district_name."</option> ";
+         }
+ echo  $district_name;
+        // return response()->json($districts);
      }
 }
