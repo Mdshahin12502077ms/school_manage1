@@ -84,12 +84,25 @@
                                                 placeholder="Enter your sub District"style="font-size:15px">
                                         </div>
 
+
+
+
                                         <div class="mb-3 col-md-12 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">পরিচালকের নাম (Propietor
                                                 Name):*
                                             </label>
                                             <input type="text" name="Propietor_Name" class="form-control"
                                                 placeholder="Enter your sub District"style="font-size:15px">
+                                        </div>
+
+
+                                        <div class="mb-3 col-md-6 mt-4">
+                                            <label for="exampleInputEmail1" class="form-label">
+                                                নিবন্ধন নম্বর (Registration
+                                                Number):*
+                                            </label>
+                                            <input type="text" name="registration_id" class="form-control"
+                                                placeholder="6521" readonly style="font-size:15px">
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">

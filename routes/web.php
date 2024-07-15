@@ -22,8 +22,10 @@ Route::get('/', function () {
   Route::get('admin/dashboard',[adminController::class,'dashboard']);
 
   //branch all url
+  Route::get('branch/all',[BranchController::class,'all']);
   Route::get('add_branch',[BranchController::class,'Branch_add']);
   Route::post('branch/insert',[BranchController::class,'insert']);
+
 
   //district all url
   Route::get('add_division',[settingController::class,'division_add']);

@@ -58,12 +58,12 @@
                     <ul class="nav sub-group-menu">
 
                         <li class="nav-item">
-                            <a href="all-student.html" class="nav-link"><i class="fas fa-angle-right"></i>All
+                            <a href="{{url('branch/all')}}" class="nav-link"><i class="fas fa-angle-right"></i>All
                                 Branch</a>
                         </li>
                         <li class="nav-item">
                             <a href="{{ url('add_branch') }}" class="nav-link"><i
-                                    class="fas fa-angle-right"></i>Add Brach</a>
+                                    class="fas fa-angle-right"></i>Add Branch</a>
                         </li>
                         <li class="nav-item">
                             <a href="admit-form.html" class="nav-link"><i

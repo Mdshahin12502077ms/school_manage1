@@ -6,10 +6,27 @@ use Illuminate\Http\Request;
 use App\Models\District;
 use App\Models\Division;
 use App\Models\Branch;
+
 use App\Models\BranchDetails;
 
 class BranchController extends Controller
 {
+
+public function all(){
+    $branches=Branch::with('division','district','branch_details')->get();
+    return view('Backend.admin.Branch.all_branch',compact('branches'));
+}
+
+
+
+
+
+
+
+
+
+
+    //Add branch
     Public function Branch_add(){
 
         $get_division=Division::get();
@@ -25,8 +42,19 @@ class BranchController extends Controller
      $branch->post_office=$request->post_office;
      $branch->address=$request->address;
      $branch->post_code=$request->post_code;
+
+     if($branch->registration_id==null){
+       $branch->registration_id='6521'.$branch->registration_id+1;
+     }
+
+
+
      $branch->Propietor_Name=$request->Propietor_Name;
      $branch->save();
+     $branch->update(
+        ['registration_id' => $branch->registration_id + 1],
+     ) ;
+     //branch details
      $branch_dtls=new BranchDetails();
      $branch_dtls->branch_id=$branch->id;
      $branch_dtls->fathers_name=$request->fathers_name;
@@ -79,15 +107,21 @@ class BranchController extends Controller
      }
     if(isset($request->extra_file))
     {
-//  foreach($request->extra_file as $file){
-//      $filename=time().'.'.$file->getClientOriginalExtension();
-//      $path="Backend/image/Branch/";
-//      $file->move($path,$filename);
-//      $branch_dtls->extra_file=$path .$filename.",";
-//  }
-    }
+      $image =[];
+      foreach($request->extra_file as $file){
+       $filename=time().'.'.$file->getClientOriginalExtension();
+       $path="Backend/image/Branch/";
+       $file->move($path,$filename);
+       $image[] = $path .$filename;
+      }
+     $branch_dtls->extra_file= json_encode($image);
+ }
      $branch_dtls->ceo_facebook=$request->ceo_facebook;
      $branch_dtls->save();
+
+     toastr()->success('Information saved successfully');
+     return redirect()->back();
+
    }
 
  }
