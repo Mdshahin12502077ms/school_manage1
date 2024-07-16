@@ -23,32 +23,38 @@
                             <div class="card-body">
                                 <table class="table">
                                     <thead>
-                                      <tr>
-                                        <th scope="col">Serial No</th>
-                                        <th scope="col">Branch Name</th>
-                                        <th scope="col">Propietor Name</th>
-                                        <th scope="col">Mobile Number</th>
-                                        <th scope="col">Emial</th>
-                                        <th scope="col">Address</th>
-                                        <th scope="col">Acction</th>
-                                      </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($branches as $branches)
                                         <tr>
+                                          <th scope="col">Serial No</th>
+                                          <th scope="col">Branch Name</th>
+                                          <th scope="col">Propietor Name</th>
+                                          <th scope="col">Mobile Number</th>
+                                          <th scope="col">Email</th>
+                                          <th scope="col">Address</th>
+                                          <th scope="col">Acction</th>
+                                        </tr>
+                                      </thead>
+                                      <tbody>
+                                          @foreach ($branches as $branches)
+                                          @php
+                                                 $branchdtls=App\Models\BranchDetails::where('branch_id',$branches->id)->first();
+                                           @endphp
+                                          <tr>
 
-                                            <td>{{$loop->iteration}}</td></td>
-                                            <td>{{$branches->institute_name}}</td>
-                                            <td>{{$branches->Propietor_Name}}</td>
-                                            {{-- <td>{{$branches->branch_details->mobile_number}}</td> --}}
-                                            <td>{{$branches->brance_d->fathers_name}}</td>
-                                            <td>{{$branches->division->name}}-{{$branches->district->district_name}}</td>
+                                              <td>{{$loop->iteration}}</td></td>
+                                              <td>{{$branches->institute_name}}</td>
+                                              <td>{{$branches->Propietor_Name}}</td>
+                                               <td>{{  $branchdtls->mobile_number}}</td>
+                                               <td>{{  $branchdtls->e_mail}}</td>
+                                              <td>{{$branches->division->name}},{{$branches->district->district_name}},{{$branches->address}}</td>
+                                               <td>
+                                                  <a href="{{url('Branch/edit',$branches->id)}}" class="btn btn-info btn-lg"><i class="fa fa-edit" aria-hidden="true" style="margin-right:20%"></i></a>
+                                               <a href="{{url('Branch/delete',$branches->id)}}"  class="btn btn-danger btn-lg" ><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                               </td>
+                                            </tr>
+                                          @endforeach
 
-                                          </tr>
-                                        @endforeach
 
-
-                                    </tbody>
+                                      </tbody>
                                   </table>
                             </div>
                         </div>

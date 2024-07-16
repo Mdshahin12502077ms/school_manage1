@@ -32,6 +32,7 @@ public function all(){
         $get_division=Division::get();
         return view('Backend.admin.Branch.Add_branch',compact('get_division'));
     }
+
    public function insert(Request $request){
      $branch=new Branch();
      $branch->institute_name=$request->institute_name;
@@ -107,6 +108,7 @@ public function all(){
      }
     if(isset($request->extra_file))
     {
+
       $image =[];
       foreach($request->extra_file as $file){
        $filename=time().'.'.$file->getClientOriginalExtension();
@@ -122,6 +124,19 @@ public function all(){
      toastr()->success('Information saved successfully');
      return redirect()->back();
 
+
    }
+
+
+
+public function edit($id){
+    $data['branches']=Branch::find($id);
+    $data['branch_details']=BranchDetails::where('branch_id',$id)->get();
+    $data['get_division']=Division::get();
+    $data['get_district']=District::get();
+    return view('Backend.admin.Branch.edit_branch',$data);
+
+}
+
 
  }

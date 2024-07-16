@@ -14,15 +14,15 @@ class Branch extends Model
         return $this->belongsTo(Division::class,'division_id','id');
     }
 
-    public function brance_d(){
-        return $this->belongsTo(BranchDetails::class,'branch_id','id');
-    }
+
 
     public function district(){
         return $this->belongsTo(District::class,'district_id','id');
     }
 
     public function branch_details(){
-        return $this->belongsTo(BranchDetails::class,'branch_id','id');
+
+        return $this->hasMany(BranchDetails::class,'branch_id','id');
+
     }
 }

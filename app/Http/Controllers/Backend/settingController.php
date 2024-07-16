@@ -95,7 +95,12 @@ class settingController extends Controller
          foreach( $district as $district){
             $district_name.="<option value='".$district->id."'>".$district->district_name."</option> ";
          }
- echo  $district_name;
-        // return response()->json($districts);
+         echo  $district_name;
+      
+     }
+
+
+     public function getDistrict(Request $request){
+       echo('hello');
      }
 }

@@ -29,22 +29,27 @@
                                             <label for="exampleInputEmail1" class="form-label">বিভাগের নাম (Division
                                                 Name):*</label>
 
-                                            <select name="division_id" class="form-control" id="division"
+                                            <select name="division_id" class="form-control" id="getdivision"
                                                 style="font-size:15px;">
                                                 <option class="p-4"value="">Select Division</option>
                                                 @foreach ($get_division as $division)
-                                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                                    <option  value="{{ $division->id }}">{{ $division->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
-                                        <div class="mb-3 col-md-6 mt-4">
-                                            <label for="exampleInputEmail1" class="form-label">জেলার নাম (District
+
+
+                                        <div class="mb-3 col-md-6 mt-3">
+                                            <label for="exampleInputEmail1" class="form-label">বিভাগের নাম (Division
                                                 Name):*</label>
-                                            <select name="district_id" class="form-control"
-                                                id="district"style="font-size:15px">
-                                                <option value="">select District </option>
-                                            </select>
-                                        </div>
+                                        <select name="district_id" class="form-control" id="getdistrict"
+                                        style="font-size:15px;">
+                                        <option class="p-4"value="">Select Division</option>
+                                        {{-- @foreach ($get_district as $district)
+                                            <option  value="{{ $district->id }}">{{ $district->district_name }}</option>
+                                        @endforeach --}}
+                                    </select>
+                                </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">উপজেলা (Upazila):*
@@ -286,30 +291,32 @@
         <!-- Social Media End Here -->
     @endsection
 
-    @section('js')
-        <script>
-            $(document).ready(function() {
-                $('#division').change(function() {
-                    var division_id = $(this).val();
-                $.ajaxSetup({
+    @push('script')
+       
+                <script>
+                    $(document).ready(function(){
+                    $('#getdivision').change(function(){
+                        var getDivision=$(this).val();
+                        // alert(getDivision);
+                        $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
-                });
-                $.ajax({
-                   type:'GET',
-                   url:'get_districts',
-                   data:{division_id:division_id },
-                   success:function(data){
-                    $('#district').html(data);
+                      });
+                        $.ajax({
+                          method:'GET',
+                          url:'District',
+                          data:{getDivision:getDivision},
+                          success:function(data){
+                             console.log(data);
+                          }
+                        });
+                    })
+                    });
 
-                   }
+                </script>
 
 
-            });
-            });
-        });
-        </script>
 
         <script>
               $(document).ready(function() {
@@ -318,4 +325,4 @@
                 });
               });
         </script>
-    @endsection
+    @endpush

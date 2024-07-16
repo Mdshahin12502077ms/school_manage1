@@ -21,9 +21,12 @@ Route::get('/', function () {
 
   Route::get('admin/dashboard',[adminController::class,'dashboard']);
 
+
   //branch all url
   Route::get('branch/all',[BranchController::class,'all']);
   Route::get('add_branch',[BranchController::class,'Branch_add']);
+  Route::post('branch/insert',[BranchController::class,'insert']);
+  Route::get('Branch/edit/{id}',[BranchController::class,'edit']);
   Route::post('branch/insert',[BranchController::class,'insert']);
 
 
@@ -45,3 +48,4 @@ Route::get('/', function () {
 
   //default settings
   Route::get('get_districts',[settingController::class,'getDistrictByDivision']);
+  Route::get('District',[settingController::class,'getDistrict']);
