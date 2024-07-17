@@ -301,6 +301,7 @@
                    url:'get_districts',
                    data:{division_id:division_id },
                    success:function(data){
+                    
                     $('#district').html(data);
 
                    }

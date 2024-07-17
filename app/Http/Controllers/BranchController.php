@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use App\Models\District;
 use App\Models\Division;
 use App\Models\Branch;
-
+use App\Models\branch_extra_file;
 use App\Models\BranchDetails;
 
 class BranchController extends Controller
@@ -69,19 +69,22 @@ public function all(){
      $branch_dtls->extra_rel_contact=$request->extra_rel_contact;
      $branch_dtls->additional_mobile_no=$request->additional_mobile_no;
      if(isset($request->ceo_profile)){
-        $file=$request->file('ceo_profile');
-        $filename=time().'.'.$file->getClientOriginalExtension();
-        $path="Backend/image/Branch/";
-        $file->move($path,$filename);
-        $branch_dtls->ceo_profile=$path .$filename;
+     $file = $request->file('ceo_profile');
+     $extension = $file->getClientOriginalExtension();
+     $filename = time() . '.' . $extension;
+     $path = 'Backend/image/Branch/';
+     $file->move($path, $filename);
+     $branch_dtls->ceo_profile = $path . $filename;
      }
 
+
      if(isset($request->national_id)){
-        $file=$request->file('national_id');
-        $filename=time().'.'.$file->getClientOriginalExtension();
-        $path="Backend/image/Branch/";
-        $file->move($path,$filename);
-        $branch_dtls->national_id=$path .$filename;
+        $file = $request->file('national_id');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $path = 'Backend/image/Branch/';
+        $file->move($path, $filename);
+        $branch_dtls->national_id = $path . $filename;
      }
 
      if(isset($request->educational_skill)){
@@ -102,21 +105,24 @@ public function all(){
      if(isset($request->trade_licence)){
         $file=$request->file('trade_licence');
         $filename=time().'.'.$file->getClientOriginalExtension();
-        $path="Backend/image/Branch/";
+        $path='Backend/image/Branch/';
         $file->move($path,$filename);
         $branch_dtls->trade_licence=$path .$filename;
      }
     if(isset($request->extra_file))
     {
+      foreach($request->extra_file as $extra_file){
+        $branch_file=new branch_extra_file();
+        $branch_file=$branch->id;
+        $file= $extra_file;
+        $filename=time().'.'.$extra_file->getClientOriginalExtension();
+        $path='Backend/image/Branch/';
+        $file->move($path,$filename);
+        $branch_file->extra_file=$path .$filename;
 
-      $image =[];
-      foreach($request->extra_file as $file){
-       $filename=time().'.'.$file->getClientOriginalExtension();
-       $path="Backend/image/Branch/";
-       $file->move($path,$filename);
-       $image[] = $path .$filename;
+        $branch_file->save();
       }
-     $branch_dtls->extra_file= json_encode($image);
+
  }
      $branch_dtls->ceo_facebook=$request->ceo_facebook;
      $branch_dtls->save();
@@ -131,7 +137,7 @@ public function all(){
 
 public function edit($id){
     $data['branches']=Branch::find($id);
-    $data['branch_details']=BranchDetails::where('branch_id',$id)->get();
+    $data['branch_details']=BranchDetails::where('branch_id',$id)->first();
     $data['get_division']=Division::get();
     $data['get_district']=District::get();
     return view('Backend.admin.Branch.edit_branch',$data);

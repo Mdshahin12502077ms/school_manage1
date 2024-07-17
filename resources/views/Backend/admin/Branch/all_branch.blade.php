@@ -43,8 +43,8 @@
                                               <td>{{$loop->iteration}}</td></td>
                                               <td>{{$branches->institute_name}}</td>
                                               <td>{{$branches->Propietor_Name}}</td>
-                                               <td>{{  $branchdtls->mobile_number}}</td>
-                                               <td>{{  $branchdtls->e_mail}}</td>
+                                               <td>{{$branchdtls->mobile_number}}</td>
+                                               <td>{{$branchdtls->e_mail}}</td>
                                               <td>{{$branches->division->name}},{{$branches->district->district_name}},{{$branches->address}}</td>
                                                <td>
                                                   <a href="{{url('Branch/edit',$branches->id)}}" class="btn btn-info btn-lg"><i class="fa fa-edit" aria-hidden="true" style="margin-right:20%"></i></a>

@@ -48,4 +48,4 @@ Route::get('/', function () {
 
   //default settings
   Route::get('get_districts',[settingController::class,'getDistrictByDivision']);
-  Route::get('District',[settingController::class,'getDistrict']);
+  

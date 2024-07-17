@@ -29,11 +29,11 @@
                                             <label for="exampleInputEmail1" class="form-label">বিভাগের নাম (Division
                                                 Name):*</label>
 
-                                            <select name="division_id" class="form-control" id="getdivision"
+                                            <select name="division_id" class="form-control" id="division"
                                                 style="font-size:15px;">
                                                 <option class="p-4"value="">Select Division</option>
                                                 @foreach ($get_division as $division)
-                                                    <option  value="{{ $division->id }}">{{ $division->name }}</option>
+                                                    <option  {{($branches->division_id==$division->id)?'selected':''}} value="{{ $division->id }}">{{ $division->name }}</option>
                                                 @endforeach
                                             </select>
                                         </div>
@@ -42,12 +42,12 @@
                                         <div class="mb-3 col-md-6 mt-3">
                                             <label for="exampleInputEmail1" class="form-label">বিভাগের নাম (Division
                                                 Name):*</label>
-                                        <select name="district_id" class="form-control" id="getdistrict"
+                                        <select name="district_id" class="form-control" id="district"
                                         style="font-size:15px;">
-                                        <option class="p-4"value="">Select Division</option>
-                                        {{-- @foreach ($get_district as $district)
-                                            <option  value="{{ $district->id }}">{{ $district->district_name }}</option>
-                                        @endforeach --}}
+                                        <option class="p-4"value="">Select District</option>
+                                        @foreach ($get_district as $district)
+                                            <option  {{($branches->district_id==$district->id)?'selected':''}} value="{{ $district->id }}">{{ $district->district_name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
 
@@ -55,7 +55,7 @@
                                             <label for="exampleInputEmail1" class="form-label">উপজেলা (Upazila):*
                                             </label>
                                             <input type="text" name="sub_district" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                               value="{{$branches->sub_district}}" style="font-size:15px">
                                         </div>
 
 
@@ -63,30 +63,30 @@
                                         <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">থানা (Thana):*
                                             </label>
-                                            <input type="text" name="thana" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                            <input type="text"value="{{$branches->thana}}" name="thana" class="form-control"
+                                               style="font-size:15px">
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">পোষ্ট অফিস (Post Office):*
                                             </label>
-                                            <input type="text" name="post_office" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                            <input type="text" value="{{$branches->post_office}}"   name="post_office" class="form-control"
+                                                style="font-size:15px">
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">পোস্ট কোড (Post Code):*
                                             </label>
-                                            <input type="text" name="post_code" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                            <input type="text" value="{{$branches->post_code}}"  name="post_code" class="form-control"
+                                               style="font-size:15px">
                                         </div>
 
                                         <div class="mb-3 col-md-12 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">প্রতিষ্ঠানের নাম (Institute
                                                 Name):*
                                             </label>
-                                            <input type="text" name="institute_name" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                            <input type="text" value="{{$branches->institute_name}}" name="institute_name" class="form-control"
+                                               style="font-size:15px">
                                         </div>
 
 
@@ -96,8 +96,8 @@
                                             <label for="exampleInputEmail1" class="form-label">পরিচালকের নাম (Propietor
                                                 Name):*
                                             </label>
-                                            <input type="text" name="Propietor_Name" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                            <input type="text" value="{{$branches->Propietor_Name}}" name="Propietor_Name" class="form-control"
+                                                style="font-size:15px">
                                         </div>
 
 
@@ -106,61 +106,61 @@
                                                 নিবন্ধন নম্বর (Registration
                                                 Number):*
                                             </label>
-                                            <input type="text" name="registration_id" class="form-control"
-                                                placeholder="6521" readonly style="font-size:15px">
+                                            <input type="text" value="{{$branches->registration_id}}" name="registration_id" class="form-control"
+                                                style="font-size:15px">
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">পিতার নাম (Father's Name):*
                                             </label>
-                                            <input type="text" name="fathers_name" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                            <input type="text"  value="{{$branch_details->fathers_name}}" name="fathers_name" class="form-control"
+                                                style="font-size:15px">
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">মাতার নাম (Mother's Name):*
                                             </label>
-                                            <input type="text" name="mothers_name" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                            <input type="text" value="{{$branch_details->mothers_name}}" name="mothers_name" class="form-control"
+                                               style="font-size:15px">
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">প্রতিষ্ঠানের বয়স(Institute
                                                 Age):
                                             </label>
-                                            <input type="text" name="institute_age" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                            <input type="text" value="{{$branch_details->institute_age}}" name="institute_age" class="form-control"
+                                            style="font-size:15px">
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">কম্পিউটারের সংখ্যা (No Of
                                                 Computers):*
                                             </label>
-                                            <input type="text" name="no_computer" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                            <input type="text" name="no_computer"  value="{{$branch_details->no_computer}}" class="form-control"
+                                             style="font-size:15px">
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">ই-মেইল (E-mail):*
                                             </label>
-                                            <input type="email" name="e_mail" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                            <input type="email" value="{{$branch_details->e_mail}}" name="e_mail" class="form-control"
+                                           style="font-size:15px">
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">মোবাইল নম্বর (Mobile
                                                 Number):*
                                             </label>
-                                            <input type="text" name="mobile_number" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                            <input type="text" value="{{$branch_details->mobile_number}}" name="mobile_number" class="form-control"
+                                                style="font-size:15px">
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">অতিরিক্ত যোগাযোগের নাম
                                                 (Additional Contact Name):*
                                             </label>
-                                            <input type="text" name="additional_rel_name" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                            <input type="text" value="{{$branch_details->additional_rel_name}}" name="additional_rel_name" class="form-control"
+                                                style="font-size:15px">
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
@@ -168,7 +168,7 @@
                                             </label>
                                             <select name="blood_group" id=""
                                                 class="form-control"style="font-size:15px">
-                                                <option value="">Select Blood Group</option>
+                                                <option value="">{{$branch_details->blood_group}}</option>
                                                 <option value="A+">A+</option>
                                                 <option value="A-">A-</option>
                                                 <option value="AB+">AB+</option>
@@ -184,8 +184,8 @@
                                             <label for="exampleInputEmail1" class="form-label">অতিরিক্ত যোগাযোগের সম্পর্ক
                                                 (Additional Contact Relation):*
                                             </label>
-                                            <input type="text" name="extra_rel_contact" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                            <input type="text" value="{{$branch_details->extra_rel_contact}}" name="extra_rel_contact" class="form-control"
+                                               style="font-size:15px">
                                         </div>
 
 
@@ -193,8 +193,8 @@
                                             <label for="exampleInputEmail1" class="form-label"> অতিরিক্ত মোবাইল নম্বর
                                                 (Additional Mobile Number):*
                                             </label>
-                                            <input type="text" name="additional_mobile_no" class="form-control"
-                                                placeholder="Enter your sub District"style="font-size:15px">
+                                            <input type="text"  value="{{$branch_details->additional_mobile_no}}" name="additional_mobile_no" class="form-control"
+                                                style="font-size:15px">
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
@@ -202,8 +202,13 @@
                                                 (Propietor/CEO Profile):*
                                             </label>
                                             <input type="file" name="ceo_profile" class="form-control"
-                                                placeholder="Enter your sub District"
                                                 accept="image/*"style="font-size:15px;">
+
+                                                <div>
+                                                    <img src="{{asset($branch_details->ceo_profile)}}" alt="" height="50px" width="50px">
+                                                </div>
+
+
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
@@ -211,8 +216,11 @@
                                                 (National id):
                                             </label>
                                             <input type="file" name="national_id" class="form-control"
-                                                placeholder="Enter your sub District"
+
                                                 accept="image/*"style="font-size:15px">
+                                                <div>
+                                                    <img src="{{asset($branch_details->national_id)}}" alt="" height="50px" width="50px">
+                                                </div>
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
@@ -220,8 +228,11 @@
                                                 ও দক্ষত সনদ Educational & Skill )
                                             </label>
                                             <input type="file" name="educational_skill" class="form-control"
-                                                placeholder="Enter your sub District"
+
                                                 accept="image/*"style="font-size:15px">
+                                                <div>
+                                                    <img src="{{asset($branch_details->educational_skill)}}" alt="" height="50px" width="50px">
+                                                </div>
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
@@ -229,8 +240,11 @@
                                                 (Institute Photo):
                                             </label>
                                             <input type="file" name="institute_image" class="form-control"
-                                                placeholder="Enter your sub District"
+
                                                 accept="image/*"style="font-size:15px">
+                                                <div>
+                                                    <img src="{{asset($branch_details->institute_image)}}" alt="" height="50px" width="50px">
+                                                </div>
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4">
@@ -238,8 +252,11 @@
                                                 License):
                                             </label>
                                             <input type="file" name="trade_licence" class="form-control"
-                                                placeholder="Enter your sub District"
+
                                                 accept="image/*"style="font-size:15px">
+                                                <div>
+                                                    <img src="{{asset($branch_details->trade_licence)}}" alt="" height="50px" width="50px">
+                                                </div>
                                         </div>
 
                                         <div class="mb-3 col-md-6 mt-4" id="extra_file">
@@ -251,7 +268,9 @@
                                                 <div>
                                                     <button type="button"class="btn btn-info mt-4 btn-lg" id="addMore" style="font-size:18px;color:white">Add More File</button>
                                                    </div>
-
+                                                   <div>
+                                                    <img src="{{asset($branch_details->extra_file)}}" alt="" height="50px" width="50px">
+                                                </div>
                                         </div>
 
 
@@ -260,8 +279,8 @@
                                             <label for="exampleInputEmail1" class="form-label"style="font-size:15px" >
                                                 পরিচালকের ফেসবুক লিংক (Proprietor/CEO Facebook URL):*
                                             </label>
-                                            <input type="text" name="ceo_facebook" class="form-control"
-                                                placeholder="Enter your sub District" style="font-size:15px">
+                                            <input type="text" value={{$branch_details->ceo_facebook}} name="ceo_facebook" class="form-control"
+                                               style="font-size:15px">
                                         </div>
 
                                         <div class="mb-3 form-group col-md-6 mt-4">
@@ -269,14 +288,14 @@
                                                 ঠিকানা (Address):*
                                             </label>
                                             <br>
-                                            <textarea name="address" id="" class="form-control" placeholder="enter Proprietor address" style="border:1px solid black"></textarea>
+                                            <textarea name="address" id="" class="form-control"  style="border:1px solid black">{{$branches->address}}</textarea>
                                         </div>
 
 
 
 
                                         <div class="col-md-12"> <button type="submit"
-                                                class="btn btn-primary btn-lg" style="font-size:18px;color:white">Submit</button></div>
+                                                class="btn btn-primary btn-lg" style="font-size:18px;color:white">update</button></div>
 
                                 </form>
                             </div>
@@ -291,32 +310,31 @@
         <!-- Social Media End Here -->
     @endsection
 
-    @push('script')
-       
-                <script>
-                    $(document).ready(function(){
-                    $('#getdivision').change(function(){
-                        var getDivision=$(this).val();
-                        // alert(getDivision);
-                        $.ajaxSetup({
+    @section('js')
+        <script>
+            $(document).ready(function() {
+                $('#division').change(function() {
+                    var division_id = $(this).val();
+                $.ajaxSetup({
                     headers: {
                         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
                     }
-                      });
-                        $.ajax({
-                          method:'GET',
-                          url:'District',
-                          data:{getDivision:getDivision},
-                          success:function(data){
-                             console.log(data);
-                          }
-                        });
-                    })
-                    });
+                });
+                $.ajax({
+                   type:'GET',
+                   url:'get_districts',
+                   data:{division_id:division_id },
+                   success:function(data){
 
-                </script>
+                    $('#district').html(data);
+
+                   }
 
 
+            });
+            });
+        });
+        </script>
 
         <script>
               $(document).ready(function() {
@@ -325,4 +343,4 @@
                 });
               });
         </script>
-    @endpush
+    @endsection
