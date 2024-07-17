@@ -49,7 +49,7 @@
                         <td>{{ $division->name }}</td>
                         <td>
                             <a href="{{ url('edit/division',$division->id) }}" class="btn btn-primary">Edit</a>
-                            <a href="{{ url('division/delete',$division->id) }}" class="btn btn-danger">Delete</a>
+                            <a href="{{ url('division/delete',$division->id) }}"  class="btn btn-danger">Delete</a>
                         </td>
                      </tr>
                     @endforeach

@@ -111,19 +111,28 @@ public function all(){
      }
     if(isset($request->extra_file))
     {
-      foreach($request->extra_file as $extra_file){
-        $branch_file=new branch_extra_file();
-        $branch_file=$branch->id;
-        $file= $extra_file;
-        $filename=time().'.'.$extra_file->getClientOriginalExtension();
-        $path='Backend/image/Branch/';
-        $file->move($path,$filename);
-        $branch_file->extra_file=$path .$filename;
+        $imageData = [];
+        if($files = $request->file('extra_file')){
 
-        $branch_file->save();
-      }
+            foreach($files as $key => $file){
 
- }
+                $extension = $file->getClientOriginalExtension();
+                $filename = $key.'-'.time(). '.' .$extension;
+
+                $path = "Backend/image/Branch/";
+
+                $file->move($path, $filename);
+
+                $imageData[] = [
+                    'branch_id' => $branch->id,
+                    'extra_file' => $path.$filename,
+                ];
+
+           }
+        }
+
+   }
+    branch_extra_file::insert($imageData);
      $branch_dtls->ceo_facebook=$request->ceo_facebook;
      $branch_dtls->save();
 
@@ -134,15 +143,211 @@ public function all(){
    }
 
 
-
 public function edit($id){
     $data['branches']=Branch::find($id);
     $data['branch_details']=BranchDetails::where('branch_id',$id)->first();
+    $data['branch_file']=branch_extra_file::where('branch_id',$id)->get();
+    // dd( $data['branch_file']);
     $data['get_division']=Division::get();
     $data['get_district']=District::get();
     return view('Backend.admin.Branch.edit_branch',$data);
 
 }
 
+public function update($id, Request $request){
+
+    $branch=$branch=Branch::find($id);
+     $branch->institute_name=$request->institute_name;
+     $branch->division_id=$request->division_id;
+     $branch->district_id=$request->district_id;
+     $branch->sub_district=$request->sub_district;
+     $branch->thana=$request->thana;
+     $branch->post_office=$request->post_office;
+     $branch->address=$request->address;
+     $branch->post_code=$request->post_code;
+
+     if($branch->registration_id==null){
+       $branch->registration_id='6521'.$branch->registration_id+1;
+     }
+
+
+
+     $branch->Propietor_Name=$request->Propietor_Name;
+     $branch->save();
+     $branch->update(
+        ['registration_id' => $branch->registration_id + 1],
+     ) ;
+     //branch details
+     $branch_dtls=BranchDetails::where('branch_id',$id)->first();
+     $branch_dtls->branch_id=$branch->id;
+     $branch_dtls->fathers_name=$request->fathers_name;
+     $branch_dtls->mothers_name=$request->mothers_name;
+     $branch_dtls->institute_age=$request->institute_age;
+     $branch_dtls->no_computer=$request->no_computer;
+     $branch_dtls->e_mail=$request->e_mail;
+     $branch_dtls->mobile_number=$request->mobile_number;
+     $branch_dtls->additional_rel_name=$request->additional_rel_name;
+     $branch_dtls->blood_group=$request->blood_group;
+     $branch_dtls->extra_rel_contact=$request->extra_rel_contact;
+     $branch_dtls->additional_mobile_no=$request->additional_mobile_no;
+
+     if(isset($request->ceo_profile)){
+        if($branch_dtls->ceo_profile && file_exists($branch_dtls->ceo_profile)){
+            unlink($branch_dtls->ceo_profile); // delete old file
+        }
+
+        $file = $request->file('ceo_profile');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $path = 'Backend/image/Branch/';
+        $file->move($path, $filename);
+        $branch_dtls->ceo_profile = $path . $filename;
+     }
+
+
+     if(isset($request->national_id)){
+
+        if($branch_dtls->national_id && file_exists($branch_dtls->national_id)){
+            unlink($branch_dtls->national_id); // delete old file
+        }
+
+        $file = $request->file('national_id');
+        $extension = $file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $path = 'Backend/image/Branch/';
+        $file->move($path, $filename);
+        $branch_dtls->national_id = $path . $filename;
+     }
+
+     if(isset($request->educational_skill)){
+
+        if($branch_dtls->educational_skill && file_exists($branch_dtls->educational_skill)){
+            unlink($branch_dtls->educational_skill); // delete old file
+        }
+        $file=$request->file('educational_skill');
+        $filename=time().'.'.$file->getClientOriginalExtension();
+        $path="Backend/image/Branch/";
+        $file->move($path,$filename);
+        $branch_dtls->educational_skill=$path .$filename;
+     }
+
+     if(isset($request->institute_image)){
+
+        if($branch_dtls->institute_image && file_exists($branch_dtls->institute_image)){
+            unlink($branch_dtls->institute_image); // delete old file
+        }
+        $file=$request->file('institute_image');
+        $filename=time().'.'.$file->getClientOriginalExtension();
+        $path="Backend/image/Branch/";
+        $file->move($path,$filename);
+        $branch_dtls->institute_image=$path .$filename;
+     }
+
+     if(isset($request->trade_licence)){
+
+        if($branch_dtls->institute_image && file_exists($branch_dtls->trade_licence)){
+            unlink($branch_dtls->trade_licence); // delete old file
+        }
+        $file=$request->file('trade_licence');
+        $filename=time().'.'.$file->getClientOriginalExtension();
+        $path='Backend/image/Branch/';
+        $file->move($path,$filename);
+        $branch_dtls->trade_licence=$path .$filename;
+     }
+
+    if(isset($request->extra_file))
+    {
+
+        $branch_files=branch_extra_file::where('branch_id',$id)->get();
+       foreach($branch_files as $branch_files){
+        if($branch_files->extra_file && file_exists($branch_files->extra_file)){
+            unlink($branch_files->extra_file); // delete old file
+           // delete old file from database
+        }
+        $branch_files->delete();
+       }
+    $imageData = [];
+    if($files = $request->file('extra_file')){
+
+        foreach($files as $key => $file){
+
+            $extension = $file->getClientOriginalExtension();
+            $filename = $key.'-'.time(). '.' .$extension;
+
+            $path = "Backend/image/Branch/";
+
+            $file->move($path, $filename);
+
+            $imageData[] = [
+                'branch_id' => $branch->id,
+                'extra_file' => $path.$filename,
+            ];
+
+       }
+    }
+
+    branch_extra_file::insert($imageData);
+
+     $branch_dtls->ceo_facebook=$request->ceo_facebook;
+     $branch_dtls->save();
+
+     toastr()->success('Information updated successfully');
+     return redirect()->back();
+
+}
 
  }
+ public function delete($id){
+    $branch=Branch::find($id);
+    $branch_dtls=BranchDetails::where('branch_id',$id)->first();
+    if(isset($request->ceo_profile)){
+        if($branch_dtls->ceo_profile && file_exists($branch_dtls->ceo_profile)){
+            unlink($branch_dtls->ceo_profile); // delete old file
+        }
+     }
+
+
+     if(isset($request->national_id)){
+
+        if($branch_dtls->national_id && file_exists($branch_dtls->national_id)){
+            unlink($branch_dtls->national_id); // delete old file
+        }
+     }
+
+     if(isset($request->educational_skill)){
+
+        if($branch_dtls->educational_skill && file_exists($branch_dtls->educational_skill)){
+            unlink($branch_dtls->educational_skill); // delete old file
+        }
+
+     }
+
+     if(isset($request->institute_image)){
+
+        if($branch_dtls->institute_image && file_exists($branch_dtls->institute_image)){
+            unlink($branch_dtls->institute_image); // delete old file
+        }
+
+     }
+
+     if(isset($request->trade_licence)){
+
+        if($branch_dtls->institute_image && file_exists($branch_dtls->trade_licence)){
+            unlink($branch_dtls->trade_licence); // delete old file
+        }
+     }
+     $branch_files=branch_extra_file::where('branch_id',$id)->get();
+     foreach($branch_files as $branch_files){
+      if($branch_files->extra_file && file_exists($branch_files->extra_file)){
+          unlink($branch_files->extra_file); // delete old file
+         // delete old file from database
+      }
+      $branch_files->delete();
+     }
+
+     $branch_dtls->delete();
+    $branch->delete();
+    toastr()->success('Information Deleted successfully');
+    return redirect()->back();
+ }
+}

@@ -18,13 +18,23 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                Add Branch
+                                Update Branch
                             </div>
                             <div class="card-body">
-                                <form class="mb-5" action="{{url('branch/insert')}}" method="POST" enctype="multipart/form-data">
+                                <form class="mb-5" action="{{url('Branch/upate',$branches->id)}}" method="POST" enctype="multipart/form-data">
                                     @csrf
 
                                     <div class="row">
+
+                                        <div class="mb-3 col-md-6 mt-4">
+                                            <label for="exampleInputEmail1" class="form-label">
+                                                নিবন্ধন নম্বর (Registration
+                                                Number):*
+                                            </label>
+                                            <input type="text" value="{{$branches->registration_id}}" name="registration_id" class="form-control"
+                                                style="font-size:15px">
+                                        </div>
+
                                         <div class="mb-3 col-md-6 mt-3">
                                             <label for="exampleInputEmail1" class="form-label">বিভাগের নাম (Division
                                                 Name):*</label>
@@ -101,14 +111,7 @@
                                         </div>
 
 
-                                        <div class="mb-3 col-md-6 mt-4">
-                                            <label for="exampleInputEmail1" class="form-label">
-                                                নিবন্ধন নম্বর (Registration
-                                                Number):*
-                                            </label>
-                                            <input type="text" value="{{$branches->registration_id}}" name="registration_id" class="form-control"
-                                                style="font-size:15px">
-                                        </div>
+
 
                                         <div class="mb-3 col-md-6 mt-4">
                                             <label for="exampleInputEmail1" class="form-label">পিতার নাম (Father's Name):*
@@ -168,7 +171,7 @@
                                             </label>
                                             <select name="blood_group" id=""
                                                 class="form-control"style="font-size:15px">
-                                                <option value="">{{$branch_details->blood_group}}</option>
+                                                <option value="{{$branch_details->blood_group}}">{{$branch_details->blood_group}}</option>
                                                 <option value="A+">A+</option>
                                                 <option value="A-">A-</option>
                                                 <option value="AB+">AB+</option>
@@ -268,9 +271,13 @@
                                                 <div>
                                                     <button type="button"class="btn btn-info mt-4 btn-lg" id="addMore" style="font-size:18px;color:white">Add More File</button>
                                                    </div>
-                                                   <div>
-                                                    <img src="{{asset($branch_details->extra_file)}}" alt="" height="50px" width="50px">
+                                                   @foreach ($branch_file as $branch_file)
+
+                                                   <div class="justify-content" >
+                                                    <img style="display:flex" src="{{asset($branch_file->extra_file)}}" alt="" height="50px" width="50px">
                                                 </div>
+                                                   @endforeach
+
                                         </div>
 
 
@@ -339,7 +346,7 @@
         <script>
               $(document).ready(function() {
                 $('#addMore').click(function(){
-                $('#extra_file').append(' <input type="file" name="extra_file[]" class="form-control"accept="image/*" multiple style="font-size:15px;padding:20px">')
+                $('#extra_file').append('<input type="file" name="extra_file[]" class="form-control"accept="image/*" multiple style="font-size:15px;padding:20px">')
                 });
               });
         </script>
