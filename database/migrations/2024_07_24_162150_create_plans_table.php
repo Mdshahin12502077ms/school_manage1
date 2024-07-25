@@ -15,6 +15,13 @@ return new class extends Migration
     {
         Schema::create('plans', function (Blueprint $table) {
             $table->id();
+            $table->string('name');
+            $table->integer('price');
+            $table->integer('discount_price')->nullable();
+            $table->string('subscription_period');
+            $table->string('period_limit');
+            $table->string('date');
+            $table->string('status');
             $table->timestamps();
         });
     }

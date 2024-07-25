@@ -32,7 +32,12 @@ Route::get('/', function () {
   Route::post('Branch/delete/{id}',[BranchController::class,'delete']);
 
   Route::prefix('School/subscription/')->group(function(){
-    Route::get('plan/all',[schoolSubcription::class,'all']);
+    Route::get('Package/all',[schoolSubcription::class,'allPlan']);
+    Route::get('Package/add',[schoolSubcription::class,'addPlan']);
+    Route::post('Package/insert',[schoolSubcription::class,'insertPlan']);
+    Route::get('Package/edit/{id}',[schoolSubcription::class,'editPlan']);
+    Route::post('Package/update/{id}',[schoolSubcription::class,'updatePlan']);
+    Route::post('Package/delete/{id}',[schoolSubcription::class,'deletePlan']);
 
   });
 

@@ -46,10 +46,10 @@
                                                <td>{{$branchdtls->mobile_number}}</td>
                                                <td>{{$branchdtls->e_mail}}</td>
                                               <td>{{$branches->division->name}},{{$branches->district->district_name}},{{$branches->address}}</td>
-                                               <td>
-                                                <a href="{{url('Branch/edit',$branches->id)}}" class="btn btn-info btn-lg"><i class="fa fa-edit" aria-hidden="true" style="margin-right:20%"></i></a>
-                                               
-                                                <form action="{{url('Branch/delete',$branches->id)}}" class="mt-2" method="post">
+                                               <td class="d-flex">
+                                                <a href="{{url('Branch/edit',$branches->id)}}" class="btn btn-info btn-lg"><i class="fa fa-edit" aria-hidden="true"></i></a>
+
+                                                <form action="{{url('Branch/delete',$branches->id)}}"  method="post"  style="margin-left:4%">
                                                    @csrf
                                                 <button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('Are you sure to delete this item?')"><i class="fas fa-trash"></i></button>
                                             </form>
