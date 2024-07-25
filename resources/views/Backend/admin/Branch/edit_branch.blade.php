@@ -268,13 +268,13 @@
                                             <input type="file" name="extra_file[]" multiple class="form-control"
 
                                                 accept="image/*"style="font-size:15px;">
-                                                <div>
+                                                  <div>
                                                     <button type="button"class="btn btn-info mt-4 btn-lg" id="addMore" style="font-size:18px;color:white">Add More File</button>
                                                    </div>
                                                    @foreach ($branch_file as $branch_file)
 
-                                                   <div class="justify-content" >
-                                                    <img style="display:flex" src="{{asset($branch_file->extra_file)}}" alt="" height="50px" width="50px">
+                                                   <div style=" display:inline-flex;flex-direction: row; margin-right:2%">
+                                                    <img  src="{{asset($branch_file->extra_file)}}" alt="" height="100px" width="100px">
                                                 </div>
                                                    @endforeach
 

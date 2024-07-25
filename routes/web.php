@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\Backend\adminController;
+use App\Http\Controllers\Backend\schoolSubcription;
 use  App\Http\Controllers\Backend\settingController;
 use  App\Http\Controllers\BranchController;
 /*
@@ -30,6 +31,10 @@ Route::get('/', function () {
   Route::post('Branch/upate/{id}',[BranchController::class,'update']);
   Route::post('Branch/delete/{id}',[BranchController::class,'delete']);
 
+  Route::prefix('School/subscription/')->group(function(){
+    Route::get('plan/all',[schoolSubcription::class,'all']);
+
+  });
 
   //district all url
   Route::get('add_division',[settingController::class,'division_add']);

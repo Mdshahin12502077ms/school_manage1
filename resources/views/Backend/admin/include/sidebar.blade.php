@@ -52,6 +52,9 @@
                 </li>
 
 
+
+
+
                 <li class="nav-item sidebar-nav-item">
                     <a href="#" class="nav-link"><i
                             class="flaticon-classmates"></i><span>Branch</span></a>
@@ -65,16 +68,24 @@
                             <a href="{{ url('add_branch') }}" class="nav-link"><i
                                     class="fas fa-angle-right"></i>Add Branch</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="admit-form.html" class="nav-link"><i
-                                    class="fas fa-angle-right"></i>Admission Form</a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="student-promotion.html" class="nav-link"><i
-                                    class="fas fa-angle-right"></i>Student Promotion</a>
-                        </li>
+
                     </ul>
                 </li>
+
+                <li class="nav-item sidebar-nav-item">
+                    <a href="#" class="nav-link"><i
+                            class="flaticon-classmates"></i><span>School Subscription</span></a>
+                    <ul class="nav sub-group-menu">
+
+                        <li class="nav-item">
+                            <a href="{{url('School/subscription/plan/all')}}" class="nav-link"><i class="fas fa-angle-right"></i>All
+                                Plan</a>
+                        </li>
+                      
+                    </ul>
+                </li>
+
+
                 <li class="nav-item sidebar-nav-item">
                     <a href="#" class="nav-link"><i
                             class="flaticon-classmates"></i><span>Settings</span></a>

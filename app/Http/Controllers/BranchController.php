@@ -43,18 +43,19 @@ public function all(){
      $branch->post_office=$request->post_office;
      $branch->address=$request->address;
      $branch->post_code=$request->post_code;
+     $registration=Branch::orderBy('id','desc')->first();
 
-     if($branch->registration_id==null){
+     if($registration==null){
        $branch->registration_id='6521'.$branch->registration_id+1;
      }
 
-
+      else if($registration!=null){
+    $branch->registration_id='6521'.$registration->id+1;
+     }
 
      $branch->Propietor_Name=$request->Propietor_Name;
      $branch->save();
-     $branch->update(
-        ['registration_id' => $branch->registration_id + 1],
-     ) ;
+
      //branch details
      $branch_dtls=new BranchDetails();
      $branch_dtls->branch_id=$branch->id;
@@ -68,6 +69,7 @@ public function all(){
      $branch_dtls->blood_group=$request->blood_group;
      $branch_dtls->extra_rel_contact=$request->extra_rel_contact;
      $branch_dtls->additional_mobile_no=$request->additional_mobile_no;
+
      if(isset($request->ceo_profile)){
      $file = $request->file('ceo_profile');
      $extension = $file->getClientOriginalExtension();
@@ -165,18 +167,13 @@ public function update($id, Request $request){
      $branch->post_office=$request->post_office;
      $branch->address=$request->address;
      $branch->post_code=$request->post_code;
-
-     if($branch->registration_id==null){
-       $branch->registration_id='6521'.$branch->registration_id+1;
-     }
+     $branch->registration_id=$request->registration_id;
 
 
 
      $branch->Propietor_Name=$request->Propietor_Name;
      $branch->save();
-     $branch->update(
-        ['registration_id' => $branch->registration_id + 1],
-     ) ;
+
      //branch details
      $branch_dtls=BranchDetails::where('branch_id',$id)->first();
      $branch_dtls->branch_id=$branch->id;
@@ -266,8 +263,8 @@ public function update($id, Request $request){
         }
         $branch_files->delete();
        }
-    $imageData = [];
-    if($files = $request->file('extra_file')){
+        $imageData = [];
+        if($files = $request->file('extra_file')){
 
         foreach($files as $key => $file){
 
@@ -285,8 +282,9 @@ public function update($id, Request $request){
 
        }
     }
-
     branch_extra_file::insert($imageData);
+    }
+
 
      $branch_dtls->ceo_facebook=$request->ceo_facebook;
      $branch_dtls->save();
@@ -296,8 +294,8 @@ public function update($id, Request $request){
 
 }
 
- }
- public function delete($id){
+
+ public function delete($id, Request $request ){
     $branch=Branch::find($id);
     $branch_dtls=BranchDetails::where('branch_id',$id)->first();
     if(isset($request->ceo_profile)){
