@@ -25,6 +25,7 @@ return new class extends Migration
             $table->string('institute_name');
             $table->string('post_code');
             $table->string('Propietor_Name');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }

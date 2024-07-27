@@ -30,6 +30,7 @@
                                           <th scope="col">Mobile Number</th>
                                           <th scope="col">Email</th>
                                           <th scope="col">Address</th>
+                                             <th scope="col">Status</th>
                                           <th scope="col">Acction</th>
                                         </tr>
                                       </thead>
@@ -46,7 +47,8 @@
                                                <td>{{$branchdtls->mobile_number}}</td>
                                                <td>{{$branchdtls->e_mail}}</td>
                                               <td>{{$branches->division->name}},{{$branches->district->district_name}},{{$branches->address}}</td>
-                                               <td class="d-flex">
+                                              <td><button type="button" class="btn btn-outline-success disabled" style="width: 90%;font-size:15px">{{$branches->status}}</button></td>
+                                              <td class="d-flex">
                                                 <a href="{{url('Branch/edit',$branches->id)}}" class="btn btn-info btn-lg"><i class="fa fa-edit" aria-hidden="true"></i></a>
 
                                                 <form action="{{url('Branch/delete',$branches->id)}}"  method="post"  style="margin-left:4%">
