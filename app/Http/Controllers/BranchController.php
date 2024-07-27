@@ -12,9 +12,18 @@ use App\Models\BranchDetails;
 class BranchController extends Controller
 {
 
-public function all(){
-    $branches=Branch::with('division','district','branch_details')->get();
-    return view('Backend.admin.Branch.all_branch',compact('branches'));
+public function all( Request $request){
+
+    if(isset($request->search_branch)){
+        $branchSearch=Branch::where('institute_name','Like','%'.$request->search_branch.'%')->get();
+        return view('Backend.admin.Branch.all_branch',compact('branchSearch'));
+    }
+    else{
+    $branchSearch=Branch::with('division','district','branch_details')->get();
+    return view('Backend.admin.Branch.all_branch',compact('branchSearch'));
+    }
+
+
 }
 
 
@@ -348,4 +357,11 @@ public function update($id, Request $request){
     toastr()->success('Information Deleted successfully');
     return redirect()->back();
  }
+
+
+ public function Search_branch(Request $request){
+
+
+
+}
 }

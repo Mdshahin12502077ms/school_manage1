@@ -1,13 +1,13 @@
 /**************************************
 
-Template Name: Akkhor 
+Template Name: Akkhor
 Template URL: https://www.radiustheme.com/demo/html/psdboss/akkhor/
 Description: School Management Admin Dashboard HTML Template
 Author: PsdBosS
 Author URL: https://themeforest.net/user/psdboss
-Version: 1.0 
+Version: 1.0
 
-======================================  
+======================================
         Table Of Contents
 ======================================
 1. TYPOGRAPHY
@@ -28,7 +28,7 @@ Version: 1.0
     4.2 Button
 5. PAGE LAYOUT STYLE
     5.1 Content
-    5.2 Default 
+    5.2 Default
     5.3 Footer
     5.4 Header Menu
     5.5 Sidebar Menu
@@ -64,8 +64,8 @@ html {
   font-size: 62.5%;
 }
 body {
-  font-size: 16px;
-  font-family: 'Roboto', sans-serif;
+  font-size: 18px;
+  font-family: 'Kalpurush', sans-serif;
   font-weight: 400;
   height: 100%;
   line-height: 1.7;
@@ -3556,7 +3556,7 @@ ul {
   color: #ffaa01;
 }
 /*=======================================================================
-7. DASHBOARD STYLES 
+7. DASHBOARD STYLES
 =========================================================================*/
 /*=============== 7.1 Dashboard Page One ==================*/
 .dashboard-page-one {

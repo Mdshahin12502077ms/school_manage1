@@ -30,6 +30,7 @@ Route::get('/', function () {
   Route::get('Branch/edit/{id}',[BranchController::class,'edit']);
   Route::post('Branch/upate/{id}',[BranchController::class,'update']);
   Route::post('Branch/delete/{id}',[BranchController::class,'delete']);
+//   Route::get('search/branch',[BranchController::class,'Search_branch']);
 
   Route::prefix('School/subscription/')->group(function(){
     Route::get('Package/all',[schoolSubcription::class,'allPlan']);
