@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use  App\Http\Controllers\Backend\adminController;
+use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\schoolSubcription;
 use  App\Http\Controllers\Backend\settingController;
 use  App\Http\Controllers\BranchController;
@@ -30,7 +31,7 @@ Route::get('/', function () {
   Route::get('Branch/edit/{id}',[BranchController::class,'edit']);
   Route::post('Branch/upate/{id}',[BranchController::class,'update']);
   Route::post('Branch/delete/{id}',[BranchController::class,'delete']);
-//   Route::get('search/branch',[BranchController::class,'Search_branch']);
+  Route::get('Branch/info/{id}',[BranchController::class,'BranchInfo']);
 
   Route::prefix('School/subscription/')->group(function(){
     Route::get('Package/all',[schoolSubcription::class,'allPlan']);
@@ -42,6 +43,17 @@ Route::get('/', function () {
 
   });
 
+
+  
+  Route::prefix('course/')->group(function(){
+    Route::get('all',[CourseController::class,'allCourse']);
+    Route::get('add',[CourseController::class,'addCourse']);
+    Route::post('insert',[CourseController::class,'insertCourse']);
+    Route::get('Package/edit/{id}',[CourseController::class,'editPlan']);
+    Route::post('Package/update/{id}',[CourseController::class,'updatePlan']);
+    Route::post('Package/delete/{id}',[CourseController::class,'deletePlan']);
+
+  });
   //district all url
   Route::get('add_division',[settingController::class,'division_add']);
   Route::post('add_division/insert',[settingController::class,'division_insert']);

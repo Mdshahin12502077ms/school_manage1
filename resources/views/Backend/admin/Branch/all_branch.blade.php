@@ -22,9 +22,9 @@
                                 <form action="{{url('branch/all')}}" method="GET" align="right">
                                     <div class="row">
                                         <div class="col-md-8"></div>
-                                        <div class="searchInput col-md-4 d-flex">
-                                                <input type="search" name="search_branch" id="form1" class="form-control" style="font-size:15px" placeholder="Enter Institute Name"/>
-                                            <button type="submit" class="btn btn-primary" data-mdb-ripple-init>
+                                        <div class="searchInput col-md-4 d-flex form-group">
+                                                <input type="search" name="search_branch" id="form1" class="form-control" style="font-size:20px" placeholder="Enter Institute Name"/>
+                                            <button type="submit" style="font-size:20px" class="btn btn-primary" data-mdb-ripple-init>
                                                 <i class="fas fa-search"></i>
                                               </button>
                                         </div>
@@ -35,7 +35,7 @@
                                 <table class="table">
                                     <thead>
                                         <tr>
-                                          <th scope="col">Serial No</th>
+                                          <th scope="col">Sl No</th>
                                           <th scope="col">Branch Name</th>
                                           <th scope="col">Propietor Name</th>
                                           <th scope="col">Mobile Number</th>
@@ -60,17 +60,19 @@
                                               <td>{{$branchdtls->e_mail}}</td>
                                              <td>{{$branches->division->name}},{{$branches->district->district_name}},{{$branches->address}}</td>
                                              <td><button type="button" class="btn btn-outline-success disabled" style="width: 100%;font-size:15px">{{$branches->status}}</button></td>
-                                             <td class="d-flex">
-                                                <div>
-                                                    <a href="{{url('Branch/info',$branches->id)}}" class="btn btn-info btn-lg"><i class="fa-solid fa-hurricane"></i></a>
-                                                    <a href="{{url('Branch/edit',$branches->id)}}" class="btn btn-info btn-lg"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                                </div>
-                                                <div>
+                                             <td style="display: flex">
+
+                                                    <a href="{{url('Branch/info',$branches->id)}}" class="btn btn-info btn-lg" style="font-size:15px; margin-right:4%;height:100%"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                                    <a href="{{url('Branch/edit',$branches->id)}}" class="btn btn-info btn-lg" style="font-size:15px;margin-right:4%;height:100%"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                                     <form action="{{url('Branch/delete',$branches->id)}}"  method="post"  style="margin-left:4%">
                                                         @csrf
-                                                     <button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('Are you sure to delete this item?')"><i class="fas fa-trash"></i></button>
+                                                     <button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('Are you sure to delete this item?')" style="font-size:15px"><i class="fas fa-trash"></i></button>
                                                  </form>
-                                                </div>
+
+
+
+
+
 
 
 

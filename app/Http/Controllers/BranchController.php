@@ -177,6 +177,7 @@ public function update($id, Request $request){
      $branch->address=$request->address;
      $branch->post_code=$request->post_code;
      $branch->registration_id=$request->registration_id;
+     $branch->status=$request->status;
 
 
 

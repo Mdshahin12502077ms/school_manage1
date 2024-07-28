@@ -184,16 +184,16 @@
                 </li>
                 <li class="nav-item sidebar-nav-item">
                     <a href="#" class="nav-link"><i
-                            class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i><span>Class</span></a>
+                            class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i><span>course</span></a>
                     <ul class="nav sub-group-menu">
                         <li class="nav-item">
-                            <a href="all-class.html" class="nav-link"><i class="fas fa-angle-right"></i>All
-                                Classes</a>
+                            <a href="{{url('course/all')}}" class="nav-link"><i class="fas fa-angle-right"></i>All
+                                course</a>
                         </li>
                         <li class="nav-item">
-                            <a href="add-class.html" class="nav-link"><i class="fas fa-angle-right"></i>Add
+                            <a href="{{url('course/add')}}" class="nav-link"><i class="fas fa-angle-right"></i>Add
                                 New
-                                Class</a>
+                                Course</a>
                         </li>
                     </ul>
                 </li>

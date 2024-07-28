@@ -26,7 +26,7 @@
 
                                     <div class="row">
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">
                                                 নিবন্ধন নম্বর (Registration
                                                 Number):*
@@ -35,7 +35,7 @@
                                                 style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-3">
+                                        <div class="mb-3 col-md-6 mt-3 form-group">
                                             <label for="exampleInputEmail1" class="form-label">বিভাগের নাম (Division
                                                 Name):*</label>
 
@@ -49,7 +49,7 @@
                                         </div>
 
 
-                                        <div class="mb-3 col-md-6 mt-3">
+                                        <div class="mb-3 col-md-6 mt-3 form-group">
                                             <label for="exampleInputEmail1" class="form-label">বিভাগের নাম (Division
                                                 Name):*</label>
                                         <select name="district_id" class="form-control" id="district"
@@ -61,7 +61,7 @@
                                     </select>
                                 </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">উপজেলা (Upazila):*
                                             </label>
                                             <input type="text" name="sub_district" class="form-control"
@@ -70,28 +70,38 @@
 
 
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">থানা (Thana):*
                                             </label>
                                             <input type="text"value="{{$branches->thana}}" name="thana" class="form-control"
                                                style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">পোষ্ট অফিস (Post Office):*
                                             </label>
                                             <input type="text" value="{{$branches->post_office}}"   name="post_office" class="form-control"
                                                 style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">পোস্ট কোড (Post Code):*
                                             </label>
                                             <input type="text" value="{{$branches->post_code}}"  name="post_code" class="form-control"
                                                style="font-size:15px">
                                         </div>
-
-                                        <div class="mb-3 col-md-12 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
+                                            <label for="exampleInputEmail1" class="form-label">Status
+                                            </label>
+                                            <select name="status" id=""
+                                                class="form-control"style="font-size:15px">
+                                                <option value="{{$branches->status}}">{{$branches->status}}</option>
+                                                <option value="pending">Pending</option>
+                                                <option value="confirmed">Confirmed</option>
+                                               <option value="cancelled">Cancelled</option>
+                                            </select>
+                                        </div>
+                                        <div class="mb-3 col-md-12 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">প্রতিষ্ঠানের নাম (Institute
                                                 Name):*
                                             </label>
@@ -102,7 +112,7 @@
 
 
 
-                                        <div class="mb-3 col-md-12 mt-4">
+                                        <div class="mb-3 col-md-12 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">পরিচালকের নাম (Propietor
                                                 Name):*
                                             </label>
@@ -113,21 +123,21 @@
 
 
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">পিতার নাম (Father's Name):*
                                             </label>
                                             <input type="text"  value="{{$branch_details->fathers_name}}" name="fathers_name" class="form-control"
                                                 style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">মাতার নাম (Mother's Name):*
                                             </label>
                                             <input type="text" value="{{$branch_details->mothers_name}}" name="mothers_name" class="form-control"
                                                style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">প্রতিষ্ঠানের বয়স(Institute
                                                 Age):
                                             </label>
@@ -135,7 +145,7 @@
                                             style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">কম্পিউটারের সংখ্যা (No Of
                                                 Computers):*
                                             </label>
@@ -143,14 +153,14 @@
                                              style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">ই-মেইল (E-mail):*
                                             </label>
                                             <input type="email" value="{{$branch_details->e_mail}}" name="e_mail" class="form-control"
                                            style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">মোবাইল নম্বর (Mobile
                                                 Number):*
                                             </label>
@@ -158,7 +168,7 @@
                                                 style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">অতিরিক্ত যোগাযোগের নাম
                                                 (Additional Contact Name):*
                                             </label>
@@ -166,7 +176,7 @@
                                                 style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">রক্তের গ্রুপ (Blood Group)
                                             </label>
                                             <select name="blood_group" id=""
@@ -183,7 +193,7 @@
                                             </select>
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">অতিরিক্ত যোগাযোগের সম্পর্ক
                                                 (Additional Contact Relation):*
                                             </label>
@@ -192,7 +202,7 @@
                                         </div>
 
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label"> অতিরিক্ত মোবাইল নম্বর
                                                 (Additional Mobile Number):*
                                             </label>
@@ -200,7 +210,7 @@
                                                 style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label"> মালিক/সি,ই,ও প্রোফাইল
                                                 (Propietor/CEO Profile):*
                                             </label>
@@ -214,7 +224,7 @@
 
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label"> জাতীয় পরিচয়পত্র
                                                 (National id):
                                             </label>
@@ -226,7 +236,7 @@
                                                 </div>
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">Document: ( 'HSC' শিক্ষাগত
                                                 ও দক্ষত সনদ Educational & Skill )
                                             </label>
@@ -238,7 +248,7 @@
                                                 </div>
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label"> প্রতিষ্ঠানের ছবি:
                                                 (Institute Photo):
                                             </label>
@@ -250,7 +260,7 @@
                                                 </div>
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label"> ট্রেড লাইসেন্স (Trade
                                                 License):
                                             </label>
@@ -262,7 +272,7 @@
                                                 </div>
                                         </div>
 
-                                        <div class="mb-3 col-md-6 mt-4" id="extra_file">
+                                        <div class="mb-3 col-md-6 mt-4 form-group" id="extra_file">
                                             <label for="exampleInputEmail1" class="form-label"> আরো ফাইল যুক্ত করুন (Click to Add More):
                                             </label>
                                             <input type="file" name="extra_file[]" multiple class="form-control"
@@ -282,7 +292,7 @@
 
 
 
-                                        <div class="mb-3 col-md-6 mt-4">
+                                        <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label"style="font-size:15px" >
                                                 পরিচালকের ফেসবুক লিংক (Proprietor/CEO Facebook URL):*
                                             </label>
@@ -290,7 +300,7 @@
                                                style="font-size:15px">
                                         </div>
 
-                                        <div class="mb-3 form-group col-md-6 mt-4">
+                                        <div class="mb-3 form-group col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label"style="font-size:15px">
                                                 ঠিকানা (Address):*
                                             </label>
