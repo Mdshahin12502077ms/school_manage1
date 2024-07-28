@@ -6,6 +6,7 @@ use App\Http\Controllers\Backend\CourseController;
 use App\Http\Controllers\Backend\schoolSubcription;
 use  App\Http\Controllers\Backend\settingController;
 use  App\Http\Controllers\BranchController;
+use  App\Http\Controllers\Backend\BranchSubsController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -32,6 +33,8 @@ Route::get('/', function () {
   Route::post('Branch/upate/{id}',[BranchController::class,'update']);
   Route::post('Branch/delete/{id}',[BranchController::class,'delete']);
   Route::get('Branch/info/{id}',[BranchController::class,'BranchInfo']);
+  //branch subscription
+  Route::post('branch/subscription/insert',[BranchSubsController::class,'Branch_subscription']);
 
   Route::prefix('School/subscription/')->group(function(){
     Route::get('Package/all',[schoolSubcription::class,'allPlan']);
@@ -44,7 +47,7 @@ Route::get('/', function () {
   });
 
 
-  
+
   Route::prefix('course/')->group(function(){
     Route::get('all',[CourseController::class,'allCourse']);
     Route::get('add',[CourseController::class,'addCourse']);

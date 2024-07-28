@@ -18,7 +18,7 @@ return new class extends Migration
             $table->bigInteger('division_id');
             $table->bigInteger('district_id');
             $table->string('sub_district');
-            $table->string('registration_id');
+            $table->string('registration_id')->nullable();
             $table->string('thana');
             $table->string('post_office');
             $table->longText('address');

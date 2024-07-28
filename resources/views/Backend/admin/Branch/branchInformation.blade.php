@@ -13,70 +13,13 @@
             </ul>
         </div>
         <div>
+            
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-
-
-                                    <div>
-
-                                        <div class="card height-auto">
-                                            <div class="card-body">
-                                                <div class="heading-layout1">
-                                                    <div class="item-title">
-                                                        <h3>Branch Subscription</h3>
-                                                    </div>
-                                                   <div class="dropdown">
-                                                        <a class="dropdown-toggle" href="#" role="button"
-                                                        data-toggle="dropdown" aria-expanded="false">...</a>
-
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                                <form class="new-added-form" action="{{url('branch/subscription/insert')}}" method="Post" enctype="multipart/form-data">
-                                                   @csrf
-                                                    <div class="row">
-
-                                                        <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                                            <label>Select Branch</label>
-                                                            <select name="branch_id" class="select2">
-                                                                <option value="">Please Select Branch</option>
-                                                                @foreach ($branchSubs as $branchSubs)
-                                                                <option value="{{$branchSubs->id}}">{{$branchSubs->institute_name}}</option>
-                                                                @endforeach
-
-                                                            </select>
-                                                        </div>
-
-                                                        <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                                            <label>Select Plan</label>
-                                                            <select name="plan_id" class="select2">
-                                                                <option value="">Please Select Plan</option>
-                                                                @foreach ($plansubs as $planSubs)
-                                                                <option value="{{$planSubs->id}}">{{$planSubs->name}}</option>
-                                                                @endforeach
-
-                                                            </select>
-                                                        </div>
-                                                        <div class="col-md-6 form-group"></div>
-                                                        <div class="col-12 form-group mg-t-8">
-                                                            <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
-                                                            <button type="reset" class="btn-fill-lg bg-blue-dark btn-hover-yellow">Reset</button>
-                                                        </div>
-                                                    </div>
-                                                </form>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    All Branch
-                                <div>
-
+                                All Branch
                                 <form action="{{url('branch/all')}}" method="GET" align="right">
                                     <div class="row">
                                         <div class="col-md-8"></div>
@@ -88,8 +31,6 @@
                                         </div>
                                     </div>
                                 </form>
-                                </div>
-
                             </div>
                             <div class="card-body">
                                 <table class="table">
@@ -143,8 +84,6 @@
 
 
                                          @endif
-
-
 
                                       </tbody>
                                   </table>

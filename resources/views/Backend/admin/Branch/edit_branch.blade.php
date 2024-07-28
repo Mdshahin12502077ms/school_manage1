@@ -97,7 +97,7 @@
                                                 class="form-control"style="font-size:15px">
                                                 <option value="{{$branches->status}}">{{$branches->status}}</option>
                                                 <option value="pending">Pending</option>
-                                                <option value="confirmed">Confirmed</option>
+                                                <option value="Approved">Approved</option>
                                                <option value="cancelled">Cancelled</option>
                                             </select>
                                         </div>

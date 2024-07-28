@@ -8,6 +8,10 @@ use App\Models\Division;
 use App\Models\Branch;
 use App\Models\branch_extra_file;
 use App\Models\BranchDetails;
+use App\Models\Plan;
+use Carbon\Carbon;
+use App\Models\BranchSubscription;
+
 
 class BranchController extends Controller
 {
@@ -19,8 +23,10 @@ public function all( Request $request){
         return view('Backend.admin.Branch.all_branch',compact('branchSearch'));
     }
     else{
-    $branchSearch=Branch::with('division','district','branch_details')->get();
-    return view('Backend.admin.Branch.all_branch',compact('branchSearch'));
+    $data['branchSearch']=Branch::with('division','district','branch_details')->get();
+    $data['branchSubs']=Branch::all();
+    $data['plansubs']=Plan::all();
+    return view('Backend.admin.Branch.all_branch',$data);
     }
 
 
@@ -52,15 +58,18 @@ public function all( Request $request){
      $branch->post_office=$request->post_office;
      $branch->address=$request->address;
      $branch->post_code=$request->post_code;
-     $registration=Branch::orderBy('id','desc')->first();
 
-     if($registration==null){
-       $branch->registration_id='6521'.$branch->registration_id+1;
-     }
+    if( $branch->status=='confirmed'){
+    $registration=Branch::orderBy('id','desc')->first();
+    if($registration==null){
+        $branch->registration_id='6521'.$branch->registration_id+1;
+      }
 
-      else if($registration!=null){
-    $branch->registration_id='6521'.$registration->id+1;
-     }
+       else if($registration!=null){
+     $branch->registration_id='6521'.$registration->id+1;
+      }
+    }
+
 
      $branch->Propietor_Name=$request->Propietor_Name;
      $branch->save();
@@ -176,13 +185,69 @@ public function update($id, Request $request){
      $branch->post_office=$request->post_office;
      $branch->address=$request->address;
      $branch->post_code=$request->post_code;
-     $branch->registration_id=$request->registration_id;
      $branch->status=$request->status;
+
+     if($request->status=='Approved'){
+        // $registration=Branch::orderBy('id','desc')->first();
+        $registration= $branch->registration_id;
+        // dd($registration);
+        // dd($registration+1);
+        if($registration==null){
+                $branch->registration_id='6521'.$branch->registration_id+1;
+        }
+
+           else if($registration!=null){
+                   $branch->registration_id=$registration+1;
+            }
+
+      //subscription date
+       $subscription=BranchSubscription::where('branch_id',$branch->id)->orderBy('id','desc')->with('plan')->first();
+    //   foreach($branchsubscription as $subscription){
+        $subscription->starting_date=Carbon::now();
+        $now=Carbon::now();
+        if($subscription->plan->subscription_period=='Lifetime'){
+
+                $subscription->expired_date='unlimited';
+                $subscription->save();
+       }
+
+       if($subscription->plan->subscription_period=='Days'){
+
+        $subscription->expired_date=$now->addDays(7);
+        $subscription->save();
+
+       }
+
+       if($subscription->plan->subscription_period=='Monthly'){
+
+        $subscription->expired_date=$now->addMonths(3);
+        $subscription->save();
+
+       }
+
+       if($subscription->plan->subscription_period=='Yearly'){
+
+        $subscription->expired_date=$now->addYear(1);
+        $subscription->save();
+
+       }
+       
+
+    //    $subscription->save();
+
+    // }
+
+}
+        else{
+            if(isset($request->registration_id)){
+                $branch->registration_id=$request->registration_id;
+                 }
+        }
 
 
 
      $branch->Propietor_Name=$request->Propietor_Name;
-     $branch->save();
+    //  $branch->save();
 
      //branch details
      $branch_dtls=BranchDetails::where('branch_id',$id)->first();
@@ -292,12 +357,12 @@ public function update($id, Request $request){
 
        }
     }
-    branch_extra_file::insert($imageData);
+    // branch_extra_file::insert($imageData);
     }
 
 
      $branch_dtls->ceo_facebook=$request->ceo_facebook;
-     $branch_dtls->save();
+    //  $branch_dtls->save();
 
      toastr()->success('Information updated successfully');
      return redirect()->back();
@@ -360,9 +425,16 @@ public function update($id, Request $request){
  }
 
 
- public function Search_branch(Request $request){
+//  public function Search_branch(Request $request){
 
 
 
+// }
+public function BranchInfo($id){
+    $data['branch'] = Branch::find($id);
+    $data['branch_details'] = BranchDetails::where('branch_id', $id)->first();
+    $data['branch_images'] = branch_extra_file::where('branch_id', $id)->get();
+    return view('Backend.admin.Branch.branchInformation', $data);
 }
+
 }
