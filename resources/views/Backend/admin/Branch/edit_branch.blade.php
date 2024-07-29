@@ -4,12 +4,12 @@
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>ADD BRANCH</h3>
+            <h3>Update Institute</h3>
             <ul>
                 <li>
                     <a href="index.html">Home</a>
                 </li>
-                <li>Branch</li>
+                <li>Institue</li>
             </ul>
         </div>
         <div>
@@ -18,7 +18,7 @@
                     <div class="col-md-12">
                         <div class="card">
                             <div class="card-header">
-                                Update Branch
+                                Update Institute
                             </div>
                             <div class="card-body">
                                 <form class="mb-5" action="{{url('Branch/upate',$branches->id)}}" method="POST" enctype="multipart/form-data">
@@ -90,6 +90,7 @@
                                             <input type="text" value="{{$branches->post_code}}"  name="post_code" class="form-control"
                                                style="font-size:15px">
                                         </div>
+
                                         <div class="mb-3 col-md-6 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">Status
                                             </label>
@@ -101,6 +102,21 @@
                                                <option value="Expired">Expired</option>
                                             </select>
                                         </div>
+
+
+                                        <div class="col-xl-3 col-lg-6 col-12 form-group">
+                                            <label>Select Plan</label>
+                                            <select name="plan_id" class="select2">
+
+                                                <option value="{{$subscription->plan_id}}">{{$subscription->plan->name}}</option>
+
+                                                @foreach ($plansubs as $planSubs)
+                                                <option value="{{$planSubs->id}}">{{$planSubs->name}}</option>
+                                                @endforeach
+
+                                            </select>
+                                        </div>
+
                                         <div class="mb-3 col-md-12 mt-4 form-group">
                                             <label for="exampleInputEmail1" class="form-label">প্রতিষ্ঠানের নাম (Institute
                                                 Name):*

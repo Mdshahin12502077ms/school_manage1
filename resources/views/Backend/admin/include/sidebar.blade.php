@@ -76,6 +76,10 @@
                     <a href="#" class="nav-link"><i
                             class="flaticon-classmates"></i><span>Institute Subscription</span></a>
                     <ul class="nav sub-group-menu">
+                        <li class="nav-item">
+                            <a href="{{url('School/subscription/list/all')}}" class="nav-link"><i class="fas fa-angle-right"></i>All
+                            Subscription List</a>
+                        </li>
 
                         <li class="nav-item">
                             <a href="{{url('School/subscription/Package/all')}}" class="nav-link"><i class="fas fa-angle-right"></i>All

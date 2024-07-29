@@ -20,7 +20,7 @@
                     <div class="card-body">
                         <div class="heading-layout1">
                             <div class="item-title">
-                                <h3>Add New Course</h3>
+                                <h3>Edit Course</h3>
                             </div>
                            <div class="dropdown">
                                 <a class="dropdown-toggle" href="#" role="button"
@@ -33,31 +33,31 @@
                                 </div>
                             </div>
                         </div>
-                        <form class="new-added-form" action="{{url('course/insert')}}" method="Post" enctype="multipart/form-data">
+                        <form class="new-added-form" action="{{url('course/update',$course->id)}}" method="Post" enctype="multipart/form-data">
                            @csrf
                             <div class="row">
                                 <div class="col-xl-3 col-lg-6 col-12 form-group">
                                     <label>Course Name *</label>
-                                    <input type="text" name="course_name" placeholder="Enter Course Name" class="form-control">
+                                    <input type="text" name="course_name" value="{{$course->course_name}}" class="form-control">
                                 </div>
                                 <div class="col-xl-3 col-lg-6 col-12 form-group">
                                     <label>Course Code</label>
-                                    <input type="text" name="course_code" placeholder="Enter Course Code" class="form-control">
+                                    <input type="text" name="course_code" value="{{$course->course_code}}" class="form-control">
                                 </div>
                                 <div class="col-xl-3 col-lg-6 col-12 form-group">
                                     <label>Course Duration</label>
-                                    <input type="text" name="course_duration" placeholder="Enter Course Duration" class="form-control">
+                                    <input type="text" name="course_duration" value="{{$course->course_duration}}" class="form-control">
                                 </div>
 
 
                                 <div class="col-xl-3 col-lg-6 col-12 form-group">
                                     <label>Course Amount</label>
-                                    <input type="text" name="course_amount" placeholder="Enter Course Amount" class="form-control">
+                                    <input type="text" name="course_amount" value="{{$course->course_amount}}" class="form-control">
                                 </div>
                                 <div class="col-xl-3 col-lg-6 col-12 form-group">
                                     <label>Status</label>
                                     <select name="status" class="select2">
-                                        <option value="">Please Select</option>
+                                        <option value="{{$course->status}}">{{$course->status}}</option>
                                         <option value="Active">Active</option>
                                         <option value="Deactive">Deactive</option>
 

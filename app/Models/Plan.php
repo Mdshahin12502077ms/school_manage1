@@ -9,6 +9,7 @@ class Plan extends Model
 {
     use HasFactory;
     protected $guarded=[];
+    
     public function branch_subscription(){
         return $this->hasMany(Branch_subscription::class,'plan_id','id');
     }

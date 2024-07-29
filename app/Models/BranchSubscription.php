@@ -12,6 +12,7 @@ class BranchSubscription extends Model
     public function branch(){
         return $this->belongsTo(Branch::class,'branch_id','id');
     }
+
     public function plan(){
         return $this->belongsTo(Plan::class,'plan_id','id');
     }

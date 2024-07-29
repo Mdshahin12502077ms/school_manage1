@@ -113,7 +113,7 @@
                                           @endphp
                                          <tr>
 
-                                             <td>{{$loop->iteration}}</td></td>
+                                             <td>{{$loop->iteration}}</td>
                                              <td>{{$branches->institute_name}}</td>
                                              <td>{{$branches->Propietor_Name}}</td>
                                               <td>{{$branchdtls->mobile_number}}</td>

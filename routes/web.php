@@ -37,6 +37,7 @@ Route::get('/', function () {
   Route::post('branch/subscription/insert',[BranchSubsController::class,'Branch_subscription']);
 
   Route::prefix('School/subscription/')->group(function(){
+    Route::get('list/all',[schoolSubcription::class,'all']);
     Route::get('Package/all',[schoolSubcription::class,'allPlan']);
     Route::get('Package/add',[schoolSubcription::class,'addPlan']);
     Route::post('Package/insert',[schoolSubcription::class,'insertPlan']);
@@ -52,9 +53,9 @@ Route::get('/', function () {
     Route::get('all',[CourseController::class,'allCourse']);
     Route::get('add',[CourseController::class,'addCourse']);
     Route::post('insert',[CourseController::class,'insertCourse']);
-    Route::get('Package/edit/{id}',[CourseController::class,'editPlan']);
-    Route::post('Package/update/{id}',[CourseController::class,'updatePlan']);
-    Route::post('Package/delete/{id}',[CourseController::class,'deletePlan']);
+    Route::get('edit/{id}',[CourseController::class,'editCourse']);
+    Route::post('update/{id}',[CourseController::class,'updateCourse']);
+    Route::post('delete/{id}',[CourseController::class,'deleteCourse']);
 
   });
   //district all url

@@ -21,6 +21,8 @@
 <link rel="stylesheet" href="{{asset('Backend/css/fullcalendar.min.css')}}">
 <!-- Animate CSS -->
 <link rel="stylesheet" href="{{asset('Backend/css/animate.min.css')}}">
+<!-- Data Table CSS -->
+<link rel="stylesheet" href="css/jquery.dataTables.min.css">
 <!-- Custom CSS -->
 <link rel="stylesheet" href="{{asset('Backend/style.css')}}">
 <!-- Modernize js -->

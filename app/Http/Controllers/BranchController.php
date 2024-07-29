@@ -170,6 +170,9 @@ public function edit($id){
     // dd( $data['branch_file']);
     $data['get_division']=Division::get();
     $data['get_district']=District::get();
+    $data['subscription']=BranchSubscription::where('branch_id', $data['branches']->id)->with('plan')->first();
+
+    $data['plansubs']=Plan::all();
     return view('Backend.admin.Branch.edit_branch',$data);
 
 }
@@ -187,6 +190,12 @@ public function update($id, Request $request){
      $branch->post_code=$request->post_code;
      $branch->status=$request->status;
 
+     if(isset($request->plan_id)){
+        $subPlan=BranchSubscription::where('branch_id', $branch->id)->first();
+        $subPlan->plan_id=$request->plan_id;
+        $subPlan->save();
+     }
+
      if($request->status=='Approved'){
         // $registration=Branch::orderBy('id','desc')->first();
         $registration= $branch->registration_id;
@@ -201,41 +210,41 @@ public function update($id, Request $request){
             }
 
       //subscription date
-       $branchsubscription=BranchSubscription::where('branch_id',$branch->id)->with('plan')->get();
-    foreach($branchsubscription as $subscription){
+       $subscription=BranchSubscription::where('branch_id',$branch->id)->with('plan')->first();
+
         $subscription->starting_date=Carbon::now();
         $now=Carbon::now();
         if($subscription->plan->subscription_period=='Lifetime'){
 
                 $subscription->expired_date='unlimited';
-
+                $subscription->save();
        }
 
        if($subscription->plan->subscription_period=='Days'){
 
         $subscription->expired_date=$now->addMinutes(2);
-
+        $subscription->save();
 
        }
 
        if($subscription->plan->subscription_period=='Monthly'){
 
         $subscription->expired_date=$now->addMonths(3);
-
+ $subscription->save();
 
        }
 
        if($subscription->plan->subscription_period=='Yearly'){
 
         $subscription->expired_date=$now->addYear(1);
-
+        $subscription->save();
 
        }
 
 
-       $subscription->save();
 
-    }
+
+
 
 }
 
@@ -248,7 +257,7 @@ else{
 
 
      $branch->Propietor_Name=$request->Propietor_Name;
-    //  $branch->save();
+     $branch->save();
 
      //branch details
      $branch_dtls=BranchDetails::where('branch_id',$id)->first();
@@ -358,12 +367,12 @@ else{
 
        }
     }
-    // branch_extra_file::insert($imageData);
+    branch_extra_file::insert($imageData);
     }
 
 
      $branch_dtls->ceo_facebook=$request->ceo_facebook;
-    //  $branch_dtls->save();
+     $branch_dtls->save();
 
      toastr()->success('Information updated successfully');
      return redirect()->back();
@@ -435,6 +444,8 @@ public function BranchInfo($id){
     $data['branch'] = Branch::find($id);
     $data['branch_details'] = BranchDetails::where('branch_id', $id)->first();
     $data['branch_images'] = branch_extra_file::where('branch_id', $id)->get();
+    $data['subscription'] = BranchSubscription::where('branch_id', $id)->first();
+
     return view('Backend.admin.Branch.branchInformation', $data);
 }
 
