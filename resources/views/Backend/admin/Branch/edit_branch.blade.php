@@ -96,9 +96,9 @@
                                             <select name="status" id=""
                                                 class="form-control"style="font-size:15px">
                                                 <option value="{{$branches->status}}">{{$branches->status}}</option>
-                                                <option value="pending">Pending</option>
+                                                <option value="Pending">Pending</option>
                                                 <option value="Approved">Approved</option>
-                                               <option value="cancelled">Cancelled</option>
+                                               <option value="Expired">Expired</option>
                                             </select>
                                         </div>
                                         <div class="mb-3 col-md-12 mt-4 form-group">

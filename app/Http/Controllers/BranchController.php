@@ -201,44 +201,45 @@ public function update($id, Request $request){
             }
 
       //subscription date
-       $subscription=BranchSubscription::where('branch_id',$branch->id)->orderBy('id','desc')->with('plan')->first();
-    //   foreach($branchsubscription as $subscription){
+       $branchsubscription=BranchSubscription::where('branch_id',$branch->id)->with('plan')->get();
+    foreach($branchsubscription as $subscription){
         $subscription->starting_date=Carbon::now();
         $now=Carbon::now();
         if($subscription->plan->subscription_period=='Lifetime'){
 
                 $subscription->expired_date='unlimited';
-                $subscription->save();
+
        }
 
        if($subscription->plan->subscription_period=='Days'){
 
-        $subscription->expired_date=$now->addDays(7);
-        $subscription->save();
+        $subscription->expired_date=$now->addMinutes(2);
+
 
        }
 
        if($subscription->plan->subscription_period=='Monthly'){
 
         $subscription->expired_date=$now->addMonths(3);
-        $subscription->save();
+
 
        }
 
        if($subscription->plan->subscription_period=='Yearly'){
 
         $subscription->expired_date=$now->addYear(1);
-        $subscription->save();
+
 
        }
-       
 
-    //    $subscription->save();
 
-    // }
+       $subscription->save();
+
+    }
 
 }
-        else{
+
+else{
             if(isset($request->registration_id)){
                 $branch->registration_id=$request->registration_id;
                  }
