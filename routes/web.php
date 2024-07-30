@@ -37,7 +37,9 @@ Route::get('/', function () {
   Route::post('branch/subscription/insert',[BranchSubsController::class,'Branch_subscription']);
 
   Route::prefix('School/subscription/')->group(function(){
-    Route::get('list/all',[schoolSubcription::class,'all']);
+    Route::get('list/all',[BranchSubsController::class,'allSubscription']);
+    Route::get('subscription/edit/{id}',[BranchSubsController::class,'editsubscription']);
+    Route::post('subscription/update/{id}',[BranchSubsController::class,'updatesubscription']);
     Route::get('Package/all',[schoolSubcription::class,'allPlan']);
     Route::get('Package/add',[schoolSubcription::class,'addPlan']);
     Route::post('Package/insert',[schoolSubcription::class,'insertPlan']);

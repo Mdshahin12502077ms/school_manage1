@@ -15,7 +15,7 @@ class Branch extends Model
     }
 
     public function branch_subscription(){
-        return $this->hasMany(Branch_subscription::class,'plan_id','id');
+        return $this->hasMany(Branch_subscription::class,'branch_id','id')->with('branch_details');
     }
 
     public function district(){

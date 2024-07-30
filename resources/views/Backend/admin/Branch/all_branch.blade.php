@@ -4,12 +4,12 @@
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>All BRANCH</h3>
+            <h3>All Institute</h3>
             <ul>
                 <li>
                     <a href="index.html">Home</a>
                 </li>
-                <li>All Branch</li>
+                <li>All Institute</li>
             </ul>
         </div>
         <div>
@@ -26,7 +26,7 @@
                                             <div class="card-body">
                                                 <div class="heading-layout1">
                                                     <div class="item-title">
-                                                        <h3>Branch Subscription</h3>
+                                                        <h3>Institute Subscription</h3>
                                                     </div>
                                                    <div class="dropdown">
                                                         <a class="dropdown-toggle" href="#" role="button"
@@ -64,17 +64,20 @@
 
                                                             </select>
                                                         </div>
+
                                                         <div class="col-md-6 form-group"></div>
                                                         <div class="col-12 form-group mg-t-8">
                                                             <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
-                                                            <button type="reset" class="btn-fill-lg bg-blue-dark btn-hover-yellow">Reset</button>
+                                                       
+                                                            <a href="{{url('School/subscription/list/all')}}" class="btn-fill-lg bg-blue-dark btn-hover-yellow">
+                                                                Subscription List</a>
                                                         </div>
                                                     </div>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
-                                    All Branch
+                                    All Institute
                                 <div>
 
                                 <form action="{{url('branch/all')}}" method="GET" align="right">

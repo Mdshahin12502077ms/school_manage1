@@ -25,7 +25,10 @@
 <link rel="stylesheet" href="css/jquery.dataTables.min.css">
 <!-- Custom CSS -->
 <link rel="stylesheet" href="{{asset('Backend/style.css')}}">
+<!-- Date Picker CSS -->
+<link rel="stylesheet" href="{{asset('Backend/css/datepicker.min.css')}}">
 <!-- Modernize js -->
+
 <script src="{{asset('Backend/js/modernizr-3.6.0.min.js')}}"></script>
 
 
