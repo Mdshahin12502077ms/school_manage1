@@ -17,7 +17,7 @@ return new class extends Migration
         $table->id();
            $table->bigInteger('branch_id')->nullable();
            $table->bigInteger('plan_id')->nullable();
-           $table->bigInteger('subs_reg')->nullable();
+           $table->string('subs_reg')->nullable();
            $table->string('starting_date')->nullable();
            $table->string('expired_date')->nullable();
            $table->string('status')->nullable();

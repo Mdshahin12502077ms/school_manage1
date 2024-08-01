@@ -33,17 +33,21 @@
                             class="flaticon-classmates"></i><span>Students</span></a>
                     <ul class="nav sub-group-menu">
                         <li class="nav-item">
-                            <a href="all-student.html" class="nav-link"><i class="fas fa-angle-right"></i>All
+                            <a href="{{url('Student/all')}}" class="nav-link"><i class="fas fa-angle-right"></i>All
                                 Students</a>
                         </li>
+
+
+                        <li class="nav-item">
+                            <a href="{{url('Student/addmission/form')}}" class="nav-link"><i
+                                    class="fas fa-angle-right"></i>Admission Form</a>
+                        </li>
+
                         <li class="nav-item">
                             <a href="student-details.html" class="nav-link"><i
                                     class="fas fa-angle-right"></i>Student Details</a>
                         </li>
-                        <li class="nav-item">
-                            <a href="admit-form.html" class="nav-link"><i
-                                    class="fas fa-angle-right"></i>Admission Form</a>
-                        </li>
+
                         <li class="nav-item">
                             <a href="student-promotion.html" class="nav-link"><i
                                     class="fas fa-angle-right"></i>Student Promotion</a>
@@ -201,9 +205,20 @@
                         </li>
                     </ul>
                 </li>
-                <li class="nav-item">
-                    <a href="all-subject.html" class="nav-link"><i
-                            class="flaticon-open-book"></i><span>Subject</span></a>
+                <li class="nav-item sidebar-nav-item">
+                    <a href="#" class="nav-link"><i
+                            class="flaticon-maths-class-materials-cross-of-a-pencil-and-a-ruler"></i><span>Session</span></a>
+                    <ul class="nav sub-group-menu">
+                        <li class="nav-item">
+                            <a href="{{url('Session/all')}}" class="nav-link"><i class="fas fa-angle-right"></i>All
+                                Session</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{url('Session/add')}}" class="nav-link"><i class="fas fa-angle-right"></i>Add
+                                New
+                                Session</a>
+                        </li>
+                    </ul>
                 </li>
                 <li class="nav-item">
                     <a href="class-routine.html" class="nav-link"><i

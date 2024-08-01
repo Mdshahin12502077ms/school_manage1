@@ -4,14 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use App\Models\Session;
-class CourseModel extends Model
+use App\Models\CourseModel;
+class Session extends Model
 {
     use HasFactory;
     protected $guarded=[];
-
-    public function session(){
-        return $this->hasMany(Session::class,'course_id','id');
-     }
- }
-
+    
+    public function course(){
+       return $this->belongsTo(CourseModel::class,'course_id','id');
+    }
+}

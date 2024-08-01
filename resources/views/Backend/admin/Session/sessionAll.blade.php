@@ -4,12 +4,12 @@
     <div class="dashboard-content-one">
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
-            <h3>All COURSE</h3>
+            <h3>All SESSION</h3>
             <ul>
                 <li>
                     <a href="index.html">Home</a>
                 </li>
-                <li>All Course</li>
+                <li>All Session</li>
             </ul>
         </div>
         <div>
@@ -26,9 +26,9 @@
                     <div class="card-body">
                         <div class="heading-layout1">
                             <div class="item-title">
-                                <h3>All Course</h3>
+                                <h3>All Session</h3>
                             </div>
-
+                           
                         </div>
                         <form class="mg-b-20">
                             <div class="row gutters-8">
@@ -56,10 +56,8 @@
                                                 <label class="form-check-label">SI NO</label>
                                             </div>
                                         </th>
+                                        <th>Session Name</th>
                                         <th>Course Name</th>
-                                        <th>Course Code</th>
-                                        <th>Course Duration</th>
-                                        <th>Course Amount</th>
                                         <th>Status</th>
                                         <th>Action</th>
 
@@ -67,7 +65,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    @foreach ($course as $course)
+                                    @foreach ($session as $session)
                                     <tr>
                                         <td>
                                             <div class="form-check">
@@ -76,17 +74,16 @@
                                             </div>
                                         </td>
 
-                                        <td>{{$course->course_name}}</td>
-                                        <td>{{ $course->course_code}}</td>
-                                        <td>{{$course->course_duration}}</td>
-                                        <td>{{$course->course_amount}}</td>
-                                        <td><button type="button" class="btn btn-outline-success disabled" style="width: 100%;font-size:15px">{{$course->status}}</button></td>
+                                        <td>{{$session->session_name}}</td>
+                                        <td>{{ $session->course->course_name}}</td>
+
+                                        <td><button type="button" class="btn btn-outline-success disabled" style="width: 100%;font-size:15px">{{$session->status}}</button></td>
 
                                         <td style="display: flex">
 
 
-                                            <a href="{{url('course/edit',$course->id)}}" class="btn btn-info btn-lg" style="font-size:15px;margin-right:4%;height:100%"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                            <form action="{{url('course/delete',$course->id)}}"  method="post"  style="margin-left:4%">
+                                            <a href="{{url('Session/edit',$session->id)}}" class="btn btn-info btn-lg" style="font-size:15px;margin-right:4%;height:100%"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                            <form action="{{url('Session/delete',$session->id)}}"  method="post"  style="margin-left:4%">
                                                 @csrf
                                              <button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('Are you sure to delete this item?')" style="font-size:15px"><i class="fas fa-trash"></i></button>
                                          </form>

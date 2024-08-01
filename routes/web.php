@@ -7,6 +7,9 @@ use App\Http\Controllers\Backend\schoolSubcription;
 use  App\Http\Controllers\Backend\settingController;
 use  App\Http\Controllers\BranchController;
 use  App\Http\Controllers\Backend\BranchSubsController;
+use App\Http\Controllers\Backend\SessionController;
+use App\Http\Controllers\Backend\StudentController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -40,6 +43,7 @@ Route::get('/', function () {
     Route::get('list/all',[BranchSubsController::class,'allSubscription']);
     Route::get('subscription/edit/{id}',[BranchSubsController::class,'editsubscription']);
     Route::post('subscription/update/{id}',[BranchSubsController::class,'updatesubscription']);
+    Route::post('subscription/delete/{id}',[BranchSubsController::class,'deletesubscription']);
     Route::get('Package/all',[schoolSubcription::class,'allPlan']);
     Route::get('Package/add',[schoolSubcription::class,'addPlan']);
     Route::post('Package/insert',[schoolSubcription::class,'insertPlan']);
@@ -50,7 +54,7 @@ Route::get('/', function () {
   });
 
 
-
+//course
   Route::prefix('course/')->group(function(){
     Route::get('all',[CourseController::class,'allCourse']);
     Route::get('add',[CourseController::class,'addCourse']);
@@ -58,6 +62,29 @@ Route::get('/', function () {
     Route::get('edit/{id}',[CourseController::class,'editCourse']);
     Route::post('update/{id}',[CourseController::class,'updateCourse']);
     Route::post('delete/{id}',[CourseController::class,'deleteCourse']);
+
+  });
+
+
+
+//session
+  Route::prefix('Session/')->group(function(){
+    Route::get('all',[SessionController::class,'allSession']);
+    Route::get('add',[SessionController::class,'addSession']);
+    Route::post('insert',[SessionController::class,'insertSession']);
+    Route::get('edit/{id}',[SessionController::class,'editSession']);
+    Route::post('update/{id}',[SessionController::class,'updateSession']);
+    Route::post('delete/{id}',[SessionController::class,'deleteSession']);
+
+  });
+//All Student
+Route::prefix('Student/')->group(function(){
+    Route::get('all',[StudentController::class,'allSession']);
+    Route::get('addmission/form',[StudentController::class,'addmissionForm']);
+    Route::post('insert',[StudentController::class,'insertSession']);
+    Route::get('edit/{id}',[StudentController::class,'editSession']);
+    Route::post('update/{id}',[StudentController::class,'updateSession']);
+    Route::post('delete/{id}',[StudentController::class,'deleteSession']);
 
   });
   //district all url

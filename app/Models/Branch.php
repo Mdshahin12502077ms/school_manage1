@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\BranchDetails;
+
 class Branch extends Model
 {
     use HasFactory;
@@ -15,7 +16,7 @@ class Branch extends Model
     }
 
     public function branch_subscription(){
-        return $this->hasMany(Branch_subscription::class,'branch_id','id')->with('branch_details');
+        return $this->hasMany(BranchSubscription::class,'branch_id','id')->with('branch_details');
     }
 
     public function district(){

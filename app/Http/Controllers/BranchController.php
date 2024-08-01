@@ -430,7 +430,8 @@ else{
 
      $branch_dtls->delete();
     $branch->delete();
-    toastr()->success('Information Deleted successfully');
+    $branch->branch_subscription()->delete();
+    toastr()->success('Information Deleted successfully with subscription');
     return redirect()->back();
  }
 

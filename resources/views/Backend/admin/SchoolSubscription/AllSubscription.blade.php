@@ -99,7 +99,7 @@
 
                                                                                    <a href="{{url('Branch/info',$subscription->id)}}" class="btn btn-info btn-lg" style="font-size:15px; margin-right:4%;height:100%"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                                                    <a href="{{url('School/subscription/subscription/edit',$subscription->id)}}" class="btn btn-info btn-lg" style="font-size:15px;margin-right:4%;height:100%"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                                                                   <form action="{{url('Branch/delete',$subscription->id)}}"  method="post"  style="margin-left:4%">
+                                                                                   <form action="{{url('School/subscription/subscription/delete',$subscription->id)}}"  method="post"  style="margin-left:4%">
                                                                                        @csrf
                                                                                     <button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('Are you sure to delete this item?')" style="font-size:15px"><i class="fas fa-trash"></i></button>
                                                                                 </form>
