@@ -13,5 +13,9 @@ class CourseModel extends Model
     public function session(){
         return $this->hasMany(Session::class,'course_id','id');
      }
+
+     public function student(){
+        return $this->hasMany(Student::class,'course_id','id');
+    }
  }
 

@@ -9,8 +9,12 @@ class Session extends Model
 {
     use HasFactory;
     protected $guarded=[];
-    
+
     public function course(){
        return $this->belongsTo(CourseModel::class,'course_id','id');
+    }
+
+    public function student(){
+        return $this->hasMany(Student::class,'session_id','id');
     }
 }

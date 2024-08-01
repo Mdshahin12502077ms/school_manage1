@@ -57,4 +57,18 @@ class CourseController extends Controller
         return redirect()->back();
    }
 
+public function searchCourse(Request $request){
+
+    if(isset($request->course_code)||isset($request->course_name)){
+        $data['course'] = CourseModel::where('course_code', 'LIKE', '%'.$request->course_code.'%')->where('course_name','LIKE','%'.$request->course_name.'%')->get();
+         return view('Backend.admin.Course.AllCourse', $data);
+    }
+
+else{
+    $data['course'] = CourseModel::all();
+    return view('Backend.admin.Course.AllCourse', $data);
+}
+
+}
+
 }

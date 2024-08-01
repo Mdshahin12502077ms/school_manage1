@@ -62,7 +62,7 @@ Route::get('/', function () {
     Route::get('edit/{id}',[CourseController::class,'editCourse']);
     Route::post('update/{id}',[CourseController::class,'updateCourse']);
     Route::post('delete/{id}',[CourseController::class,'deleteCourse']);
-
+    Route::get('search',[CourseController::class,'searchCourse']);
   });
 
 
@@ -79,12 +79,13 @@ Route::get('/', function () {
   });
 //All Student
 Route::prefix('Student/')->group(function(){
-    Route::get('all',[StudentController::class,'allSession']);
+    Route::get('all',[StudentController::class,'allStudent']);
     Route::get('addmission/form',[StudentController::class,'addmissionForm']);
-    Route::post('insert',[StudentController::class,'insertSession']);
-    Route::get('edit/{id}',[StudentController::class,'editSession']);
-    Route::post('update/{id}',[StudentController::class,'updateSession']);
+    Route::post('insert',[StudentController::class,'insertStudent']);
+    Route::get('edit/{id}',[StudentController::class,'editStudent']);
+    Route::post('update/{id}',[StudentController::class,'updateStudent']);
     Route::post('delete/{id}',[StudentController::class,'deleteSession']);
+    Route::get('info/{id}',[StudentController::class,'studentInfo']);
 
   });
   //district all url

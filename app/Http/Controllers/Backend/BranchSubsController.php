@@ -129,7 +129,7 @@ class BranchSubsController extends Controller
        public function deletesubscription($id){
         $delSub=BranchSubscription::find($id);
         $delSub->delete();
-        toastr()->success('Subscription Status Updated Successfully');
+        toastr()->success('Subscription Status Deleted Successfully');
         return redirect()->back();
        }
 
