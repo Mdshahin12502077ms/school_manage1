@@ -202,7 +202,20 @@ class StudentController extends Controller
 
   public function studentInfo($id){
     $data['student'] = Student::find($id);
- 
+
     return view('Backend.admin.student.StudentInfo',$data);
   }
+
+  public function st_reg_view(){
+    $data['student'] = Student::with('course','session')->get();
+    return view('Backend.admin.student.Student_reg',$data);
+  }
+  public function st_reg_insert(Request $request)
+{
+$ids=$request->reg;
+foreach($ids as $id){
+    $reg=Student::where('id',$id)->get();
+    dd($reg);
+}
+}
 }

@@ -44,8 +44,8 @@
                         </li>
 
                         <li class="nav-item">
-                            <a href="student-details.html" class="nav-link"><i
-                                    class="fas fa-angle-right"></i>Student Details</a>
+                            <a href="{{url('Student/stu_reg_view')}}" class="nav-link"><i
+                                    class="fas fa-angle-right"></i>Register Student</a>
                         </li>
 
                         <li class="nav-item">

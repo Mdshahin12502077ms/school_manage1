@@ -83,12 +83,13 @@
                                     </tr>
                                 </thead>
                                 <tbody>
-
+                                <form action="{{url('Student/stu_reg_insert')}}" method="post" enctype="multipart/form-data">
+                                    @csrf
                                     @foreach ($student as $student)
                                     <tr>
                                         <td>
                                             <div class="form-check">
-                                                <input type="checkbox" class="form-check-input">
+                                                <input type="checkbox" name="reg['{{$student->id}}']" value="{{$student->id}}" class="form-check-input">
                                                 <label class="form-check-label"></label>
                                             </div>
                                         </td>
@@ -104,10 +105,10 @@
 
                                             <a href="{{url('Student/info',$student->id)}}" class="btn btn-info btn-lg" style="font-size:15px; margin-right:4%;height:100%"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                             <a href="{{url('Student/edit',$student->id)}}" class="btn btn-info btn-lg" style="font-size:15px;margin-right:4%;height:100%"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                            <form action="{{url('Student/delete',$student->id)}}"  method="post"  style="margin-left:4%">
+                                            {{-- <form action="{{url('Student/delete',$student->id)}}"  method="post"  style="margin-left:4%">
                                                 @csrf
                                              <button type="submit" class="btn btn-danger btn-lg" onclick="return confirm('Are you sure to delete this item?')" style="font-size:15px"><i class="fas fa-trash"></i></button>
-                                         </form>
+                                         </form> --}}
 
 
 
@@ -119,6 +120,9 @@
                                       </td>
                                     </tr>
                                     @endforeach
+                                    <button type="submit" class="btn btn-primary">Register</button>
+                                </form>
+
 
 
                                 </tbody>

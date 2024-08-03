@@ -86,6 +86,8 @@ Route::prefix('Student/')->group(function(){
     Route::post('update/{id}',[StudentController::class,'updateStudent']);
     Route::post('delete/{id}',[StudentController::class,'deleteSession']);
     Route::get('info/{id}',[StudentController::class,'studentInfo']);
+    Route::get('stu_reg_view',[StudentController::class,'st_reg_view']);
+    Route::post('stu_reg_insert/{id}',[StudentController::class,'st_reg_insert']);
 
   });
   //district all url

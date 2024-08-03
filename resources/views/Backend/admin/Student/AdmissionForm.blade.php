@@ -143,7 +143,7 @@
                                             <option value="">Please Select Id *</option>
                                             <option value="National Id">National Id</option>
                                             <option value="Date Of Birth">Date Of Birth</option>
-                                            <option value="3">Others</option>
+                                            <option value="others">Others</option>
                                         </select>
                                     </div>
 
