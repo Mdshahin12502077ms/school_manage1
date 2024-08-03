@@ -83,17 +83,18 @@
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 mt-5 form-group">
                                         <label>Entry Type*</label>
-                                        <select name="edu_qualification" class="select2" id="onchange()">
+                                        <select name="edu_qualification" class="select2" id="edu_qualification">
                                             <option value="">Please Select Qualification *</option>
                                             <option value="JSC">JSC</option>
                                             <option value="SSC">SSC</option>
                                             <option value="HSC">HSC</option>
                                             <option value="others" >Others</option>
                                         </select>
+                                        <input name="reg_no"type="text" placeholder="" class="form-control mt-2" style="display:none">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 mt-5 col-12 form-group">
                                         <label>Reg No: *</label>
-                                        <input name="reg_no"type="text" placeholder="" class="form-control">
+                                        <input name="edu_qualification" id="other"type="text" placeholder="" class="form-control" >
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
@@ -241,9 +242,15 @@
         <!-- Social Media End Here -->
     @endsection
 
-@push('script')
+@section('js')
 <script>
-
+       $(document).ready(function() {
+        // alert('hi');
+                $("#edu_qualification").click(function(){
+                   alert('hi');
+                });
+              });
 </script>
 
-@endpush
+
+@endsection

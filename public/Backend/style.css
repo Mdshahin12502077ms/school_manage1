@@ -201,6 +201,27 @@ h6 {
   top: 5px;
   font-size: 10px;
 }
+
+.font_style{
+    font-size: 1.2rem;
+    font-weight: 500;
+
+}
+.table_cell{
+    text-align: left;
+}
+.table_style{
+    padding:0;
+    text-align: center;
+}
+.font_icon{
+    font-size:15px;
+    margin-right:4%;
+    height:29px;
+    padding:5px 6px !important;
+    border-radius:500px;
+}
+
 .form-check input[type="checkbox"] {
   cursor: pointer;
   position: absolute;
@@ -3579,7 +3600,7 @@ ul {
   -webkit-box-direction: normal;
   -ms-flex-direction: column;
   flex-direction: column;
-  padding: 0 30px;
+  /* padding: 0 30px; */
 }
 @media only screen and (max-width: 767px) {
   .dashboard-content-one {
