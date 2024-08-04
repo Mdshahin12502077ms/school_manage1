@@ -90,11 +90,11 @@
                                             <option value="HSC">HSC</option>
                                             <option value="others" >Others</option>
                                         </select>
-                                        <input name="reg_no"type="text" placeholder="" class="form-control mt-2" style="display:none">
+                                        {{-- <input name="reg_no"type="text" placeholder="" class="form-control mt-2" style="display:none"> --}}
                                     </div>
                                     <div class="col-xl-6 col-lg-6 mt-5 col-12 form-group">
                                         <label>Reg No: *</label>
-                                        <input name="edu_qualification" id="other"type="text" placeholder="" class="form-control" >
+                                        <input name="reg_no" id="other"type="text" placeholder="" class="form-control" >
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
@@ -144,7 +144,7 @@
                                             <option value="">Please Select Id *</option>
                                             <option value="National Id">National Id</option>
                                             <option value="Date Of Birth">Date Of Birth</option>
-                                            <option value="others">Others</option>
+                                            <option value="3">Others</option>
                                         </select>
                                     </div>
 

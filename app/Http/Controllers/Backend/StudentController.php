@@ -34,6 +34,7 @@ class StudentController extends Controller
         // ]);
 
         // Create a new student record
+
         $student = new Student();
         $student->course_id = $request->course_id;
         $student->session_id = $request->session_id;
@@ -67,12 +68,17 @@ class StudentController extends Controller
 
 
         if(isset($request->student_photo)){
+
             $file = $request->file('student_photo');
             $extension = $file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
             $path = 'Backend/image/Student/';
+
             $file->move($path, $filename);
+
             $student->student_photo = $path . $filename;
+
+
             }
 
             if(isset($request->id_document)){
@@ -82,6 +88,7 @@ class StudentController extends Controller
                 $path = 'Backend/image/Student/';
                 $file->move($path, $filename);
                 $student->id_document = $path . $filename;
+
                 }
 
                 if(isset($request->edu_certificate)){
@@ -91,6 +98,7 @@ class StudentController extends Controller
                     $path = 'Backend/image/Student/';
                     $file->move($path, $filename);
                     $student->edu_certificate = $path . $filename;
+
                     }
 
         $student->save();
@@ -175,6 +183,8 @@ class StudentController extends Controller
             $path = 'Backend/image/Student/';
             $file->move($path, $filename);
             $student->id_document = $path . $filename;
+
+            $student->id_document;
             }
 
             if(isset($request->edu_certificate)){
@@ -205,17 +215,4 @@ class StudentController extends Controller
 
     return view('Backend.admin.student.StudentInfo',$data);
   }
-
-  public function st_reg_view(){
-    $data['student'] = Student::with('course','session')->get();
-    return view('Backend.admin.student.Student_reg',$data);
-  }
-  public function st_reg_insert(Request $request)
-{
-$ids=$request->reg;
-foreach($ids as $id){
-    $reg=Student::where('id',$id)->get();
-    dd($reg);
-}
-}
 }

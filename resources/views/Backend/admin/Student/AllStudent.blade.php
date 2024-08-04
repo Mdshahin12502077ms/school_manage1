@@ -43,9 +43,14 @@
                                     <tr>
                                         <th style="width:24px">
                                             <div class="form-check">
+
                                                 <input type="checkbox"class="form-check-input checkAll">
 
                                                 {{-- <label class="form-check-label"></label> --}}
+
+                                                <input type="checkbox" class="form-check-input checkAll">
+                                                <label class="form-check-label">All</label>
+
                                             </div>
                                         </th>
                                         <th style="width:10%; vertical-align: middle;">Photo</th>
