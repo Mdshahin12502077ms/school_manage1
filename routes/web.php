@@ -10,6 +10,8 @@ use  App\Http\Controllers\Backend\SessionController;
 use  App\Http\Controllers\Backend\AuthController;
 use  App\Http\Controllers\BranchController;
 use  App\Http\Controllers\Backend\BranchSubsController;
+use  App\Http\Middleware\superAdmin;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,10 +27,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-  Route::get('admin/dashboard',[adminController::class,'dashboard']);
+// ->middleware('superAdmin');
 
+  Route::middleware(['superAdmin'])->group(function () {
+    Route::get('admin/dashboard',[adminController::class,'dashboard']);
 
   //branch all url
+
   Route::get('branch/all',[BranchController::class,'all']);
   Route::get('add_branch',[BranchController::class,'Branch_add']);
   Route::post('branch/insert',[BranchController::class,'insert']);
@@ -106,14 +111,14 @@ Route::prefix('Student/')->group(function(){
 
   //default settings
   Route::get('get_districts',[settingController::class,'getDistrictByDivision']);
-
+});
   //authentication
 
   Route::prefix('Login/')->group(function(){
     Route::post('AuthCheck',[AuthController::class,'loginCheck']);
     Route::get('log',[AuthController::class,'login']);
   });
-  Route::post('Logout',[AuthController::class,'logout']);
+  Route::get('logout',[AuthController::class,'logout']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

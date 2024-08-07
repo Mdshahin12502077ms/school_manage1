@@ -83,13 +83,14 @@
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 mt-5 form-group">
                                         <label>Entry Type*</label>
-                                        <select name="edu_qualification" class="select2" id="onchange()">
+                                        <select name="edu_qualification" class="select2" id="edu_qualification" onchange="otherQualification()">
                                             <option value="{{$student->edu_qualification}}">{{$student->edu_qualification}}</option>
                                             <option value="JSC">JSC</option>
                                             <option value="SSC">SSC</option>
                                             <option value="HSC">HSC</option>
                                             <option value="others" >Others</option>
                                         </select>
+                                        <input name="other"type="text" id="other" placeholder="" class="form-control mt-2" style="display:none">
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 mt-5 col-12 form-group">
@@ -144,7 +145,7 @@
                                             <option value="{{$student->status}}">{{$student->status}}</option>
                                             <option value="Active">Active</option>
                                             <option value="Inactive">Inactive</option>
-                                           
+
                                         </select>
                                     </div>
 
@@ -227,18 +228,18 @@
                                     </div>
                                     <div class="col-lg-6 col-12 form-group mg-t-30">
                                         <label class="text-dark-medium">Upload Student Photo (150px X 150px)</label>
-                                        <input type="file" name="student_photo" class="form-control-file">
+                                        <input type="file" name="student_photo" value="{{$student->student_photo}}" class="form-control-file">
                                         <img src="{{asset($student->student_photo)}}" alt="" height="100" width="100">
                                     </div>
 
                                     <div class="col-lg-6 col-12 form-group mg-t-30">
                                         <label class="text-dark-medium">Natinal Id Card / Birth Certificate </label>
-                                        <input type="file" name="id_document" class="form-control-file">
+                                        <input type="file" name="id_document" value="{{$student->id_document}}" class="form-control-file">
                                         <img src="{{asset($student->id_document)}}" alt="" height="100" width="100">
                                     </div>
                                     <div class="col-lg-6 col-12 form-group mg-t-30">
                                         <label class="text-dark-medium">Educational Certificate </label>
-                                        <input type="file" name="edu_certificate" class="form-control-file">
+                                        <input type="file" name="edu_certificate" value="{{$student->edu_certificate}}" class="form-control-file">
                                         <img src="{{asset($student->edu_certificate)}}" alt="" height="100" width="100">
                                     </div>
                                     <div class="col-12 form-group mg-t-8">
@@ -256,9 +257,20 @@
         <!-- Social Media End Here -->
     @endsection
 
-@push('script')
-<script>
+    @section('js')
+    <script>
+    function otherQualification() {
+        var qualification=document.getElementById('edu_qualification').value;
+        if( qualification=='others'){
+            document.getElementById('other').style.display='block';
 
-</script>
+        }
 
-@endpush
+        else{
+            document.getElementById('other').style.display='none';
+        }
+    }
+    </script>
+
+
+    @endsection

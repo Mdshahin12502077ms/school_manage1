@@ -52,6 +52,9 @@
                                                                 @endforeach
 
                                                             </select>
+                                                            @if($errors->has('branch_id'))
+                                                            <div class="error" style="color:red">{{ $errors->first('branch_id') }}</div>
+                                                         @endif
                                                         </div>
 
                                                         <div class="col-xl-3 col-lg-6 col-12 form-group">
@@ -63,12 +66,16 @@
                                                                 @endforeach
 
                                                             </select>
+
+                                                            @if($errors->has('plan_id'))
+                                                            <div class="error" style="color:red">{{ $errors->first('plan_id') }}</div>
+                                                         @endif
                                                         </div>
 
                                                         <div class="col-md-6 form-group"></div>
                                                         <div class="col-12 form-group mg-t-8">
                                                             <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
-                                                       
+
                                                             <a href="{{url('School/subscription/list/all')}}" class="btn-fill-lg bg-blue-dark btn-hover-yellow">
                                                                 Subscription List</a>
                                                         </div>

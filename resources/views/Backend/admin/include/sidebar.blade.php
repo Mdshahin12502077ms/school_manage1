@@ -78,6 +78,23 @@
 
             <li class="nav-item sidebar-nav-item">
                 <a href="#" class="nav-link"><i
+                        class="flaticon-classmates"></i><span>Manage Institute</span></a>
+                <ul class="nav sub-group-menu">
+
+                    <li class="nav-item">
+                        <a href="{{url('institute/manage/register')}}" class="nav-link"><i class="fas fa-angle-right"></i>All
+                            Branch</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('add_branch') }}" class="nav-link"><i
+                                class="fas fa-angle-right"></i>Add Branch</a>
+                    </li>
+
+                </ul>
+            </li>
+
+            <li class="nav-item sidebar-nav-item">
+                <a href="#" class="nav-link"><i
                         class="flaticon-classmates"></i><span>Institute Subscription</span></a>
                 <ul class="nav sub-group-menu">
                     <li class="nav-item">
@@ -257,21 +274,16 @@
 
 
                 <li class="nav-item">
-                    <a href="account-settings.html" class="nav-link"><i
-                            class="flaticon-settings"></i><span>Account</span></a>
+                    <a href="" class="nav-link"><i
+                            class="flaticon-settings"></i><span>My Account</span></a>
                 </li>
 
 
                 <li class="nav-item">
-                    <form method="POST" action="{{ route('logout') }}">
-                        @csrf
 
-                        <x-dropdown-link :href="route('logout')"
-                                onclick="event.preventDefault();
-                                            this.closest('form').submit();">
-                            {{ __('Log Out') }}
-                        </x-dropdown-link>
-                    </form>
+                    <a href="{{url('logout')}}" class="nav-link"><i
+                        class="flaticon-settings"></i><span>Logout</span></a>
+
                 </li>
             </ul>
         </div>

@@ -17,18 +17,21 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="card">
-                <div class="card-header">
+                <div class="card-header" style="font-size: 25px">
                     Add District
                 </div>
                 <div class="card-body">
                     <form class="mb-5" action="{{ url('add_division/insert') }}" method="post" enctype="multipart/form-data">
                         @csrf
-                        <div class="mb-3">
+                        <div class="mb-3 form-group" style="font-size: 25px">
                           <label for="exampleInputEmail1" class="form-label">Division Name</label>
                           <input type="text" name="name"class="form-control" placeholder="Enter District Name">
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="col-12 form-group mg-t-8">
+                            <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
+                            <button type="reset" class="btn-fill-lg bg-blue-dark btn-hover-yellow">Reset</button>
+                        </div>
                       </form>
                 </div>
               </div>

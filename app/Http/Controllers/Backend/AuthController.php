@@ -3,26 +3,44 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Http\Controllers\Controller;
+use App\Models\Branch;
 use Illuminate\Http\Request;
 use Auth;
 class AuthController extends Controller
 {
     public function loginCheck(Request $request){
+             $request->validate([
+                // 'registration_id'=>'required',
+                'email'=>'required',
+                'password'=>'required',
+             ]);
           $email=$request->email;
           $password=$request->password;
-          if(Auth::attempt(['email' => $email, 'password' => $password])){
+          $registration=Branch::where('registration_id',$request->registration_id)->get();
 
+          if(Auth::attempt(['email' => $email, 'password' => $password]) && $registration){
                   if(Auth::user()){
 
-
                         return redirect('admin/dashboard');
-                  
+
                   }
 
-                  else{
-                    Auth::logout();
-                  }
+
     }
+
+    if(Auth::attempt(['email' => $email, 'password' => $password]) && Auth::user()->admin_role=='superadmin'){
+        if(Auth::user()){
+
+            return redirect('admin/dashboard');
+
+      }
+    }
+
+    else{
+        Auth::logout();
+        toastr()->warning('Your Credential Does not Match please insert registration no ');
+        return redirect('Login/log');
+      }
 }
 
 public function login(){
@@ -30,9 +48,9 @@ public function login(){
 }
 
 public function logout(){
-    dd('logout');
+
     Auth::logout();
-    return redirect('admin/login');
+    return redirect('Login/log');
 }
 
 }

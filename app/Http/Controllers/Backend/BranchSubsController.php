@@ -12,6 +12,11 @@ class BranchSubsController extends Controller
 {
     public function Branch_subscription(Request $request){
         //  dd($request->all());
+        $request->validate([
+             'branch_id'=>'required',
+             'plan_id'=>'required',
+
+        ]);
         $branchsubscription=new BranchSubscription();
          $branchsubscription->branch_id=$request->branch_id;
          $branchsubscription->plan_id=$request->plan_id;

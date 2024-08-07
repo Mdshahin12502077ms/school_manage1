@@ -65,6 +65,9 @@
                                             <option value="{{$course->id}}">{{$course->course_name}}</option>
                                             @endforeach
                                         </select>
+                                        @if($errors->has('course_id'))
+                            <div class="error" style="color:red">{{ $errors->first('course_id') }}</div>
+                         @endif
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 col-12 mt-5 form-group">
@@ -75,6 +78,9 @@
                                             <option value="{{$session->id}}">{{$session->session_name}}</option>
                                             @endforeach
                                         </select>
+                                        @if($errors->has('course_id'))
+                                        <div class="error" style="color:red">{{ $errors->first('course_id') }}</div>
+                                     @endif
                                     </div>
 
 
@@ -83,33 +89,48 @@
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 mt-5 form-group">
                                         <label>Entry Type*</label>
-                                        <select name="edu_qualification" class="select2" id="edu_qualification">
+                                        <select name="edu_qualification" class="select2" id="edu_qualification" onchange="otherQualification()">
                                             <option value="">Please Select Qualification *</option>
                                             <option value="JSC">JSC</option>
                                             <option value="SSC">SSC</option>
                                             <option value="HSC">HSC</option>
                                             <option value="others" >Others</option>
                                         </select>
-                                        {{-- <input name="reg_no"type="text" placeholder="" class="form-control mt-2" style="display:none"> --}}
+                                        <input name="other"type="text" id="other" placeholder="" class="form-control mt-2" style="display:none">
+                                        @if($errors->has('edu_qualification'))
+                                        <div class="error" style="color:red">{{ $errors->first('edu_qualification') }}</div>
+                                     @endif
                                     </div>
                                     <div class="col-xl-6 col-lg-6 mt-5 col-12 form-group">
                                         <label>Reg No: *</label>
                                         <input name="reg_no" id="other"type="text" placeholder="" class="form-control" >
+                                        @if($errors->has('reg_no'))
+                                        <div class="error" style="color:red">{{ $errors->first('reg_no') }}</div>
+                                     @endif
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Result:*</label>
                                         <input name="result"type="text" placeholder="" class="form-control">
+                                        @if($errors->has('result'))
+                                        <div class="error" style="color:red">{{ $errors->first('result') }}</div>
+                                     @endif
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Reg Board:*</label>
                                         <input name="reg_board"type="text" placeholder="" class="form-control">
+                                        @if($errors->has('reg_board'))
+                                        <div class="error" style="color:red">{{ $errors->first('reg_board') }}</div>
+                                     @endif
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Passing Year:*</label>
                                         <input name="passing_year"type="text" placeholder="" class="form-control">
+                                        @if($errors->has('passing_year'))
+                                        <div class="error" style="color:red">{{ $errors->first('passing_year') }}</div>
+                                     @endif
                                     </div>
 
                                     <div class="col-xl-12 col-lg-12 mt-5 col-12" style="background-color: rgb(121, 171, 228)">
@@ -118,14 +139,23 @@
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Student Name *</label>
                                         <input name="st_name"type="text" placeholder="" class="form-control">
+                                        @if($errors->has('st_name'))
+                                        <div class="error" style="color:red">{{ $errors->first('st_name') }}</div>
+                                     @endif
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Father's Name *</label>
                                         <input type="text" name="f_name" placeholder="" class="form-control">
+                                        @if($errors->has('f_name'))
+                                        <div class="error" style="color:red">{{ $errors->first('f_name') }}</div>
+                                     @endif
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Mothers's Name *</label>
                                         <input type="text" name="m_name" placeholder="" class="form-control">
+                                        @if($errors->has('m_name'))
+                                        <div class="error" style="color:red">{{ $errors->first('m_name') }}</div>
+                                     @endif
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
@@ -136,6 +166,9 @@
                                             <option value="female">Female</option>
                                             <option value="other">Others</option>
                                         </select>
+                                        @if($errors->has('gender'))
+                                        <div class="error" style="color:red">{{ $errors->first('gender') }}</div>
+                                     @endif
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
@@ -146,6 +179,9 @@
                                             <option value="Date Of Birth">Date Of Birth</option>
                                             <option value="3">Others</option>
                                         </select>
+                                        @if($errors->has('id_type'))
+                                        <div class="error" style="color:red">{{ $errors->first('id_type') }}</div>
+                                     @endif
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
@@ -153,19 +189,31 @@
                                         <input name="Date_of_birth"type="text" placeholder="dd/mm/yyyy" class="form-control air-datepicker"
                                             data-position='bottom right'>
                                         <i class="far fa-calendar-alt"></i>
+                                        @if($errors->has('Date_of_birth'))
+                                        <div class="error" style="color:red">{{ $errors->first('Date_of_birth') }}</div>
+                                     @endif
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Id Number</label>
                                         <input type="text" name="id_number" placeholder="" class="form-control">
+                                        @if($errors->has('id_number'))
+                                        <div class="error" style="color:red">{{ $errors->first('id_number') }}</div>
+                                     @endif
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Student Id Number</label>
                                         <input type="text" name="st_id_number" disabled placeholder="" class="form-control">
+                                        @if($errors->has('st_id_number'))
+                                        <div class="error" style="color:red">{{ $errors->first('st_id_number') }}</div>
+                                     @endif
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Class Roll</label>
                                         <input type="text" name="class_roll" placeholder="" class="form-control">
+                                        @if($errors->has('class_roll'))
+                                        <div class="error" style="color:red">{{ $errors->first('class_roll') }}</div>
+                                     @endif
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Blood Group *</label>
@@ -180,6 +228,9 @@
                                             <option value="O+">O+</option>
                                             <option value="O-">O-</option>
                                         </select>
+                                        @if($errors->has('blood_group'))
+                                        <div class="error" style="color:red">{{ $errors->first('blood_group') }}</div>
+                                     @endif
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Religion *</label>
@@ -191,10 +242,16 @@
                                             <option value="Buddish">Buddish</option>
                                             <option value="Others">Others</option>
                                         </select>
+                                        @if($errors->has('religion'))
+                                        <div class="error" style="color:red">{{ $errors->first('religion') }}</div>
+                                     @endif
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>E-Mail</label>
                                         <input type="email" name="email" placeholder="" class="form-control">
+                                        @if($errors->has('email'))
+                                        <div class="error" style="color:red">{{ $errors->first('email') }}</div>
+                                     @endif
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
@@ -204,28 +261,46 @@
                                             <option value="general">General</option>
 
                                         </select>
+                                        @if($errors->has('social_status'))
+                                        <div class="error" style="color:red">{{ $errors->first('social_status') }}</div>
+                                     @endif
                                     </div>
 
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Mobile Number</label>
                                         <input name="mobile_no"type="text" placeholder="" class="form-control">
+                                        @if($errors->has('mobile_no'))
+                                        <div class="error" style="color:red">{{ $errors->first('mobile_no') }}</div>
+                                     @endif
                                     </div>
                                     <div class="col-lg-6 col-12 form-group">
                                         <label>Comments</label>
                                         <textarea name="comment" class="textarea form-control" name="message" id="form-message" cols="10"
                                             rows="9"></textarea>
+                                            @if($errors->has('comment'))
+                                            <div class="error" style="color:red">{{ $errors->first('comment') }}</div>
+                                         @endif
                                     </div>
                                     <div class="col-lg-6 col-12 form-group mg-t-30">
                                         <label class="text-dark-medium">Upload Student Photo (150px X 150px)</label>
-                                        <input type="file" name="student_photo" class="form-control-file">
+                                        <input type="file" name="student_photo" class="form-control-file" multiple>
+                                        @if($errors->has('student_photo'))
+                                        <div class="error" style="color:red">{{ $errors->first('student_photo') }}</div>
+                                     @endif
                                     </div>
                                     <div class="col-lg-6 col-12 form-group mg-t-30">
                                         <label class="text-dark-medium">Natinal Id Card / Birth Certificate </label>
-                                        <input type="file" name="id_document" class="form-control-file">
+                                        <input type="file" name="id_document" class="form-control-file" multiple>
+                                        @if($errors->has('id_document'))
+                                        <div class="error" style="color:red">{{ $errors->first('id_document') }}</div>
+                                     @endif
                                     </div>
                                     <div class="col-lg-6 col-12 form-group mg-t-30">
                                         <label class="text-dark-medium">Educational Certificate </label>
-                                        <input type="file" name="edu_certificate" class="form-control-file">
+                                        <input type="file" name="edu_certificate" class="form-control-file" multiple>
+                                        @if($errors->has('edu_certificate'))
+                                        <div class="error" style="color:red">{{ $errors->first('edu_certificate') }}</div>
+                                     @endif
                                     </div>
                                     <div class="col-12 form-group mg-t-8">
                                         <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
@@ -244,12 +319,17 @@
 
 @section('js')
 <script>
-       $(document).ready(function() {
-        // alert('hi');
-                $("#edu_qualification").click(function(){
-                   alert('hi');
-                });
-              });
+function otherQualification() {
+    var qualification=document.getElementById('edu_qualification').value;
+    if( qualification=='others'){
+        document.getElementById('other').style.display='block';
+
+    }
+
+    else{
+        document.getElementById('other').style.display='none';
+    }
+}
 </script>
 
 

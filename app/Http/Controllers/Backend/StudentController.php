@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CourseModel;
 use App\Models\Session;
 use App\Models\Student;
+use Nette\Utils\Random;
 
 class StudentController extends Controller
 {
@@ -23,22 +24,50 @@ class StudentController extends Controller
     }
 
     public function insertStudent(Request $request){
-        // dd($request->all());
-        // Validate the form data
-        // $request->validate([
-        //     'name' =>'required',
-        //     'email' =>'required|email|unique:students',
-        //     'dob' =>'required',
-        //     'course_id' =>'required',
-        //    'session_id' =>'required',
-        // ]);
+
+
+        $request->validate([
+            'course_id' =>'required',
+            'session_id' =>'required',
+            'edu_qualification' =>'required',
+            'reg_no' =>'required',
+           'passing_year' =>'required',
+
+           'st_name' =>'required',
+           'f_name' =>'required',
+           'm_name' =>'required',
+           'gender' =>'required',
+          'id_type' =>'required',
+          'result' =>'required',
+          'reg_board' =>'required',
+          'blood_group' =>'required',
+
+
+          'id_number' =>'required',
+           'Date_of_birth' =>'required',
+           'religion' =>'required',
+           'email' =>'required',
+          'social_status' =>'required',
+
+          'mobile_no' =>'required',
+           'student_photo' =>'required',
+           'id_document' =>'required',
+           'edu_certificate' =>'required',
+
+        ]);
 
         // Create a new student record
 
         $student = new Student();
         $student->course_id = $request->course_id;
         $student->session_id = $request->session_id;
-        $student->edu_qualification = $request->edu_qualification;
+
+        if($request->edu_qualification=='others'){
+            $student->edu_qualification = $request->other;
+        }
+        else{
+            $student->edu_qualification = $request->edu_qualification;
+        }
         $student->reg_no = $request->reg_no;
         $student->result = $request->result;
         $student->reg_board = $request->reg_board;
@@ -66,24 +95,20 @@ class StudentController extends Controller
         $student->mobile_no = $request->mobile_no;
         $student->comment = $request->comment;
 
-
-        if(isset($request->student_photo)){
-
+            $student_photo=$request->student_photo;
+            if(isset($student_photo)){
             $file = $request->file('student_photo');
-            $extension = $file->getClientOriginalExtension();
-            $filename = time() . '.' . $extension;
+            $extension = 'student'.$file->getClientOriginalExtension();
+            $filename = rand() . '.' . $extension;
             $path = 'Backend/image/Student/';
-
             $file->move($path, $filename);
-
             $student->student_photo = $path . $filename;
-
 
             }
 
             if(isset($request->id_document)){
                 $file = $request->file('id_document');
-                $extension = $file->getClientOriginalExtension();
+                $extension = 'id'.$file->getClientOriginalExtension();
                 $filename = time() . '.' . $extension;
                 $path = 'Backend/image/Student/';
                 $file->move($path, $filename);
@@ -93,7 +118,7 @@ class StudentController extends Controller
 
                 if(isset($request->edu_certificate)){
                     $file = $request->file('edu_certificate');
-                    $extension = $file->getClientOriginalExtension();
+                    $extension = 'edu'. $file->getClientOriginalExtension();
                     $filename = time() . '.' . $extension;
                     $path = 'Backend/image/Student/';
                     $file->move($path, $filename);
@@ -124,7 +149,13 @@ class StudentController extends Controller
     $student = Student::find($id);
     $student->course_id = $request->course_id;
     $student->session_id = $request->session_id;
-    $student->edu_qualification = $request->edu_qualification;
+    if($request->edu_qualification=='others'){
+        $student->edu_qualification = $request->other;
+
+    }
+    else{
+        $student->edu_qualification = $request->edu_qualification;
+    }
     $student->reg_no = $request->reg_no;
     $student->result = $request->result;
     $student->reg_board = $request->reg_board;
@@ -166,7 +197,7 @@ class StudentController extends Controller
         }
 
         $file = $request->file('student_photo');
-        $extension = $file->getClientOriginalExtension();
+        $extension = 'student'.$file->getClientOriginalExtension();
         $filename = time() . '.' . $extension;
         $path = 'Backend/image/Student/';
         $file->move($path, $filename);
@@ -178,7 +209,7 @@ class StudentController extends Controller
                 unlink($student->id_document);
             }
             $file = $request->file('id_document');
-            $extension = $file->getClientOriginalExtension();
+            $extension = 'id'.$file->getClientOriginalExtension();
             $filename = time() . '.' . $extension;
             $path = 'Backend/image/Student/';
             $file->move($path, $filename);
@@ -194,7 +225,7 @@ class StudentController extends Controller
                 }
 
                 $file = $request->file('edu_certificate');
-                $extension = $file->getClientOriginalExtension();
+                $extension = 'edu'. $file->getClientOriginalExtension();
                 $filename = time() . '.' . $extension;
                 $path = 'Backend/image/Student/';
                 $file->move($path, $filename);

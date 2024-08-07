@@ -36,18 +36,39 @@ class RegisteredUserController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:'.User::class],
             'password' => ['required', Rules\Password::defaults()],
         ]);
+
+        $superadmin=User::where('admin_role','superadmin')->first();
+        if($superadmin==null){
             $user = User::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'admin_role' => $request->admin_role,
-            'password' => Hash::make($request->password),
-]        );
+                'name' => $request->name,
+                'email' => $request->email,
+                'admin_role' =>'superadmin',
+                'password' => Hash::make($request->password),
+           ]);
+           event(new Registered($user));
+           Auth::login($user);
+           return redirect('Login/log');
+        }
+        else{
+            if($request->admin_role=='superadmin'){
+                toastr()->warning('Already Super Admin Exist');
+                return redirect()->back();
+            }
+            else{
+                $user = User::create([
+                    'name' => $request->name,
+                    'email' => $request->email,
+                    'admin_role' =>'superadmin',
+                    'password' => Hash::make($request->password),
+               ]);
 
+               event(new Registered($user));
+               Auth::login($user);
 
-        event(new Registered($user));
+               return redirect('Login/log');
+            }
 
-        Auth::login($user);
+        }
 
-        return redirect('Login/log');
-    }
+}
 }

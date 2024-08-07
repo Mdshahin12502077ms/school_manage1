@@ -24,22 +24,29 @@
                     <form class="mb-5" action="{{ url('add_district/insert') }}" method="post" enctype="multipart/form-data">
                         @csrf
 
-                        <div class="mb-3">
-                            <label for="exampleInputEmail1" class="form-label">Division Name</label>
-                            <br>
-                         <select name="division_id" id="" class="form-select form-select-lg mb-3 form-controll">
-                            <option value=""selected>Select Division</option>
-                            @foreach ($get_division as $division)
-                            <option value="{{ $division->id }}">{{$division->name  }}</option>
-                            @endforeach
-                         </select>
-                          </div>
-                        <div class="mb-3">
+                        <div class="mb-3 col-md-12 mt-3 form-group" style="font-size: 25px">
+                            <label for="exampleInputEmail1" class="form-label">বিভাগের নাম (Division
+                                Name):*</label>
+                            <select name="division_id" class="form-control col-md-12" id="division"
+                                style="font-size:20px;">
+                                <option class="p-4"value="">Select Division</option>
+                                @foreach ($get_division as $division)
+                                    <option value="{{ $division->id }}">{{ $division->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+
+
+                        <div class="mb-3 form-group" style="font-size:25px">
                           <label for="exampleInputEmail1" class="form-label"> District Name</label>
                           <input type="text" name="district_name"class="form-control" placeholder="Enter sub District Name">
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Submit</button>
+                        <div class="col-12 form-group mg-t-8">
+                            <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
+                            <button type="reset" class="btn-fill-lg bg-blue-dark btn-hover-yellow">Reset</button>
+                        </div>
                       </form>
                 </div>
               </div>

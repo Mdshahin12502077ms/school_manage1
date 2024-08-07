@@ -49,6 +49,34 @@ public function all( Request $request){
     }
 
    public function insert(Request $request){
+    $request->validate([
+      'institute_name'=>'required',
+      'division_id'=>'required',
+      'district_id'=>'required',
+      'sub_district'=>'required',
+      'thana'=>'required',
+      'post_office'=>'required',
+      'address'=>'required',
+      'post_code'=>'required',
+      'fathers_name'=>'required',
+      'mothers_name'=>'required',
+      'institute_age'=>'required',
+      'no_computer'=>'required',
+      'e_mail'=>'required',
+      'mobile_number'=>'required',
+      'additional_rel_name'=>'required',
+      'blood_group'=>'required',
+      'extra_rel_contact'=>'required',
+      'additional_mobile_no'=>'required',
+      'ceo_profile'=>'required',
+      'national_id'=>'required',
+      'educational_skill'=>'required',
+      'institute_image'=>'required',
+      'trade_licence'=>'required',
+      'ceo_facebook'=>'required',
+      'extra_file'=>'required',
+      'Propietor_Name'=>'required',
+    ]);
      $branch=new Branch();
      $branch->institute_name=$request->institute_name;
      $branch->division_id=$request->division_id;

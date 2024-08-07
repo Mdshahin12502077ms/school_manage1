@@ -67,16 +67,31 @@
                     <h2 class="fw-bold mb-2 text-uppercase">Admin</h2>
                     <p class="text-white-50 mb-5">Please enter your login and password!</p>
 
-                    <form action="{{url('Login/AuthCheck')}}" method="post">
+                    <form action="{{url('Login/AuthCheck')}}" method="POST">
                         @csrf
+
+                        <div data-mdb-input-init class="form-outline form-white mb-4">
+                            <input type="text" name="registration_id" id="typeEmailX" class="form-control form-control-lg" />
+                            <label class="form-label" for="typeEmailX">Institute Registration Number</label>
+                            @if($errors->has('registration_id'))
+                            <div class="error" style="color:red">{{ $errors->first('registration_id') }}</div>
+                         @endif
+                          </div>
+
                         <div data-mdb-input-init class="form-outline form-white mb-4">
                             <input type="email" name="email" id="typeEmailX" class="form-control form-control-lg" />
                             <label class="form-label" for="typeEmailX">Email</label>
+                            @if($errors->has('email'))
+                            <div class="error" style="color:red">{{ $errors->first('email') }}</div>
+                         @endif
                           </div>
 
                           <div data-mdb-input-init class="form-outline form-white mb-4">
                             <input type="password" name="password" id="typePasswordX" class="form-control form-control-lg" />
                             <label class="form-label" for="typePasswordX">Password</label>
+                            @if($errors->has('password'))
+                            <div class="error" style="color:red">{{ $errors->first('password') }}</div>
+                         @endif
                           </div>
 
                           <p class="small mb-5 pb-lg-2"><a class="text-white-50" href="#!">Forgot password?</a></p>

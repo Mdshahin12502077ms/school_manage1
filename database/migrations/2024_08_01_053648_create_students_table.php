@@ -31,7 +31,7 @@ return new class extends Migration
             $table->double('id_number');
             $table->double('st_id_number');
             $table->string('religion');
-            $table->string('class_roll');
+            $table->string('class_roll')->nullable();
             $table->string('email');
             $table->string('social_status');
             $table->string('mobile_no');
