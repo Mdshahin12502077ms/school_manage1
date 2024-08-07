@@ -118,7 +118,7 @@ Route::prefix('Student/')->group(function(){
     Route::post('AuthCheck',[AuthController::class,'loginCheck']);
     Route::get('log',[AuthController::class,'login']);
   });
-  Route::get('logout',[AuthController::class,'logout']);
+  Route::get('lgout',[AuthController::class,'logout']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

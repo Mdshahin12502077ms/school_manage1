@@ -37,7 +37,8 @@ class RegisteredUserController extends Controller
             'password' => ['required', Rules\Password::defaults()],
         ]);
 
-        $superadmin=User::where('admin_role','superadmin')->first();
+        $superadmin=User::where('admin_role','superadmin')->get();
+
         if($superadmin==null){
             $user = User::create([
                 'name' => $request->name,
@@ -58,7 +59,7 @@ class RegisteredUserController extends Controller
                 $user = User::create([
                     'name' => $request->name,
                     'email' => $request->email,
-                    'admin_role' =>'superadmin',
+                    'admin_role' =>$request->admin_role,
                     'password' => Hash::make($request->password),
                ]);
 

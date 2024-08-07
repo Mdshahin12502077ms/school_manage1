@@ -19,8 +19,32 @@ class BranchController extends Controller
 public function all( Request $request){
 
     if(isset($request->search_branch)){
-        $branchSearch=Branch::where('institute_name','Like','%'.$request->search_branch.'%')->get();
-        return view('Backend.admin.Branch.all_branch',compact('branchSearch'));
+           $data['branchSubs']=Branch::all();
+           $data['plansubs']=Plan::all();
+        // $data['branchSearch']=Branch::where('institute_name','Like','%'.$request->search_branch.'%')->with('branch_details')->get();
+        // dd( $data['branchSearch']);
+
+
+        $query = $request->input('search_branch');
+        $columns = ['institute_name', 'address'];
+        $colomn2=['mobile_number'];
+        // Replace with your actual columns
+        $data['branchSearch'] = Branch::where(function($q) use ($query, $columns) {
+            foreach ($columns as $column) {
+                $q->orWhere($column, 'LIKE', '%' . $query . '%');
+            }
+        })->get();
+
+        $data['branchSearch'] = BranchDetails::where(function($q) use ($query,$colomn2) {
+            foreach ($colomn2 as $column) {
+                $q->orWhere($column, 'LIKE', '%' . $query . '%');
+            }
+        })->get();
+
+       $data['branchSearch']= $data['branchSearch']->merge( $data['branchSearch']);
+
+        // dd( $data['branchSearch']);
+        return view('Backend.admin.Branch.all_branch',$data);
     }
     else{
     $data['branchSearch']=Branch::with('division','district','branch_details')->get();

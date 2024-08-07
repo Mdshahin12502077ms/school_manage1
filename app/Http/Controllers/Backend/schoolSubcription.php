@@ -11,11 +11,11 @@ class schoolSubcription extends Controller
     public function allPlan(){
        $data['allPlan']=Plan::all();
 
-        return view('Backend.admin.SchhoolSubscription.Allplan',$data);
+        return view('Backend.admin.SchoolSubscription.Allplan',$data);
     }
 
     public function addPlan(){
-        return view('Backend.admin.SchhoolSubscription.AddPlan');
+        return view('Backend.admin.SchoolSubscription.AddPlan');
     }
 
     public function insertPlan(Request $request){
@@ -54,7 +54,7 @@ class schoolSubcription extends Controller
 
     public function editPlan($id){
         $data['getPlan']=Plan::find($id);
-        return view('Backend.admin.SchhoolSubscription.PlanEdit',$data);
+        return view('Backend.admin.SchoolSubscription.PlanEdit',$data);
     }
 
 

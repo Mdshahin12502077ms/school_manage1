@@ -8,6 +8,7 @@ use App\Models\CourseModel;
 use App\Models\Session;
 use App\Models\Student;
 use Nette\Utils\Random;
+use Auth;
 
 class StudentController extends Controller
 {
@@ -15,6 +16,9 @@ class StudentController extends Controller
 
     public function allStudent(){
         $data['student'] = Student::with('course','session')->get();
+        if(Auth::user()->admin_role=='instituteadmin'){
+            $data['student'] = Student::where('created_by',Auth::user()->id)->with('course','session')->get();
+        }
         return view('Backend.admin.student.AllStudent',$data);
     }
     public function addmissionForm(){
@@ -78,6 +82,8 @@ class StudentController extends Controller
         $student->blood_group = $request->blood_group;
         $student->gender = $request->gender;
         $student->class_roll = $request->class_roll;
+        $student->created_by=Auth::user()->id;
+
         $student->id_type = $request->id_type;
         $student->id_number = $request->id_number;
         $student->Date_of_birth = $request->Date_of_birth;
@@ -166,6 +172,7 @@ class StudentController extends Controller
     $student->status = $request->status;
     $student->blood_group = $request->blood_group;
     $student->gender = $request->gender;
+    $student->created_by=Auth::user()->id;
     $student->class_roll = $request->class_roll;
     $student->id_type = $request->id_type;
     $student->id_number = $request->id_number;

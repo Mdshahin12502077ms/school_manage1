@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div>
-            <div class="container">
+            <div class="container col-lg-12">
 
 
                 <div class="card height-auto">
@@ -22,7 +22,7 @@
                             <div class="item-title">
                                 <h3>Add New Session</h3>
                             </div>
-                        
+
                         </div>
                         <form class="new-added-form" action="{{url('Session/insert')}}" method="Post" enctype="multipart/form-data">
                            @csrf

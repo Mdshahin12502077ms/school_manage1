@@ -14,7 +14,7 @@
         </div>
         <div>
 
-            <div class="container">
+            <div class="container col-lg-12">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="dashboard-content-one">
@@ -57,6 +57,7 @@
                                                 <table class="table text-nowrap">
                                                     <tbody>
 
+
                                                         <tr>
                                                             <td>Registration Id:</td>
                                                             <td class="font-medium text-dark-medium">{{$branch->registration_id}}</td>
@@ -65,10 +66,7 @@
                                                             <td>Institute Name:</td>
                                                             <td class="font-medium text-dark-medium">{{$branch->institute_name}}</td>
                                                         </tr>
-                                                        <tr>
-                                                            <td>Status:</td>
-                                                            <td class="font-medium text-dark-medium"><button type="button" class="btn-fill text-orange-peel border-orange-peel">{{$branch->status}}</button></td>
-                                                        </tr>
+
                                                         <tr>
                                                             <td>Email:</td>
                                                             <td class="font-medium text-dark-medium">{{$branch_details->e_mail}}</td>
@@ -109,6 +107,10 @@
                                                         <tr>
                                                             <td>Last Upgrade Date</td>
                                                             <td class="font-medium text-dark-medium">{{$subscription->updated_at}}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>Status:</td>
+                                                            <td class="font-medium text-dark-medium"><button type="button" class="btn-fill text-orange-peel border-orange-peel">{{$branch->status}}</button></td>
                                                         </tr>
                                                     </tbody>
                                                 </table>

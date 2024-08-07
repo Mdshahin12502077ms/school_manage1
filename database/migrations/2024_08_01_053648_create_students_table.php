@@ -34,6 +34,7 @@ return new class extends Migration
             $table->string('class_roll')->nullable();
             $table->string('email');
             $table->string('social_status');
+            $table->string('created_by')->nullable();
             $table->string('mobile_no');
             $table->string('blood_group');
             $table->string('comment')->nullable();

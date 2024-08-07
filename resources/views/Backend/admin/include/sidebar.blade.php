@@ -61,37 +61,22 @@
                @if (Auth::user()->admin_role=='superadmin')
                <li class="nav-item sidebar-nav-item">
                 <a href="#" class="nav-link"><i
-                        class="flaticon-classmates"></i><span>Branch</span></a>
+                        class="flaticon-classmates"></i><span>Institute</span></a>
                 <ul class="nav sub-group-menu">
 
                     <li class="nav-item">
                         <a href="{{url('branch/all')}}" class="nav-link"><i class="fas fa-angle-right"></i>All
-                            Branch</a>
+                            Institute</a>
                     </li>
                     <li class="nav-item">
                         <a href="{{ url('add_branch') }}" class="nav-link"><i
-                                class="fas fa-angle-right"></i>Add Branch</a>
+                                class="fas fa-angle-right"></i>Add Institute</a>
                     </li>
 
                 </ul>
             </li>
 
-            <li class="nav-item sidebar-nav-item">
-                <a href="#" class="nav-link"><i
-                        class="flaticon-classmates"></i><span>Manage Institute</span></a>
-                <ul class="nav sub-group-menu">
-
-                    <li class="nav-item">
-                        <a href="{{url('institute/manage/register')}}" class="nav-link"><i class="fas fa-angle-right"></i>All
-                            Branch</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ url('add_branch') }}" class="nav-link"><i
-                                class="fas fa-angle-right"></i>Add Branch</a>
-                    </li>
-
-                </ul>
-            </li>
+            
 
             <li class="nav-item sidebar-nav-item">
                 <a href="#" class="nav-link"><i
@@ -281,9 +266,8 @@
 
                 <li class="nav-item">
 
-                    <a href="{{url('logout')}}" class="nav-link"><i
+                    <a href="{{url('lgout')}}" method="post" class="nav-link"><i
                         class="flaticon-settings"></i><span>Logout</span></a>
-
                 </li>
             </ul>
         </div>

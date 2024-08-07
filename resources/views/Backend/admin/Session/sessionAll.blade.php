@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div>
-            <div class="container">
+            <div class="container col-lg-12">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -28,7 +28,7 @@
                             <div class="item-title">
                                 <h3>All Session</h3>
                             </div>
-                           
+
                         </div>
                         <form class="mg-b-20">
                             <div class="row gutters-8">

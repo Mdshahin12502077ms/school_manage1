@@ -13,7 +13,7 @@
             </ul>
         </div>
         <div>
-            <div class="container">
+            <div class="container col-lg-12">
                 <div class="row">
                     <div class="col-md-12">
                         <div class="card">
@@ -44,9 +44,9 @@
                                                     <div class="row">
 
                                                         <div class="col-xl-3 col-lg-6 col-12 form-group">
-                                                            <label>Select Branch</label>
+                                                            <label>Select Institute</label>
                                                             <select name="branch_id" class="select2">
-                                                                <option value="">Please Select Branch</option>
+                                                                <option value="">Please Select Institute</option>
                                                                 @foreach ($branchSubs as $branchSubs)
                                                                 <option value="{{$branchSubs->id}}">{{$branchSubs->institute_name}}</option>
                                                                 @endforeach

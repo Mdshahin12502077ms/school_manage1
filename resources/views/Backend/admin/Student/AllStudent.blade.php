@@ -5,7 +5,7 @@
         <!-- Breadcubs Area Start Here -->
 
         <div>
-            <div class="container">
+            <div class="container col-lg-12">
                 <div class="row">
                     <div class="col-md-12 table_body">
                         <div class="card">
@@ -53,34 +53,36 @@
 
                                             </div>
                                         </th>
-                                        <th style="width:10%; vertical-align: middle;">Photo</th>
-                                        <th class="table_cell" >Student Id<br>
+                                        <th style="width:10%; vertical-align: middle;color:black;font-size:15px"><b>Photo</b></th>
+                                        <th class="table_cell" style="color:black;font-size:15px" ><b>Student Id<br>
                                         Father Name<br>
                                         Student Name<br>
-                                        Mother Name<br>
+                                        Mother Name<br></b>
                                          </th>
-                                         <th class="table_cell">Date Of Birth<br>
+                                         <th class="table_cell" style="color:black;font-size:15px"><b> Date Of Birth<br>
                                             Religion<br>
                                            Gender<br>
                                             NID/BR<br>
+                                        </b>
                                              </th>
-                                             <th class="table_cell">Course<br>
+                                             <th class="table_cell"style="color:black;font-size:15px"><b>  Course<br>
                                                 Session<br>
                                                Class Roll<br>
-
+                                            </b>
                                                  </th>
-                                                 <th class="table_cell">Educational Qualification<br>
+                                                 <th class="table_cell"style="color:black;font-size:15px"><b> Educational Qualification<br>
                                                     Board/Passing-Year<br>
                                                    Registration<br>
+                                                 </b>
                                                      </th>
 
 
-                                        <th>Action</th>
+                                        <th style="color:black;font-size:15px"><b> Action</b></th>
 
 
                                     </tr>
                                 </thead>
-                                <tbody>
+                                <tbody style="color:black;font-size:13px">
 
                                     @foreach ($student as $student)
                                     <tr>

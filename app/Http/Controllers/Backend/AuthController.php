@@ -48,7 +48,7 @@ public function login(){
 }
 
 public function logout(){
-
+   // Auth::guard('admin')->logout();  //admin guard
     Auth::logout();
     return redirect('Login/log');
 }
