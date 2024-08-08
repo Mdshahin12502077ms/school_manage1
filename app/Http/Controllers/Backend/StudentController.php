@@ -253,4 +253,14 @@ class StudentController extends Controller
 
     return view('Backend.admin.student.StudentInfo',$data);
   }
+
+  public function deleteStudent($id){
+    $deleteStudent=Student::find($id);
+    if($deleteStudent->student_photo && file_exists($deleteStudent->student_photo)){
+        unlink($deleteStudent->student_photo);
+    }
+    $deleteStudent->delete();
+    toastr()->success('Student deleted successfully');
+    return redirect()->back();
+  }
 }

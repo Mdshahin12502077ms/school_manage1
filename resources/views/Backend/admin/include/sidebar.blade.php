@@ -76,7 +76,7 @@
                 </ul>
             </li>
 
-            
+
 
             <li class="nav-item sidebar-nav-item">
                 <a href="#" class="nav-link"><i
@@ -109,8 +109,8 @@
                     </li>
 
                     <li class="nav-item">
-                        <a href="admit-form.html" class="nav-link"><i
-                                class="fas fa-angle-right"></i>Admission Form</a>
+                        <a href="{{url('education_year/add')}}" class="nav-link"><i
+                                class="fas fa-angle-right"></i>Education Year Settings</a>
                     </li>
                     <li class="nav-item">
                         <a href="student-promotion.html" class="nav-link"><i

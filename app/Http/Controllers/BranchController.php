@@ -13,6 +13,9 @@ use App\Models\Plan;
 use Carbon\Carbon;
 use App\Models\BranchSubscription;
 use Illuminate\Support\Facades\Hash;
+use Auth;
+
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class BranchController extends Controller
 {
@@ -27,22 +30,14 @@ public function all( Request $request){
 
 
         $query = $request->input('search_branch');
-        $columns = ['institute_name', 'address'];
-        $colomn2=['mobile_number'];
+        $columns = ['institute_name', 'address','mobile_number','e_mail','Propietor_Name'];
+
         // Replace with your actual columns
         $data['branchSearch'] = Branch::where(function($q) use ($query, $columns) {
             foreach ($columns as $column) {
                 $q->orWhere($column, 'LIKE', '%' . $query . '%');
             }
         })->get();
-
-        $data['branchSearch'] = BranchDetails::where(function($q) use ($query,$colomn2) {
-            foreach ($colomn2 as $column) {
-                $q->orWhere($column, 'LIKE', '%' . $query . '%');
-            }
-        })->get();
-
-       $data['branchSearch']= $data['branchSearch']->merge( $data['branchSearch']);
 
         // dd( $data['branchSearch']);
         return view('Backend.admin.Branch.all_branch',$data);
@@ -111,6 +106,8 @@ public function all( Request $request){
      $branch->post_office=$request->post_office;
      $branch->address=$request->address;
      $branch->post_code=$request->post_code;
+     $branch->e_mail=$request->e_mail;
+     $branch->mobile_number=$request->mobile_number;
 
     if( $branch->status=='confirmed'){
     $registration=Branch::orderBy('id','desc')->first();
@@ -134,8 +131,7 @@ public function all( Request $request){
      $branch_dtls->mothers_name=$request->mothers_name;
      $branch_dtls->institute_age=$request->institute_age;
      $branch_dtls->no_computer=$request->no_computer;
-     $branch->e_mail=$request->e_mail;
-     $branch->mobile_number=$request->mobile_number;
+
      $branch_dtls->additional_rel_name=$request->additional_rel_name;
      $branch_dtls->blood_group=$request->blood_group;
      $branch_dtls->extra_rel_contact=$request->extra_rel_contact;
@@ -144,7 +140,7 @@ public function all( Request $request){
      if(isset($request->ceo_profile)){
      $file = $request->file('ceo_profile');
      $extension = $file->getClientOriginalExtension();
-     $filename = time() . '.' . $extension;
+     $filename = time() .'ceo'. '.' . $extension;
      $path = 'Backend/image/Branch/';
      $file->move($path, $filename);
      $branch_dtls->ceo_profile = $path . $filename;
@@ -154,7 +150,7 @@ public function all( Request $request){
      if(isset($request->national_id)){
         $file = $request->file('national_id');
         $extension = $file->getClientOriginalExtension();
-        $filename = time() . '.' . $extension;
+        $filename = time() .'national'. '.' . $extension;
         $path = 'Backend/image/Branch/';
         $file->move($path, $filename);
         $branch_dtls->national_id = $path . $filename;
@@ -162,14 +158,14 @@ public function all( Request $request){
 
      if(isset($request->educational_skill)){
         $file=$request->file('educational_skill');
-        $filename=time().'.'.$file->getClientOriginalExtension();
+        $filename=time().'edu'.'.'.$file->getClientOriginalExtension();
         $path="Backend/image/Branch/";
         $file->move($path,$filename);
         $branch_dtls->educational_skill=$path .$filename;
      }
      if(isset($request->institute_image)){
         $file=$request->file('institute_image');
-        $filename=time().'.'.$file->getClientOriginalExtension();
+        $filename=time().'institute'.'.'.$file->getClientOriginalExtension();
         $path="Backend/image/Branch/";
         $file->move($path,$filename);
         $branch_dtls->institute_image=$path .$filename;
@@ -177,7 +173,7 @@ public function all( Request $request){
 
      if(isset($request->trade_licence)){
         $file=$request->file('trade_licence');
-        $filename=time().'.'.$file->getClientOriginalExtension();
+        $filename=time().'trade'.'.'.$file->getClientOriginalExtension();
         $path='Backend/image/Branch/';
         $file->move($path,$filename);
         $branch_dtls->trade_licence=$path .$filename;
@@ -333,7 +329,7 @@ else{
 
         $file = $request->file('ceo_profile');
         $extension = $file->getClientOriginalExtension();
-        $filename = time() . '.' . $extension;
+        $filename = time() .'ceo'. '.' . $extension;
         $path = 'Backend/image/Branch/';
         $file->move($path, $filename);
         $branch_dtls->ceo_profile = $path . $filename;
@@ -345,10 +341,9 @@ else{
         if($branch_dtls->national_id && file_exists($branch_dtls->national_id)){
             unlink($branch_dtls->national_id); // delete old file
         }
-
         $file = $request->file('national_id');
         $extension = $file->getClientOriginalExtension();
-        $filename = time() . '.' . $extension;
+        $filename = time() .'national'. '.' . $extension;
         $path = 'Backend/image/Branch/';
         $file->move($path, $filename);
         $branch_dtls->national_id = $path . $filename;
@@ -360,7 +355,7 @@ else{
             unlink($branch_dtls->educational_skill); // delete old file
         }
         $file=$request->file('educational_skill');
-        $filename=time().'.'.$file->getClientOriginalExtension();
+        $filename=time().'edu'.'.'.$file->getClientOriginalExtension();
         $path="Backend/image/Branch/";
         $file->move($path,$filename);
         $branch_dtls->educational_skill=$path .$filename;
@@ -372,7 +367,7 @@ else{
             unlink($branch_dtls->institute_image); // delete old file
         }
         $file=$request->file('institute_image');
-        $filename=time().'.'.$file->getClientOriginalExtension();
+        $filename=time().'institute'.'.'.$file->getClientOriginalExtension();
         $path="Backend/image/Branch/";
         $file->move($path,$filename);
         $branch_dtls->institute_image=$path .$filename;
@@ -384,7 +379,7 @@ else{
             unlink($branch_dtls->trade_licence); // delete old file
         }
         $file=$request->file('trade_licence');
-        $filename=time().'.'.$file->getClientOriginalExtension();
+        $filename=time().'trade'.'.'.$file->getClientOriginalExtension();
         $path='Backend/image/Branch/';
         $file->move($path,$filename);
         $branch_dtls->trade_licence=$path .$filename;
@@ -504,16 +499,39 @@ public function BranchInfo($id){
 }
 
 public function genPass(Request $request){
+      $getid=Auth::user()->where('branch_id',$request->id)->first();
+     if($getid!=null){
+         $branch=User::find($getid->id);
+         $branch->password= hash::make($request->password);
+         $branch->save();
+         toastr()->success('Password Generate Successfully');
+         return redirect()->back();
+     }
+    else{
     $branch= new User();
-   $branch->email=$request->email;
-   $branch->branch_id=$request->id;
-   $branch->name=$request->name;
+    $branch->email=$request->email;
+    $branch->branch_id=$request->id;
+    $branch->name=$request->name;
 
-   $branch->password= hash::make($request->password);
-   $branch->admin_role='instituteadmin';
-   toastr()->success('Password Generate Successfully');
-   $branch->save();
-   return redirect()->back();
+    $branch->password= hash::make($request->password);
+    $branch->admin_role='instituteadmin';
+    toastr()->success('Password Generate Successfully');
+    $branch->save();
+    return redirect()->back();
+   }
+
+
+}
+
+public function querypdf(Request $request){
+
+
+    $branch = $request->input('branch'); // Get the selected checkbox IDs
+        $data['branches'] = Branch::whereIn('id',$branch)->get();
+
+          $pdf = PDF::loadView('Backend.admin.Branch.branchQueryPdf', $data);
+         return $pdf->stream('branchQuery.pdf');
+
 
 }
 

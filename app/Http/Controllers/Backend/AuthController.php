@@ -19,9 +19,11 @@ class AuthController extends Controller
           $registration_id=$request->registration_id;
 
 
-        //   $registration=Branch::where('registration_id',$request->registration_id)->get();
+        $registration=Branch::where('registration_id',$request->registration_id)->first();
+    
+
      if( $registration_id!=null){
-    if(Auth::attempt(['email' => $email, 'password' => $password]) && Auth::user()->branch->registration_id){
+    if(Auth::attempt(['email' => $email, 'password' => $password]) && Auth::user()->branch_id==$registration->id){
         if(Auth::user()){
 
               return redirect('admin/dashboard');

@@ -42,6 +42,7 @@ Route::get('/', function () {
   Route::post('Branch/delete/{id}',[BranchController::class,'delete']);
   Route::get('Branch/info/{id}',[BranchController::class,'BranchInfo']);
   Route::POST('Generate/Password',[BranchController::class,'genPass']);
+  Route::GET('query/pdf',[BranchController::class,'querypdf']);
   //branch subscription
   Route::post('branch/subscription/insert',[BranchSubsController::class,'Branch_subscription']);
 
@@ -90,7 +91,7 @@ Route::prefix('Student/')->group(function(){
     Route::post('insert',[StudentController::class,'insertStudent']);
     Route::get('edit/{id}',[StudentController::class,'editStudent']);
     Route::post('update/{id}',[StudentController::class,'updateStudent']);
-    Route::post('delete/{id}',[StudentController::class,'deleteSession']);
+    Route::post('delete/{id}',[StudentController::class,'deleteStudent']);
     Route::get('info/{id}',[StudentController::class,'studentInfo']);
 
   });
@@ -107,6 +108,14 @@ Route::prefix('Student/')->group(function(){
   Route::get('edit/district/{id}',[settingController::class,'district_edit']);
   Route::post('district/update/{id}',[settingController::class,'update_district']);
   Route::get('district/delete/{id}',[settingController::class,'Delete_district']);
+   //education Year Setting
+   Route::get('education_year/add',[settingController::class,'addEducationYear']);
+   Route::post('education_year/insert',[settingController::class,'insertEducationYear']);
+   Route::get('education_year/edit/{id}',[settingController::class,'editEducationYear']);
+   Route::post('education_year/update/{id}',[settingController::class,'updateEducationYear']);
+   Route::post('education_year/delete/{id}',[settingController::class,'deleteEducationYear']);
+   Route::get('education_year/info/{id}',[settingController::class,'educationYearInfo']);
+
 
 
 

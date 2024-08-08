@@ -28,16 +28,7 @@
                                                     <div class="item-title">
                                                         <h3>Institute Subscription</h3>
                                                     </div>
-                                                   <div class="dropdown">
-                                                        <a class="dropdown-toggle" href="#" role="button"
-                                                        data-toggle="dropdown" aria-expanded="false">...</a>
 
-                                                        <div class="dropdown-menu dropdown-menu-right">
-                                                            <a class="dropdown-item" href="#"><i class="fas fa-times text-orange-red"></i>Close</a>
-                                                            <a class="dropdown-item" href="#"><i class="fas fa-cogs text-dark-pastel-green"></i>Edit</a>
-                                                            <a class="dropdown-item" href="#"><i class="fas fa-redo-alt text-orange-peel"></i>Refresh</a>
-                                                        </div>
-                                                    </div>
                                                 </div>
                                                 <form class="new-added-form" action="{{url('branch/subscription/insert')}}" method="Post" enctype="multipart/form-data">
                                                    @csrf
@@ -76,8 +67,7 @@
                                                         <div class="col-12 form-group mg-t-8">
                                                             <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
 
-                                                            <a href="{{url('School/subscription/list/all')}}" class="btn-fill-lg bg-blue-dark btn-hover-yellow">
-                                                                Subscription List</a>
+
                                                         </div>
                                                     </div>
                                                 </form>
@@ -86,25 +76,43 @@
                                     </div>
                                     All Institute
                                 <div>
-
-                                <form action="{{url('branch/all')}}" method="GET" align="right">
                                     <div class="row">
-                                        <div class="col-md-8"></div>
-                                        <div class="searchInput col-md-4 d-flex form-group">
-                                                <input type="search" name="search_branch" id="form1" class="form-control" style="font-size:20px" placeholder="Enter Institute Name"/>
-                                            <button type="submit" style="font-size:20px" class="btn btn-primary" data-mdb-ripple-init>
-                                                <i class="fas fa-search"></i>
-                                              </button>
+                                            <div class="col-md-8"></div>
+                                        <form action="{{url('branch/all')}}" method="GET" align="right">
+                                                <div class="searchInput col-md-4 d-flex form-group">
+                                                        <input type="search" name="search_branch" id="form1" class="form-control" style="font-size:20px" placeholder="Enter Institute Name"/>
+                                                    <button type="submit" style="font-size:20px" class="btn btn-primary" data-mdb-ripple-init>
+                                                        <i class="fas fa-search"></i>
+                                                      </button>
+                                                </div>
+                                        </form>
                                         </div>
                                     </div>
-                                </form>
-                                </div>
+
 
                             </div>
                             <div class="card-body">
+
+                                <form action="{{url('query/pdf')}}" method="GET" enctype="multipart/form-data">
+
+                                    <button type="submit" class="btn btn-success mb-3"  style="font-size:18px;"><i class="fa fa-file-pdf" aria-hidden="true" style="font-size: 25px;margin-right:1%"></i>Querier Sleep</button>
+
+
                                 <table class="table">
                                     <thead>
                                         <tr>
+                                            <th style="width:24px">
+                                                <div class="form-check">
+
+                                                    <input type="checkbox"class="form-check-input checkAll">
+
+                                                    {{-- <label class="form-check-label"></label> --}}
+
+                                                    <input type="checkbox" class="form-check-input checkAll">
+                                                    <label class="form-check-label">All</label>
+
+                                                </div>
+                                            </th>
                                           <th scope="col">Sl No</th>
                                           <th scope="col">Branch Name</th>
                                           <th scope="col">Propietor Name</th>
@@ -123,6 +131,15 @@
                                           @endphp
                                          <tr>
 
+
+                                            <td>
+                                                <div class="form-check">
+                                                    <input type="checkbox" name="branch[{{$branches->id}}]" value="{{$branches->id}}" class="form-check-input">
+                                                    <label class="form-check-label" ></label>
+                                                </div>
+
+
+                                            </td>
                                              <td>{{$loop->iteration}}</td>
                                              <td>{{$branches->institute_name}}</td>
                                              <td>{{$branches->Propietor_Name}}</td>
@@ -170,7 +187,11 @@
 
 
                                       </tbody>
-                                  </table>
+                            </table>
+
+
+                        </form>
+
                             </div>
                         </div>
                     </div>
@@ -193,7 +214,7 @@
 
             var institute_name=$(this).data('institute_name')
 
-            
+
 
             $('#up_id').val(id);
             $('#up_pName').val(institute_name);

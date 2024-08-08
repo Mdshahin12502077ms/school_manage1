@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Division;
 use App\Models\District;
+use App\Models\EducationYear;
+
 class settingController extends Controller
 {
     Public function division_add(){
@@ -96,11 +98,43 @@ class settingController extends Controller
             $district_name.="<option value='".$district->id."'>".$district->district_name."</option> ";
          }
          echo  $district_name;
-      
+
      }
 
 
-     public function getDistrict(Request $request){
-       echo('hello');
-     }
+    public function addEducationYear(){
+    $eduYear=EducationYear::all();
+    return view('Backend.admin.settings.EducationAdd',compact('eduYear'));
+
+   }
+
+  public function insertEducationYear(Request $request){
+    $eduYear=new EducationYear();
+    $eduYear->education_year=$request->education_year;
+    $eduYear->status='Pending';
+    $eduYear->save();
+    toastr()->success('Add Education Year Successfully');
+    return redirect()->back();
+  }
+
+  public function editEducationYear($id){
+    $data['editEduYear']=EducationYear::find($id);
+    return view('Backend.admin.settings.EducationYearEdit',$data);
+  }
+
+  public function updateEducationYear(Request $request, $id){
+    $eduYear=EducationYear::find($id);
+    $eduYear->education_year=$request->education_year;
+    $eduYear->status=$request->status;
+    $eduYear->save();
+    toastr()->success('Update Education Year Successfully');
+    return redirect()->back();
+  }
+
+  public function deleteEducationYear($id){
+    $eduYear=EducationYear::find($id);
+    $eduYear->delete();
+    toastr()->success('Delete Education Year Successfully');
+    return redirect()->back();
+  }
 }

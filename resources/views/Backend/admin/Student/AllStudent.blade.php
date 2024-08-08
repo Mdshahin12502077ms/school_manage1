@@ -100,22 +100,13 @@
 
 
 
-                                        <td style="width:70px">
-
+                                        <td style="display: flex">
                                             <a href="{{url('Student/info',$student->id)}}" class="mt-2 btn btn-info btn-lg font_icon" ><i class="fa fa-eye" aria-hidden="true"></i></a>
                                             <a href="{{url('Student/edit',$student->id)}}" class="mt-2 btn btn-info btn-lg font_icon"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                            {{-- <form action="{{url('Student/delete',$student->id)}}"  method="post" class="mt-2 ">
+                                            <form action="{{url('Student/delete',$student->id)}}"  method="post" class="mt-2 ">
                                                 @csrf
                                              <button type="submit" class="btn btn-danger btn-lg font_icon" onclick="return confirm('Are you sure to delete this item?')" style="font-size:15px"><i class="fas fa-trash"></i></button>
-                                         </form> --}}
-
-                                         <button type="submit" class="btn btn-danger btn-lg font_icon" onclick="return confirm('Are you sure to delete this item?')" style="font-size:15px"><i class="fas fa-trash"></i></button>
-
-
-
-
-
-
+                                         </form>
                                       </td>
                                     </tr>
                                     @endforeach
