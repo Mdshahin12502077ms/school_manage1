@@ -20,9 +20,7 @@ return new class extends Migration
             $table->string('mothers_name');
             $table->string('institute_age');
             $table->string('no_computer');
-            $table->string('e_mail');
-
-            $table->string('mobile_number');
+          
             $table->string('additional_rel_name');
             $table->string('blood_group');
             $table->string('extra_rel_contact');

@@ -20,9 +20,13 @@ return new class extends Migration
             $table->string('sub_district');
             $table->string('registration_id')->nullable();
             $table->string('thana');
+            $table->string('e_mail');
+
+            $table->string('mobile_number');
             $table->string('post_office');
             $table->longText('address');
             $table->string('institute_name');
+            $table->string('password')->nullable();
             $table->string('post_code');
             $table->string('Propietor_Name');
             $table->string('status')->default('pending');

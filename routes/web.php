@@ -41,6 +41,7 @@ Route::get('/', function () {
   Route::post('Branch/upate/{id}',[BranchController::class,'update']);
   Route::post('Branch/delete/{id}',[BranchController::class,'delete']);
   Route::get('Branch/info/{id}',[BranchController::class,'BranchInfo']);
+  Route::POST('Generate/Password',[BranchController::class,'genPass']);
   //branch subscription
   Route::post('branch/subscription/insert',[BranchSubsController::class,'Branch_subscription']);
 

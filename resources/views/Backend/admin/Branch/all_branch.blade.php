@@ -126,12 +126,25 @@
                                              <td>{{$loop->iteration}}</td>
                                              <td>{{$branches->institute_name}}</td>
                                              <td>{{$branches->Propietor_Name}}</td>
-                                              <td>{{$branchdtls->mobile_number}}</td>
-                                              <td>{{$branchdtls->e_mail}}</td>
+                                              <td>{{$branches->mobile_number}}</td>
+                                              <td>{{$branches->e_mail}}</td>
                                              <td>{{$branches->division->name}},{{$branches->district->district_name}},{{$branches->address}}</td>
                                              <td><button type="button" class="btn btn-outline-success disabled" style="width: 100%;font-size:15px">{{$branches->status}}</button></td>
                                              <td style="display: flex">
+                                                <!-- Button trigger modal -->
 
+
+                                                <a type="button" href=""
+                                                     class="btn btn-info btn-lg update_institute" style="font-size:15px; margin-right:4%;height:100%"
+                                                     data-toggle="modal"
+                                                     data-id="{{$branches->id}}"
+                                                     data-email="{{$branches->e_mail}}"
+                                                      data-password="{{$branches->password}}"
+                                                        data-institute_name="{{$branches->institute_name}}"
+                                                     data-target="#standard-modal">
+                                                     <i class="fa fa-key"aria-hidden="true"></i>
+
+                                                    </a>
                                                     <a href="{{url('Branch/info',$branches->id)}}" class="btn btn-info btn-lg" style="font-size:15px; margin-right:4%;height:100%"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                     <a href="{{url('Branch/edit',$branches->id)}}" class="btn btn-info btn-lg" style="font-size:15px;margin-right:4%;height:100%"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                                     <form action="{{url('Branch/delete',$branches->id)}}"  method="post"  style="margin-left:4%">
@@ -162,14 +175,31 @@
                         </div>
                     </div>
 
-
                 </div>
             </div>
 
         </div>
         <!-- Social Media End Here -->
+
+      @include('Backend.admin.Branch.updateModal')
     @endsection
-<script>
+    @section('js')
+        <script>
 
-</script>
+           $(document).on('click','.update_institute',function(){
+            var id=$(this).data('id');
+            var email=$(this).data('email');
+            var password=$(this).data('password');
 
+            var institute_name=$(this).data('institute_name')
+
+            
+
+            $('#up_id').val(id);
+            $('#up_pName').val(institute_name);
+            $('#up_email').val(email);
+            $('#up_password').val(password);
+           });
+        </script>
+
+    @endsection

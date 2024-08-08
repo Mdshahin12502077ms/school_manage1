@@ -28,4 +28,8 @@ class Branch extends Model
         return $this->hasMany(BranchDetails::class,'branch_id','id');
 
     }
+
+    public function user(){
+        return $this->hasOne(User::class,'branch_id','id');
+    }
 }

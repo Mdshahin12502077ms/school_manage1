@@ -8,10 +8,11 @@ use App\Models\Division;
 use App\Models\Branch;
 use App\Models\branch_extra_file;
 use App\Models\BranchDetails;
+use App\Models\User;
 use App\Models\Plan;
 use Carbon\Carbon;
 use App\Models\BranchSubscription;
-
+use Illuminate\Support\Facades\Hash;
 
 class BranchController extends Controller
 {
@@ -133,8 +134,8 @@ public function all( Request $request){
      $branch_dtls->mothers_name=$request->mothers_name;
      $branch_dtls->institute_age=$request->institute_age;
      $branch_dtls->no_computer=$request->no_computer;
-     $branch_dtls->e_mail=$request->e_mail;
-     $branch_dtls->mobile_number=$request->mobile_number;
+     $branch->e_mail=$request->e_mail;
+     $branch->mobile_number=$request->mobile_number;
      $branch_dtls->additional_rel_name=$request->additional_rel_name;
      $branch_dtls->blood_group=$request->blood_group;
      $branch_dtls->extra_rel_contact=$request->extra_rel_contact;
@@ -318,8 +319,8 @@ else{
      $branch_dtls->mothers_name=$request->mothers_name;
      $branch_dtls->institute_age=$request->institute_age;
      $branch_dtls->no_computer=$request->no_computer;
-     $branch_dtls->e_mail=$request->e_mail;
-     $branch_dtls->mobile_number=$request->mobile_number;
+     $branch->e_mail=$request->e_mail;
+     $branch->mobile_number=$request->mobile_number;
      $branch_dtls->additional_rel_name=$request->additional_rel_name;
      $branch_dtls->blood_group=$request->blood_group;
      $branch_dtls->extra_rel_contact=$request->extra_rel_contact;
@@ -500,6 +501,20 @@ public function BranchInfo($id){
     $data['subscription'] = BranchSubscription::where('branch_id', $id)->first();
 
     return view('Backend.admin.Branch.branchInformation', $data);
+}
+
+public function genPass(Request $request){
+    $branch= new User();
+   $branch->email=$request->email;
+   $branch->branch_id=$request->id;
+   $branch->name=$request->name;
+
+   $branch->password= hash::make($request->password);
+   $branch->admin_role='instituteadmin';
+   toastr()->success('Password Generate Successfully');
+   $branch->save();
+   return redirect()->back();
+
 }
 
 }

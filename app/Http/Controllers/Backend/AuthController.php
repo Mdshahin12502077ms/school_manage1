@@ -16,17 +16,20 @@ class AuthController extends Controller
              ]);
           $email=$request->email;
           $password=$request->password;
-          $registration=Branch::where('registration_id',$request->registration_id)->get();
-
-          if(Auth::attempt(['email' => $email, 'password' => $password]) && $registration){
-                  if(Auth::user()){
-
-                        return redirect('admin/dashboard');
-
-                  }
+          $registration_id=$request->registration_id;
 
 
-    }
+        //   $registration=Branch::where('registration_id',$request->registration_id)->get();
+     if( $registration_id!=null){
+    if(Auth::attempt(['email' => $email, 'password' => $password]) && Auth::user()->branch->registration_id){
+        if(Auth::user()){
+
+              return redirect('admin/dashboard');
+
+        }
+     }
+  }
+
 
     if(Auth::attempt(['email' => $email, 'password' => $password]) && Auth::user()->admin_role=='superadmin'){
         if(Auth::user()){
