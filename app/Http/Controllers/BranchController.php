@@ -240,6 +240,8 @@ public function update($id, Request $request){
      $branch->address=$request->address;
      $branch->post_code=$request->post_code;
      $branch->status=$request->status;
+     $branch->e_mail=$request->e_mail;
+     $branch->mobile_number=$request->mobile_number;
 
      if(isset($request->plan_id)){
         $subPlan=BranchSubscription::where('branch_id', $branch->id)->first();
@@ -317,8 +319,7 @@ else{
      $branch_dtls->mothers_name=$request->mothers_name;
      $branch_dtls->institute_age=$request->institute_age;
      $branch_dtls->no_computer=$request->no_computer;
-     $branch->e_mail=$request->e_mail;
-     $branch->mobile_number=$request->mobile_number;
+
      $branch_dtls->additional_rel_name=$request->additional_rel_name;
      $branch_dtls->blood_group=$request->blood_group;
      $branch_dtls->extra_rel_contact=$request->extra_rel_contact;
@@ -501,6 +502,7 @@ public function BranchInfo($id){
 }
 
 public function genPass(Request $request){
+    
       $getid=Auth::user()->where('branch_id',$request->id)->first();
      if($getid!=null){
          $branch=User::find($getid->id);
@@ -541,7 +543,7 @@ public function sendMail(Request $request,$id){
 
     $branch=Branch::find($id);
 
-    Mail::to( $branch->e_mail)->send(new BranchMail( $branch));
+    Mail::to($branch->e_mail)->send(new BranchMail($branch));
     toastr()->success('mail send Successfully');
     return redirect()->back();
 }

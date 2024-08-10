@@ -16,6 +16,8 @@ class StudentController extends Controller
 
     public function allStudent(){
         $data['student'] = Student::with('course','session')->get();
+        $data['course']=CourseModel::all();
+        $data['session']=Session::all();
         if(Auth::user()->admin_role=='instituteadmin'){
             $data['student'] = Student::where('created_by',Auth::user()->id)->with('course','session')->get();
         }
@@ -263,4 +265,10 @@ class StudentController extends Controller
     toastr()->success('Student deleted successfully');
     return redirect()->back();
   }
+
+public function Addmission_Registration(){
+
+    return view('Backend.admin.Student.Addmission_Registration');
+}
+
 }

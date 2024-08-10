@@ -91,7 +91,7 @@
                                   </div>
                                 <form action="{{url('query/pdf')}}" method="GET" enctype="multipart/form-data">
 
-                                    <button type="submit" class="btn btn-success mb-3"  style="font-size:18px;"><i class="fa fa-file-pdf" aria-hidden="true" style="font-size: 25px;margin-right:1%"></i>Querier Sleep</button>
+                                    <button type="submit" class="btn btn-success mb-3"  style="font-size:18px;"><i class="fa fa-file-pdf" aria-hidden="true" style="font-size: 25px;margin-right:1%"></i>Courier Slip</button>
 
 
                                 <table class="table">

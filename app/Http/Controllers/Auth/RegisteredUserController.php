@@ -50,11 +50,11 @@ class RegisteredUserController extends Controller
            Auth::login($user);
            return redirect('Login/log');
         }
-        else{
-            if($request->admin_role=='superadmin'){
+
+       if($superadmin!='superadmin'){
                 toastr()->warning('Already Super Admin Exist');
                 return redirect()->back();
-            }
+        }
             else{
                 $user = User::create([
                     'name' => $request->name,
@@ -72,4 +72,4 @@ class RegisteredUserController extends Controller
         }
 
 }
-}
+

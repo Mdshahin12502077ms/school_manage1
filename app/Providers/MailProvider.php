@@ -16,45 +16,27 @@ class MailProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->booted(function () {
-            if (Schema::hasTable('s_m_t_p_s')) {
-                $email=DB::table('s_m_t_p_s')->first();
-                    if($email){
-                         $config=[
-                             'diver'=>$email->mailer,
-                             'host'=>$email->host,
-                             'port'=>$email->port,
-                             'from'=>array('address'=>$email->sender,'name'=>('APP_NAME')),
-                             'encryption'=>$email->encryption,
-                             'password'=>$email->password,
-                             'username'=>$email->username,
-                             'sendmail'=>'/usr/sbin/sendmail -bs',
-                             'pretend'=>false,
-                         ];
+        // $this->app->booted(function () {
+        //     if (Schema::hasTable('s_m_t_p_s')) {
+        //         $email=DB::table('s_m_t_p_s')->first();
+        //             if($email){
+        //                  $config=[
+        //                      'diver'=>$email->mailer,
+        //                      'host'=>$email->host,
+        //                      'port'=>$email->port,
+        //                      'from'=>array('address'=>$email->sender,'name'=>('APP_NAME')),
+        //                      'encryption'=>$email->encryption,
+        //                      'password'=>$email->password,
+        //                      'username'=>$email->username,
+        //                      'sendmail'=>'/usr/sbin/sendmail -bs',
+        //                      'pretend'=>false,
+        //                  ];
 
-                         Config::set('email', $config);
-            }
-        }
-        });
+        //                  Config::set('email', $config);
+        //     }
+        // }
+        // });
 
-    //   if(Schema::hasTabele('s_m_t_p_s')){
-    //     $email=DB::table('s_m_t_p_s')->first();
-    //     if($email){
-    //          $config=[
-    //              'diver'=>$email->mailer,
-    //              'host'=>$email->host,
-    //              'port'=>$email->port,
-    //              'from'=>array('address'=>$email->sender,'name'=>('APP_NAME')),
-    //              'encryption'=>$email->encryption,
-    //              'password'=>$email->password,
-    //              'username'=>$email->username,
-    //              'sendmail'=>'/usr/sbin/sendmail -bs',
-    //              'pretend'=>false,
-    //          ];
-
-    //          Config::set('email', $config);
-    //     }
-    //   }
     }
 
     /**
@@ -64,6 +46,21 @@ class MailProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        $email=DB::table('s_m_t_p_s')->first();
+        if($email){
+             $config=[
+                 'diver'=>$email->mailer,
+                 'host'=>$email->host,
+                 'port'=>$email->port,
+                 'from'=>array('address'=>$email->sender,'name'=>('APP_NAME')),
+                 'encryption'=>$email->encryption,
+                 'password'=>$email->password,
+                 'username'=>$email->username,
+                 'sendmail'=>'/usr/sbin/sendmail -bs',
+                 'pretend'=>false,
+             ];
+
+             Config::set('email', $config);
     }
+}
 }

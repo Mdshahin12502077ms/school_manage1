@@ -56,6 +56,35 @@
                 </li>
 
 
+                <li class="nav-item sidebar-nav-item">
+
+                    <a href="{{url('Student/addmission/registration/page')}}" class="nav-item"><i
+                        class="flaticon-classmates"></i><span>Addmission & Registration</span></a>
+
+                    {{-- <ul class="nav sub-group-menu">
+
+                        <li class="nav-item">
+                            <a href="{{url('Student/all')}}" class="nav-link"><i class="fas fa-angle-right"></i>All
+                                Students</a>
+                        </li>
+
+
+                        <li class="nav-item">
+                            <a href="{{url('Student/addmission/form')}}" class="nav-link"><i
+                                    class="fas fa-angle-right"></i>Admission Form</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="student-details.html" class="nav-link"><i
+                                    class="fas fa-angle-right"></i>Student Details</a>
+                        </li>
+
+                        <li class="nav-item">
+                            <a href="student-promotion.html" class="nav-link"><i
+                                    class="fas fa-angle-right"></i>Student Promotion</a>
+                        </li>
+                    </ul> --}}
+                </li>
 
 
                @if (Auth::user()->admin_role=='superadmin')

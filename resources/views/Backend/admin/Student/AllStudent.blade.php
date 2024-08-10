@@ -22,7 +22,7 @@
                             </div>
 
                         </div>
-                        <form class="mg-b-20" action="{{url('course/search')}}" method="get">
+                        {{-- <form class="mg-b-20" action="{{url('course/search')}}" method="get">
                             @csrf
                             <div class="row gutters-8">
 
@@ -36,7 +36,60 @@
                                     <button type="submit" class="fw-btn-fill btn-gradient-yellow" >SEARCH</button>
                                 </div>
                             </div>
-                        </form>
+                        </form> --}}
+                        <div class="row">
+                            <div class="col-xl-4 col-lg-6 col-12 form-group">
+                                <label>Course*</label>
+                                <select name="course_id" class="select2">
+                                    <option value="">Please Select Course</option>
+                                    @foreach ($course as $course)
+                                    <option value="{{$course->id}}">{{$course->course_name}}</option>
+                                    @endforeach
+                                </select>
+                                @if($errors->has('course_id'))
+                                   <div class="error" style="color:red">{{ $errors->first('course_id') }}</div>
+                                @endif
+                            </div>
+
+                            <div class="col-xl-4 col-lg-6 col-12  form-group">
+                                <label>Session*</label>
+                                <select name="session_id" class="select2">
+                                    <option value="">Please Select Session</option>
+                                    @foreach ($session as $session)
+                                    <option value="{{$session->id}}">{{$session->session_name}}</option>
+                                    @endforeach
+                                </select>
+                                @if($errors->has('course_id'))
+                                <div class="error" style="color:red">{{ $errors->first('course_id') }}</div>
+                             @endif
+                            </div>
+
+
+                            <div class="col-xl-4 col-lg-6 col-12 mt-5 form-group">
+                                <label></label>
+                                <form class="mg-b-20" action="{{url('course/search')}}" method="get">
+                                    @csrf
+                                    <div class="row gutters-8">
+
+                                        <div class="col-10-xxxl col-xl-4 col-lg-3 col-12 form-group">
+                                            <input type="text" name="course_code" placeholder="Search by Course Code ..." class="form-control">
+                                        </div>
+
+                                        <div class="col-2-xxxl col-xl-2 col-lg-3 col-12 form-group">
+                                            <button type="submit" class="fw-btn-fill btn-gradient-yellow" >SEARCH</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+
+
+                             <div class="pb-3">
+                                <a  class="fw-btn-fill btn-gradient-yellow" href="{{url('Student/addmission/form')}}">Add New Student</a>
+                             </div>
+
+                        </div>
+
                         <div class="table-responsive table table-bordered">
                             <table class="table display data-table text-nowrap font_style table_style">
                                 <thead >
