@@ -255,6 +255,11 @@
                 <a href="messaging.html" class="nav-link"><i
                         class="flaticon-chat"></i><span>Messeage</span></a>
             </li>
+
+            <li class="nav-item">
+                <a href="{{url('smtp/setting')}}" class="nav-link"><i
+                        class="flaticon-chat"></i><span>Smtp Setting</span></a>
+            </li>
                @endif
 
 

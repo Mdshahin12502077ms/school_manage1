@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\BranchMail;
 use Illuminate\Http\Request;
 use App\Models\District;
 use App\Models\Division;
@@ -16,6 +17,7 @@ use Illuminate\Support\Facades\Hash;
 use Auth;
 
 use Barryvdh\DomPDF\Facade\Pdf;
+use Illuminate\Support\Facades\Mail;
 
 class BranchController extends Controller
 {
@@ -533,6 +535,15 @@ public function querypdf(Request $request){
          return $pdf->stream('branchQuery.pdf');
 
 
+}
+
+public function sendMail(Request $request,$id){
+
+    $branch=Branch::find($id);
+
+    Mail::to( $branch->e_mail)->send(new BranchMail( $branch));
+    toastr()->success('mail send Successfully');
+    return redirect()->back();
 }
 
 }

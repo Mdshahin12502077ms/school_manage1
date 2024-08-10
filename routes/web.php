@@ -10,6 +10,7 @@ use  App\Http\Controllers\Backend\SessionController;
 use  App\Http\Controllers\Backend\AuthController;
 use  App\Http\Controllers\BranchController;
 use  App\Http\Controllers\Backend\BranchSubsController;
+use App\Http\Controllers\SMTPController;
 use  App\Http\Middleware\superAdmin;
 
 /*
@@ -43,6 +44,12 @@ Route::get('/', function () {
   Route::get('Branch/info/{id}',[BranchController::class,'BranchInfo']);
   Route::POST('Generate/Password',[BranchController::class,'genPass']);
   Route::GET('query/pdf',[BranchController::class,'querypdf']);
+  Route::GET('Send/mail/{id}',[BranchController::class,'sendMail']);
+  //smtp setting
+  Route::prefix('smtp/')->group(function(){
+    Route::get('setting',[SMTPController::class,'index']);
+    Route::post('update/{id}',[SMTPController::class,'store']);
+  });
   //branch subscription
   Route::post('branch/subscription/insert',[BranchSubsController::class,'Branch_subscription']);
 

@@ -5,12 +5,7 @@
         <!-- Breadcubs Area Start Here -->
         <div class="breadcrumbs-area">
             <h3>All Institute</h3>
-            <ul>
-                <li>
-                    <a href="index.html">Home</a>
-                </li>
-                <li>All Institute</li>
-            </ul>
+
         </div>
         <div>
             <div class="container col-lg-12">
@@ -63,36 +58,37 @@
                                                          @endif
                                                         </div>
 
-                                                        <div class="col-md-6 form-group"></div>
-                                                        <div class="col-12 form-group mg-t-8">
+                                                        <div class="col-md-6 mt-5 form-group">
+                                                             <div class="col-12 form-group mg-t-8">
                                                             <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
 
 
                                                         </div>
                                                     </div>
+
+                                                    </div>
                                                 </form>
                                             </div>
                                         </div>
                                     </div>
-                                    All Institute
-                                <div>
-                                    <div class="row">
-                                            <div class="col-md-8"></div>
-                                        <form action="{{url('branch/all')}}" method="GET" align="right">
-                                                <div class="searchInput col-md-4 d-flex form-group">
-                                                        <input type="search" name="search_branch" id="form1" class="form-control" style="font-size:20px" placeholder="Enter Institute Name"/>
-                                                    <button type="submit" style="font-size:20px" class="btn btn-primary" data-mdb-ripple-init>
-                                                        <i class="fas fa-search"></i>
-                                                      </button>
-                                                </div>
-                                        </form>
-                                        </div>
-                                    </div>
+
 
 
                             </div>
                             <div class="card-body">
-
+                                  <div>
+                                    <div class="row">
+                                    <div class="col-md-8"></div>
+                                    <div class="searchInput col-md-4 form-group">
+                                        <form action="{{url('branch/all')}}" method="GET" class="d-flex " align="right">
+                                        <input type="search" name="search_branch" id="form1" class="form-control" style="font-size:20px" placeholder="Enter Institute Name"/>
+                                        <button type="submit" style="font-size:20px" class="btn btn-primary" data-mdb-ripple-init>
+                                            <i class="fas fa-search"></i>
+                                          </button>
+                                        </form>
+                                    </div>
+                                    </div>
+                                  </div>
                                 <form action="{{url('query/pdf')}}" method="GET" enctype="multipart/form-data">
 
                                     <button type="submit" class="btn btn-success mb-3"  style="font-size:18px;"><i class="fa fa-file-pdf" aria-hidden="true" style="font-size: 25px;margin-right:1%"></i>Querier Sleep</button>
@@ -162,6 +158,7 @@
                                                      <i class="fa fa-key"aria-hidden="true"></i>
 
                                                     </a>
+                                                     <a href="{{url('Send/mail',$branches->id)}}" class="btn btn-info btn-lg" style="font-size:15px; margin-right:4%;height:100%"><i class="fa fa-envelope" aria-hidden="true"></i></a>
                                                     <a href="{{url('Branch/info',$branches->id)}}" class="btn btn-info btn-lg" style="font-size:15px; margin-right:4%;height:100%"><i class="fa fa-eye" aria-hidden="true"></i></a>
                                                     <a href="{{url('Branch/edit',$branches->id)}}" class="btn btn-info btn-lg" style="font-size:15px;margin-right:4%;height:100%"><i class="fa fa-edit" aria-hidden="true"></i></a>
                                                     <form action="{{url('Branch/delete',$branches->id)}}"  method="post"  style="margin-left:4%">
