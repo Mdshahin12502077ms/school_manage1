@@ -25,7 +25,7 @@
                                 </div>
 
                                 <div class="card-body text-center">
-                                  <a href="" class="text-center" style="color:black">Addmission</a>
+                                  <a href="{{url('Student/addmission/form')}}" class="text-center" style="color:black">Addmission</a>
                                 </div>
                               </div>
                               </div>

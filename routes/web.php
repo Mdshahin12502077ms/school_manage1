@@ -10,6 +10,7 @@ use  App\Http\Controllers\Backend\SessionController;
 use  App\Http\Controllers\Backend\AuthController;
 use  App\Http\Controllers\BranchController;
 use  App\Http\Controllers\Backend\BranchSubsController;
+use  App\Http\Controllers\Backend\RegistrationController;
 use App\Http\Controllers\SMTPController;
 use  App\Http\Middleware\superAdmin;
 
@@ -105,6 +106,16 @@ Route::prefix('Student/')->group(function(){
 
 
   });
+
+
+  Route::prefix('Registration/')->group(function(){
+    Route::get('session/time',[RegistrationController::class,'Session_time']);
+
+    Route::post('insert',[RegistrationController::class,'register_time_insert']);
+    Route::get('edit/{id}',[RegistrationController::class,'register_time_edit']);
+    Route::post('Update/{id}',[RegistrationController::class,'update']);
+    Route::post('delete/{id}',[RegistrationController::class,'delete']);
+  });
    //ajax
    Route::get('search/course',[StudentController::class,'searchCourseStudent']);
   //district all url
@@ -123,7 +134,7 @@ Route::prefix('Student/')->group(function(){
    //education Year Setting
    Route::get('education_year/add',[settingController::class,'addEducationYear']);
    Route::post('education_year/insert',[settingController::class,'insertEducationYear']);
-   Route::get('education_year/edit/{id}',[settingController::class,'editEducationYear']);
+//    Route::get('education_year/edit/{id}',[settingController::class,'editEducationYear']);
    Route::post('education_year/update/{id}',[settingController::class,'updateEducationYear']);
    Route::post('education_year/delete/{id}',[settingController::class,'deleteEducationYear']);
    Route::get('education_year/info/{id}',[settingController::class,'educationYearInfo']);

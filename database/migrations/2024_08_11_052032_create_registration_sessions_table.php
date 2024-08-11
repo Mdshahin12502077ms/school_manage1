@@ -13,12 +13,13 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('sessions', function (Blueprint $table) {
+        Schema::create('registration_sessions', function (Blueprint $table) {
             $table->id();
-            $table->string('session_name');
-            $table->bigInteger('course_id');
-            $table->bigInteger('eduyear_id');
-            $table->string('status');
+            $table->string('session_id');
+            $table->string('time_setup_type');
+            $table->string('start_date');
+            $table->string('ending_date');
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sessions');
+        Schema::dropIfExists('registration_sessions');
     }
 };

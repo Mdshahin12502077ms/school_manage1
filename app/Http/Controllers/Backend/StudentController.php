@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\CourseModel;
 use App\Models\Session;
 use App\Models\Student;
+use App\Models\EducationYear;
 use Nette\Utils\Random;
 use Auth;
 
@@ -17,7 +18,9 @@ class StudentController extends Controller
     public function allStudent(){
         $data['student'] = Student::with('course','session')->get();
         $data['course']=CourseModel::all();
-        $data['session']=Session::all();
+        $data['session']=Session::with('eduyear')->get();
+        $data['year']=EducationYear::All();
+        // dd($data['session']);
         if(Auth::user()->admin_role=='instituteadmin'){
             $data['student'] = Student::where('created_by',Auth::user()->id)->with('course','session')->get();
         }

@@ -5,11 +5,13 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class EducationYear extends Model
+class RegistrationSession extends Model
 {
     use HasFactory;
 
+
     public function session(){
-        return $this->hasMany(Session::class,'eduyear_id','id');
-     }
+
+        return $this->belongsTo(Session::class,'session_id','id');
+    }
 }

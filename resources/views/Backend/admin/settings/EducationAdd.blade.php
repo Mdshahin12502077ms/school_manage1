@@ -102,8 +102,14 @@
                                     <td>{{$eduYear->status}}</td>
                                     <td>{{$eduYear->created_at}}</td>
                                     <td style="display: flex">
-                                        <a href="{{url('Student/info',$eduYear->id)}}" class="mt-2 btn btn-info btn-lg font_icon" ><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                        <a href="{{url('education_year/edit',$eduYear->id)}}" class="mt-2 btn btn-info btn-lg font_icon"><i class="fa fa-edit" aria-hidden="true"></i></a>
+
+                                       <form action="{{url('education_year/update',$eduYear->id)}}" method="post" style="margin-right:4%">
+                                        @csrf
+
+                                        <button type="submit" class="mt-2 btn btn-info btn-lg font_icon" {{($eduYear->status=="Deactive")?'style="color:red"':''}}><i class="fas fa-exchange-alt"></i></button>
+
+                                    </form>
+
                                         <form action="{{url('education_year/delete',$eduYear->id)}}"  method="post" class="mt-2 ">
                                             @csrf
                                          <button type="submit" class="btn btn-danger btn-lg font_icon" onclick="return confirm('Are you sure to delete this item?')" style="font-size:15px"><i class="fas fa-trash"></i></button>

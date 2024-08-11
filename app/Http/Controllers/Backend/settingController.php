@@ -124,11 +124,19 @@ class settingController extends Controller
 
   public function updateEducationYear(Request $request, $id){
     $eduYear=EducationYear::find($id);
-    $eduYear->education_year=$request->education_year;
-    $eduYear->status=$request->status;
-    $eduYear->save();
-    toastr()->success('Update Education Year Successfully');
-    return redirect()->back();
+    if($eduYear->status=='Active'){
+        $eduYear->status='Deactive';
+        $eduYear->save();
+        toastr()->success('Deactive Education Year Successfully');
+        return redirect()->back();
+    }
+    elseif($eduYear->status=='Deactive'||$eduYear->status=='Pending'){
+        $eduYear->status='Active';
+        $eduYear->save();
+        toastr()->success('Active Education Year Successfully');
+        return redirect()->back();
+    }
+
   }
 
   public function deleteEducationYear($id){

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Http\Controllers\Controller;
 use App\Models\CourseModel;
 use App\Models\Session;
+use App\Models\EducationYear;
 use Illuminate\Http\Request;
 
 class SessionController extends Controller
@@ -16,15 +17,17 @@ class SessionController extends Controller
 
 
     public function addSession(){
-        $data['getCourse']=CourseModel::where('status','Active')->get();
+        $data['getCourse']=CourseModel::orderBy('id','desc')->where('status','Active')->get();
 
         return view('Backend.admin.Session.sessionAdd',$data);
     }
 
     public function insertSession(Request $request){
+
         $session=new Session();
         $session->session_name=$request->session_name;
         $session->course_id=$request->course_id;
+
         $session->status=$request->status;
         $session->save();
         toastr()->success('Session Add Successfully');
@@ -41,8 +44,10 @@ class SessionController extends Controller
 
 
         public function updateSession(Request $request,$id){
+            $getEduYear=EducationYear::where('status','Active')->get();
             $session=Session::find($id);
             $session->session_name=$request->session_name;
+            $session->eduyear_id=$getEduYear;
             $session->course_id=$request->course_id;
             $session->status=$request->status;
             $session->save();
