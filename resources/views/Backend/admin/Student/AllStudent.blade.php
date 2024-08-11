@@ -40,7 +40,7 @@
                         <div class="row">
                             <div class="col-xl-4 col-lg-6 col-12 form-group">
                                 <label>Course*</label>
-                                <select name="course_id" class="select2">
+                                <select name="course_id" class="select2 " id="search_course" onchange="searchData()">
                                     <option value="">Please Select Course</option>
                                     @foreach ($course as $course)
                                     <option value="{{$course->id}}">{{$course->course_name}}</option>
@@ -53,7 +53,7 @@
 
                             <div class="col-xl-4 col-lg-6 col-12  form-group">
                                 <label>Session*</label>
-                                <select name="session_id" class="select2">
+                                <select name="session_id" id="session" class="select2" >
                                     <option value="">Please Select Session</option>
                                     @foreach ($session as $session)
                                     <option value="{{$session->id}}">{{$session->session_name}}</option>
@@ -91,7 +91,7 @@
                         </div>
 
                         <div class="table-responsive table table-bordered">
-                            <table class="table display data-table text-nowrap font_style table_style">
+                            <table class="table display data-table text-nowrap font_style table_style" id="students-table">
                                 <thead >
                                     <tr>
                                         <th style="width:24px">
@@ -135,10 +135,53 @@
 
                                     </tr>
                                 </thead>
-                                <tbody style="color:black;font-size:13px">
+                                <tbody style="color:black;font-size:13px" id="">
 
                                     @foreach ($student as $student)
-                                    <tr>
+
+                                    @endforeach
+
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <!-- Class Table Area End Here -->
+
+            </div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+        <!-- Social Media End Here -->
+    @endsection
+    @section('js')
+<script>
+function searchData() {
+    // Get the selected value from the dropdown
+    var course = document.getElementById('search_course').value;
+    var session = document.getElementById('session').value;
+
+    // Send an AJAX request to fetch the data
+    if(course && session){
+        $.ajax({
+        url: 'search/course', // This is the URL that will handle the request on the server
+        type: 'GET', // You can use 'POST' if you want to send the request with POST method
+        data: {
+            course: course
+            session:session
+        },
+        success: function(data) {
+                            let html = '';
+                            if(data.length > 0) {
+                                data.forEach(function(student) {
+                                    html += `
+                                        <tr>
                                         <td>
                                             <div class="form-check">
                                                 <input type="checkbox" class="form-check-input">
@@ -162,28 +205,29 @@
                                          </form>
                                       </td>
                                     </tr>
-                                    @endforeach
+                                    `;
+                                });
+                            } else {
+                                html = `
+                                    <tr>
+                                        <td colspan="3">No students found for this course.</td>
+                                    </tr>
+                                `;
+                            }
+
+                            $('#students-table tbody').html(html);
+                            $('#students-table').show();
+                        },
+                        error: function(error) {
+                            console.error(error);
+                        }
+    });
+    }
+
+}
 
 
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <!-- Class Table Area End Here -->
-
-            </div>
-                        </div>
-                    </div>
-
-
-                </div>
-            </div>
-
-        </div>
-        <!-- Social Media End Here -->
-    @endsection
-<script>
 
 </script>
 
+@endsection

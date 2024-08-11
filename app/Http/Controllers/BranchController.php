@@ -502,7 +502,7 @@ public function BranchInfo($id){
 }
 
 public function genPass(Request $request){
-    
+
       $getid=Auth::user()->where('branch_id',$request->id)->first();
      if($getid!=null){
          $branch=User::find($getid->id);

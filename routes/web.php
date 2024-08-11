@@ -105,6 +105,8 @@ Route::prefix('Student/')->group(function(){
 
 
   });
+   //ajax
+   Route::get('search/course',[StudentController::class,'searchCourseStudent']);
   //district all url
   Route::get('add_division',[settingController::class,'division_add']);
   Route::post('add_division/insert',[settingController::class,'division_insert']);

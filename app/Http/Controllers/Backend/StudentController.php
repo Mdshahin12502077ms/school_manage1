@@ -271,4 +271,14 @@ public function Addmission_Registration(){
     return view('Backend.admin.Student.Addmission_Registration');
 }
 
+
+//ajax
+public function searchCourseStudent(Request $request){
+
+    $course=$request->course;
+    $session=$request->session;
+    $getstCourseWise=Student::where('course_id',$course)->where('session_id',$session)->get();
+    return response()->json($getstCourseWise);
+}
+
 }
