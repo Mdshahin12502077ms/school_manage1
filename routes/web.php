@@ -103,7 +103,8 @@ Route::prefix('Student/')->group(function(){
     Route::get('info/{id}',[StudentController::class,'studentInfo']);
     Route::get('addmission/registration/page',[StudentController::class,'Addmission_Registration']);
 
-
+//ajax get session
+    Route::get('get/session',[StudentController::class,'get_session']);
 
   });
 

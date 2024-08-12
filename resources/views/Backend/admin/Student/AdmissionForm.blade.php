@@ -57,9 +57,14 @@
                                     <div class="col-xl-12 col-lg-12 col-12" style="background-color: rgb(121, 171, 228)">
                                         <h4 class="mt-4">Course Information</h4>
                                     </div>
+
+
+
+
+
                                     <div class="col-xl-6 col-lg-6 col-12 mt-5 form-group">
                                         <label>Course*</label>
-                                        <select name="course_id" class="select2">
+                                        <select name="course_id" class="form-control" id="course" style="font-size:20px;padding:5px">
                                             <option value="">Please Select Course</option>
                                             @foreach ($course as $course)
                                             <option value="{{$course->id}}">{{$course->course_name}}</option>
@@ -72,7 +77,7 @@
 
                                     <div class="col-xl-6 col-lg-6 col-12 mt-5 form-group">
                                         <label>Session*</label>
-                                        <select name="session_id" class="select2">
+                                        <select name="session_id" class="select2" id="session">
                                             <option value="">Please Select Session</option>
                                             @foreach ($session as $session)
                                             <option value="{{$session->id}}">{{$session->session_name}}</option>
@@ -330,6 +335,34 @@ function otherQualification() {
         document.getElementById('other').style.display='none';
     }
 }
+</script>
+
+<script>
+   $(document).ready(function() {
+
+    $("#course").change(function() {
+        var course_id = $(this).val();
+      
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
+                $.ajax({
+                   method:'GET',
+                   url:'get/session',
+                   data:{course_id:course_id },
+                 
+                   success:function(data){
+                        alert(data);
+                    // $('#session').html(data);
+
+                   }
+
+
+            });
+    });
+        });
 </script>
 
 

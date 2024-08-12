@@ -44,10 +44,10 @@ class SessionController extends Controller
 
 
         public function updateSession(Request $request,$id){
-            $getEduYear=EducationYear::where('status','Active')->get();
+            // $getEduYear=EducationYear::where('status','Active')->get();
             $session=Session::find($id);
             $session->session_name=$request->session_name;
-            $session->eduyear_id=$getEduYear;
+            // $session->eduyear_id=$getEduYear->id;
             $session->course_id=$request->course_id;
             $session->status=$request->status;
             $session->save();

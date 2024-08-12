@@ -28,7 +28,7 @@ class StudentController extends Controller
     }
     public function addmissionForm(){
         $data['course']=CourseModel::all();
-        $data['session']=Session::all();
+        $data['session']=Session::where('status','Active')->get();
         return view('Backend.admin.student.AdmissionForm',$data);
     }
 
@@ -149,7 +149,7 @@ class StudentController extends Controller
 
         $data['student'] = Student::find($id);
         $data['course']=CourseModel::all();
-        $data['session']=Session::all();
+        $data['session']=Session::where('status','Active')->get();
 
 
         return view('Backend.admin.student.EditStudent',$data);
@@ -282,6 +282,17 @@ public function searchCourseStudent(Request $request){
     $session=$request->session;
     $getstCourseWise=Student::where('course_id',$course)->where('session_id',$session)->get();
     return response()->json($getstCourseWise);
+}
+
+public function get_session(Request $request){
+    echo 'hi';
+    $session_name='';
+    $session= Session::where('course_id',$request->course_id)->get();
+
+    // foreach( $session as $session){
+    //     $session_name.="<option value='".$session->id."'>".$session->session_name."</option> ";
+    // }
+    // echo   $session;
 }
 
 }

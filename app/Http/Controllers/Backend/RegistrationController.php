@@ -12,10 +12,11 @@ class RegistrationController extends Controller
     public function Session_time(){
 
 
-        $session=Session::with('eduyear')->get();
+        $session=Session::with('eduyear')->where('status','Active')->get();
         // dd($session->eduyear);
         $education=EducationYear::where('status','Active')->first();
-        $dataReg=RegistrationSession::all();
+        $dataReg=RegistrationSession::All();
+        
 
         return view('Backend.admin.Registration.RegisterLimit',compact('session','education','dataReg'));
     }
@@ -24,9 +25,10 @@ public function register_time_insert(Request $request){
 
     // dd($request->all());
     $getSession=Session::where('id',$request->session_id)->first();
-     if($getSession->stauts=='Active'){
-       $getSession->stauts="Deactive";
-       $getSession->save();
+    $sessionStatus=$getSession->status;
+     if($sessionStatus=='Active'){
+       $getSession->status="Deactive";
+       $getSession->update();
      }
 
     $education=EducationYear::where('status','Active')->first();
