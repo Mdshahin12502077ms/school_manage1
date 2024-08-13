@@ -101,10 +101,15 @@ Route::prefix('Student/')->group(function(){
     Route::post('update/{id}',[StudentController::class,'updateStudent']);
     Route::post('delete/{id}',[StudentController::class,'deleteStudent']);
     Route::get('info/{id}',[StudentController::class,'studentInfo']);
+    //reggistration
     Route::get('addmission/registration/page',[StudentController::class,'Addmission_Registration']);
+    Route::get('new/register',[StudentController::class,'newRegistration']);
+     Route::post('registration/insert',[StudentController::class,'newRegistrationInsert']);
 
-//ajax get session
-    Route::get('get/session',[StudentController::class,'get_session']);
+
+     //ajax get session
+     Route::get('get/session',[StudentController::class,'get_session']);
+     Route::get('get/Search',[StudentController::class,'search_student']);
 
   });
 
@@ -117,8 +122,6 @@ Route::prefix('Student/')->group(function(){
     Route::post('Update/{id}',[RegistrationController::class,'update']);
     Route::post('delete/{id}',[RegistrationController::class,'delete']);
   });
-   //ajax
-   Route::get('search/course',[StudentController::class,'searchCourseStudent']);
   //district all url
   Route::get('add_division',[settingController::class,'division_add']);
   Route::post('add_division/insert',[settingController::class,'division_insert']);

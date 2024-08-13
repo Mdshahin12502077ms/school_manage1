@@ -106,13 +106,19 @@
                             </div>
 
 
-                              <div >
+                              {{-- <div >
                                 <div class="pb-3 mt-5">
                                     <a  class="fw-btn-fill btn-gradient-yellow" href="{{url('Student/addmission/form')}}">Add New Student</a>
                                  </div>
-                              </div>
+                              </div> --}}
 
 
+                        </div>
+                     <form action="{{url('Student/registration/insert')}}" method="POST" enctype="multipart/form-data" >
+                          @csrf
+                          <div class="col-md-3 d-flex text-center pb-4">
+                            <a  class="fw-btn-fill btn-gradient-yellow" href="{{url('Student/addmission/form')}}" style="margin-right: 3%">Add New Student</a>
+                            <button type="submit" class="fw-btn-fill btn-gradient-yellow" >Registration</button>
                         </div>
 
                         <div class="table-responsive table table-bordered">
@@ -162,12 +168,39 @@
                                 </thead>
                                 <tbody style="color:black;font-size:13px" id="">
 
+                                    {{-- @foreach ($student as $student)
+                                    <tr>
+                                        <td>
+                                            <div class="form-check">
+                                                    <input type="checkbox" name="St_reg[]" value="{{$student->id}}" class="form-check-input">
+                                                    <label class="form-check-label" ></label>
+                                                </div>
+                                        </td>
+                                        <td><img src="{{asset($student->student_photo)}}" alt="" height="50" width="50"></td>
+                                        <td class="table_cell"><b> {{$student->st_id_number}}</b><br><b> {{$student->st_name}}</b><br> <b> {{$student->f_name}}</b><br><b>{{$student->m_name}}</b></td>
+                                        <td class="table_cell"><b> {{$student->Date_of_birth}}</b><br><b> {{$student->religion}}</b><br> <b> {{$student->gender}}</b><br><b>{{$student->id_number}}</b></td>
+                                        <td class="table_cell"><b> {{$student->course->course_name}}</b><br><b> {{$student->session->session_name}}</b><br> <b> {{$student->class_roll}}</b></td>
+                                        <td class="table_cell"><b> {{$student->edu_qualification}}</b><br><b> {{$student->reg_board}}/{{$student->passing_year}}</b><br> <b> {{$student->reg_no}}</b></td>
 
+
+
+                                        <td style="display: flex">
+                                            <a href="{{url('Student/info',$student->id)}}" class="mt-2 btn btn-info btn-lg font_icon" ><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                            <a href="{{url('Student/edit',$student->id)}}" class="mt-2 btn btn-info btn-lg font_icon"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                            <form action="{{url('Student/delete',$student->id)}}"  method="post" class="mt-2 ">
+                                                @csrf
+                                             <button type="submit" class="btn btn-danger btn-lg font_icon" onclick="return confirm('Are you sure to delete this item?')" style="font-size:15px"><i class="fas fa-trash"></i></button>
+                                         </form>
+                                      </td>
+                                    </tr>
+                                    @endforeach --}}
 
 
                                 </tbody>
                             </table>
                         </div>
+                     </form>
+
                     </div>
                 </div>
                 <!-- Class Table Area End Here -->
@@ -182,13 +215,10 @@
 
         </div>
         <!-- Social Media End Here -->
-
-
     @endsection
     @section('js')
        <script>
-
-            $(document).ready(function () {
+       $(document).ready(function () {
                 $('#search_branch,#search_course,#search_year,#search_session').change(function () {
                   var branch_id=$('#search_branch').val();
                   var course_id=$('#search_course').val();

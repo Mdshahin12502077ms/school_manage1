@@ -64,7 +64,7 @@
 
                                     <div class="col-xl-6 col-lg-6 col-12 mt-5 form-group">
                                         <label>Course*</label>
-                                        <select name="course_id" class="form-control" id="course" style="font-size:20px;padding:5px">
+                                        <select name="course_id" class="form-control" id="course_id" style="font-size:20px;padding:5px">
                                             <option value="">Please Select Course</option>
                                             @foreach ($course as $course)
                                             <option value="{{$course->id}}">{{$course->course_name}}</option>
@@ -77,12 +77,10 @@
 
                                     <div class="col-xl-6 col-lg-6 col-12 mt-5 form-group">
                                         <label>Session*</label>
-                                        <select name="session_id" class="select2" id="session">
-                                            <option value="">Please Select Session</option>
-                                            @foreach ($session as $session)
-                                            <option value="{{$session->id}}">{{$session->session_name}}</option>
-                                            @endforeach
-                                        </select>
+                                        <select name="session_id" class="form-control"
+                                        id="session"style="font-size:20px">
+                                        <option value="">select Session </option>
+                                    </select>
                                         @if($errors->has('course_id'))
                                         <div class="error" style="color:red">{{ $errors->first('course_id') }}</div>
                                      @endif
@@ -338,31 +336,28 @@ function otherQualification() {
 </script>
 
 <script>
-   $(document).ready(function() {
+$(document).ready(function(){
 
-    $("#course").change(function() {
-        var course_id = $(this).val();
-      
-                $.ajaxSetup({
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    }
-                });
-                $.ajax({
-                   method:'GET',
-                   url:'get/session',
-                   data:{course_id:course_id },
-                 
-                   success:function(data){
-                        alert(data);
-                    // $('#session').html(data);
+$('#course_id').change(function(){
 
-                   }
+var course_id=$(this).val();
 
+            $.ajax({
+                url:'{{ url('Student/get/session') }}',
+                type: 'GET',
+                data: {course_id: course_id},
+                success: function(response){
 
+                    $('#session').html(response);
+                }
             });
-    });
-        });
+
+
+
+
+});
+
+});
 </script>
 
 

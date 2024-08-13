@@ -16,9 +16,11 @@ return new class extends Migration
         Schema::create('registration_sessions', function (Blueprint $table) {
             $table->id();
             $table->string('session_id');
+            $table->bigInteger('eduyear_id')->nullable();
             $table->string('time_setup_type');
             $table->string('start_date');
             $table->string('ending_date');
+
             $table->string('status')->nullable();
             $table->timestamps();
         });

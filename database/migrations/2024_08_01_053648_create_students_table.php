@@ -16,7 +16,9 @@ return new class extends Migration
         Schema::create('students', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('course_id');
+            $table->string('st_course_reg')->nullable();
             $table->bigInteger('session_id');
+            $table->bigInteger('eduyear_id')->nullable();
             $table->string('edu_qualification');
             $table->string('reg_no');
             $table->string('result');

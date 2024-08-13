@@ -18,7 +18,7 @@ class StudentController extends Controller
     public function allStudent(){
         $data['student'] = Student::with('course','session')->get();
         $data['course']=CourseModel::all();
-        $data['session']=Session::with('eduyear')->get();
+        $data['session']=Session::with('eduyear')->where('status','Active')->get();
         $data['year']=EducationYear::All();
         // dd($data['session']);
         if(Auth::user()->admin_role=='instituteadmin'){
@@ -77,6 +77,9 @@ class StudentController extends Controller
         else{
             $student->edu_qualification = $request->edu_qualification;
         }
+
+        $education=EducationYear::where('status','Active')->first();
+        $student->eduyear_id=$education->id;
         $student->reg_no = $request->reg_no;
         $student->result = $request->result;
         $student->reg_board = $request->reg_board;
@@ -169,6 +172,8 @@ class StudentController extends Controller
     }
     $student->reg_no = $request->reg_no;
     $student->result = $request->result;
+    $education=EducationYear::where('status','Active')->first();
+    $student->eduyear_id=$education->id;
     $student->reg_board = $request->reg_board;
     $student->passing_year = $request->passing_year;
     $student->st_name = $request->st_name;
@@ -276,23 +281,85 @@ public function Addmission_Registration(){
 
 
 //ajax
-public function searchCourseStudent(Request $request){
+public function search_student(Request $request){
 
-    $course=$request->course;
-    $session=$request->session;
-    $getstCourseWise=Student::where('course_id',$course)->where('session_id',$session)->get();
-    return response()->json($getstCourseWise);
+
+
+            if(Auth::user()->admin_role=='superadmin'){
+                    $course=$request->course_id;
+                    $branch_id=$request->branch_id;
+                    $user=Auth::User()->where('branch_id',$branch_id)->first();
+                    $user_id=$user->id;
+                    $session_id=$request->session_id;
+                    $eduyear_id=$request->eduyear_id;
+                    if($session_id==null){
+                        return response()->json('Data Not Found');
+                    }
+                    $getstCourseWise=Student::where('created_by',$user_id)->where('session_id',$session_id)->where('course_id',$course)->where('eduyear_id',$eduyear_id)->get();
+
+                    return response()->json($getstCourseWise);
+             }
+
+             else{
+                 $course=$request->course_id;
+                 $session_id=$request->session_id;
+                 $eduyear_id=$request->eduyear_id;
+                 if($session_id==null){
+                    return response()->json('Data Not Found');
+                }
+                else{
+                    $getstCourseWise=Student::where('course_id',$course)->where('session_id',$session_id)->where('eduyear_id',$eduyear_id)->where('created_by',Auth::user()->id)->get();
+                    //    echo $getstCourseWise;
+                    // $data=$getstCourseWise;
+                    // echo $data;
+                      return response()->json($getstCourseWise);
+                }
+
+             }
+
 }
 
 public function get_session(Request $request){
-    echo 'hi';
-    $session_name='';
-    $session= Session::where('course_id',$request->course_id)->get();
 
-    // foreach( $session as $session){
-    //     $session_name.="<option value='".$session->id."'>".$session->session_name."</option> ";
-    // }
-    // echo   $session;
+    $session_name='';
+    $session= Session::where('course_id',$request->course_id)->where('status','Active')->get();
+
+    foreach( $session as $session){
+        $session_name.="<option value='".$session->id."'>".$session->session_name."</option> ";
+    }
+    echo $session_name;
+}
+
+public function newRegistration()
+{
+    $data['student'] = Student::with('course','session')->get();
+    $data['course']=CourseModel::all();
+    $data['session']=Session::with('eduyear')->where('status','Active')->get();
+    $data['year']=EducationYear::All();
+
+    return view('Backend.admin.student.student_register',$data);
+
+}
+
+public function newRegistrationInsert(Request $request){
+    $studentIds = $request->St_reg;
+
+    foreach ($studentIds as $studentId) {
+        // Retrieve the student model by ID
+        $student = Student::find($studentId);
+
+         $st_registration='1432'.+ $student->id;
+        // Check if student exists
+        if ($student) {
+            // Update the property
+            $student->st_course_reg =$st_registration;
+
+            // Save the changes
+            $student->save();
+        }
+    }
+    toastr()->success('students Register Successfully');
+   return redirect()->back();
 }
 
 }

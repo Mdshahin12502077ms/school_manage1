@@ -17,7 +17,6 @@ return new class extends Migration
             $table->id();
             $table->string('session_name');
             $table->bigInteger('course_id');
-            $table->bigInteger('eduyear_id');
             $table->string('status');
             $table->timestamps();
         });

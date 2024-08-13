@@ -530,7 +530,7 @@ public function genPass(Request $request){
 public function querypdf(Request $request){
 
 
-    $branch = $request->input('branch'); // Get the selected checkbox IDs
+      $branch = $request->input('branch'); // Get the selected checkbox IDs
         $data['branches'] = Branch::whereIn('id',$branch)->get();
 
           $pdf = PDF::loadView('Backend.admin.Branch.branchQueryPdf', $data);
