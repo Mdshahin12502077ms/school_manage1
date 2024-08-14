@@ -179,7 +179,7 @@
                                 </thead>
                                 <tbody style="color:black;font-size:13px" id="">
 
-                                  
+
 
 
                                 </tbody>
@@ -211,6 +211,7 @@
                   var eduyear_id=$('#search_year').val();
                   var session_id=$('#search_session').val();
                  var registration=$('#registration').val();
+
             //    alert(registration);
                 $.ajax({
                 url:'{{ url('Student/get/Search') }}',
@@ -223,11 +224,11 @@
                     registration:registration,
                   },
                   success: function(data) {
-                    
+            console.log(data.data);
                             let html = '';
-                            if(data.length > 0) {
-                                data.forEach(function(student) {
-                                    
+                            if(data.data.student.length > 0) {
+                                data.data.student.forEach(function(student) {
+
                                     html += `
                                         <tr data-student-id="${student.id}">
                                         <td>
@@ -261,21 +262,34 @@
                                 <b>${student.edu_qualification}</b><br>
                                 <b>${student.reg_board}/${student.passing_year}</b><br>
                                 <b>${student.reg_no}</b>
-                            </td>
-                            <td style="display: flex">
-                                @if ('${student.status}'=='pending')
-                                    <a href="/Student/info/${student.id}" class="mt-2 btn btn-info btn-lg font_icon"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                <a href="/Student/edit/${student.id}" class="mt-2 btn btn-info btn-lg font_icon"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                <form action="/Student/delete/${student.id}" method="post" class="mt-2">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="btn btn-danger btn-lg font_icon" onclick="return confirm('Are you sure to delete this item?')" style="font-size:15px"><i class="fas fa-trash"></i></button>
-                                </form>
-                                @endif
-                                
-                            </td>
+                            </td> `;
+
+                            if(student.status ==='registered'){
+                              html +=  `  <td style="display: flex">
+
+                                 <a href="/Student/info/${student.id}" class="mt-2 btn btn-info btn-lg font_icon"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                             </td>
                                     </tr>
                                     `;
+                                }
+
+                                else{
+                                    html +=  `  <td style="display: flex">
+
+                                            <a href="/Student/info/${student.id}" class="mt-2 btn btn-info btn-lg font_icon"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                            <a href="/Student/edit/${student.id}" class="mt-2 btn btn-info btn-lg font_icon"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                                <form action="/Student/delete/${student.id}" method="post" class="mt-2">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-danger btn-lg font_icon" onclick="return confirm('Are you sure to delete this item?')" style="font-size:15px"><i class="fas fa-trash"></i></button>
+                                            </form>
+
+
+                                            </td>
+                                            </tr>
+                                            `;
+                                }
                                 });
+
                             } else {
                                 html = `
                                     <tr>

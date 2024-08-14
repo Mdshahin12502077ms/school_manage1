@@ -34,7 +34,7 @@ class StudentController extends Controller
 
     public function insertStudent(Request $request){
 
-
+    //    dd($request->all());
         $request->validate([
             'course_id' =>'required',
             'session_id' =>'required',
@@ -89,7 +89,7 @@ class StudentController extends Controller
         $student->m_name = $request->m_name;
         $student->blood_group = $request->blood_group;
         $student->gender = $request->gender;
-        $student->status = $request->pending;
+        $student->status ='pending';
         $student->class_roll = $request->class_roll;
         $student->created_by=Auth::user()->id;
 
@@ -140,7 +140,7 @@ class StudentController extends Controller
                     $student->edu_certificate = $path . $filename;
 
                     }
-
+            // dd($student);
         $student->save();
 
         // Redirect to the student list page
@@ -296,20 +296,27 @@ public function search_student(Request $request){
                     $getstCourseWise=Student::where('created_by',$user_id)->where('session_id',$session_id)->where('course_id',$course)->where('eduyear_id',$eduyear_id)->where('status','pending')->get();
                     return response()->json($getstCourseWise);
                 }
-                   
+
                 elseif($registration=='Registered_Student'){
                $getstCourseWise=Student::where('created_by',$user_id)->where('session_id',$session_id)->where('course_id',$course)->where('eduyear_id',$eduyear_id)->where('status','registered')->get();
                  return response()->json($getstCourseWise);
                 }
 
-                  
+                    else{
+                        $getstCourseWise=Student::where('course_id',$course)->where('session_id',$session_id)->where('eduyear_id',$eduyear_id)->where('created_by',Auth::user()->id)->get();
+
+                        return response()->json($getstCourseWise);
+                    }
+
              }
 
              else{
                 $registration=$request->registration;
-              
+
                  $course=$request->course_id;
                  $session_id=$request->session_id;
+                 $course=CourseModel::where('id', $course)->get();
+
                  $eduyear_id=$request->eduyear_id;
                  if($session_id==null){
                     return response()->json('Data Not Found');
@@ -317,14 +324,32 @@ public function search_student(Request $request){
                 else{
                     if($registration=='Addmitted_List'){
                     $getstCourseWise=Student::where('course_id',$course)->where('session_id',$session_id)->where('eduyear_id',$eduyear_id)->where('status','pending')->where('created_by',Auth::user()->id)->get();
-                    
+
                       return response()->json($getstCourseWise);
                     }
 
                      elseif($registration=='Registered_Student'){
                     $getstCourseWise=Student::where('course_id',$course)->where('session_id',$session_id)->where('eduyear_id',$eduyear_id)->where('status','registered')->where('created_by',Auth::user()->id)->get();
-                    
-                      return response()->json($getstCourseWise);
+
+                      return response()->json([
+                        'data'=>[
+
+
+                                'student' =>$getstCourseWise,
+
+                               'course'=>$course,
+
+                               'session'=>Session::where('id', $session_id)->get(),
+
+                               'user'=>Auth::User()->admin_role,
+                        ],
+                      ]);
+                    }
+
+                    else{
+                        $getstCourseWise=Student::where('course_id',$course)->where('session_id',$session_id)->where('eduyear_id',$eduyear_id)->where('created_by',Auth::user()->id)->get();
+
+                        return response()->json($getstCourseWise);
                     }
                 }
 
