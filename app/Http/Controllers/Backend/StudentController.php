@@ -89,6 +89,7 @@ class StudentController extends Controller
         $student->m_name = $request->m_name;
         $student->blood_group = $request->blood_group;
         $student->gender = $request->gender;
+        $student->status = $request->pending;
         $student->class_roll = $request->class_roll;
         $student->created_by=Auth::user()->id;
 
@@ -283,24 +284,30 @@ public function Addmission_Registration(){
 //ajax
 public function search_student(Request $request){
 
-
-
             if(Auth::user()->admin_role=='superadmin'){
+                    $registration=$request->registration;
                     $course=$request->course_id;
                     $branch_id=$request->branch_id;
                     $user=Auth::User()->where('branch_id',$branch_id)->first();
                     $user_id=$user->id;
                     $session_id=$request->session_id;
                     $eduyear_id=$request->eduyear_id;
-                    if($session_id==null){
-                        return response()->json('Data Not Found');
-                    }
-                    $getstCourseWise=Student::where('created_by',$user_id)->where('session_id',$session_id)->where('course_id',$course)->where('eduyear_id',$eduyear_id)->get();
-
+                  if($registration=='Addmitted_List'){
+                    $getstCourseWise=Student::where('created_by',$user_id)->where('session_id',$session_id)->where('course_id',$course)->where('eduyear_id',$eduyear_id)->where('status','pending')->get();
                     return response()->json($getstCourseWise);
+                }
+                   
+                elseif($registration=='Registered_Student'){
+               $getstCourseWise=Student::where('created_by',$user_id)->where('session_id',$session_id)->where('course_id',$course)->where('eduyear_id',$eduyear_id)->where('status','registered')->get();
+                 return response()->json($getstCourseWise);
+                }
+
+                  
              }
 
              else{
+                $registration=$request->registration;
+              
                  $course=$request->course_id;
                  $session_id=$request->session_id;
                  $eduyear_id=$request->eduyear_id;
@@ -308,11 +315,17 @@ public function search_student(Request $request){
                     return response()->json('Data Not Found');
                 }
                 else{
-                    $getstCourseWise=Student::where('course_id',$course)->where('session_id',$session_id)->where('eduyear_id',$eduyear_id)->where('created_by',Auth::user()->id)->get();
-                    //    echo $getstCourseWise;
-                    // $data=$getstCourseWise;
-                    // echo $data;
+                    if($registration=='Addmitted_List'){
+                    $getstCourseWise=Student::where('course_id',$course)->where('session_id',$session_id)->where('eduyear_id',$eduyear_id)->where('status','pending')->where('created_by',Auth::user()->id)->get();
+                    
                       return response()->json($getstCourseWise);
+                    }
+
+                     elseif($registration=='Registered_Student'){
+                    $getstCourseWise=Student::where('course_id',$course)->where('session_id',$session_id)->where('eduyear_id',$eduyear_id)->where('status','registered')->where('created_by',Auth::user()->id)->get();
+                    
+                      return response()->json($getstCourseWise);
+                    }
                 }
 
              }
@@ -353,7 +366,7 @@ public function newRegistrationInsert(Request $request){
         if ($student) {
             // Update the property
             $student->st_course_reg =$st_registration;
-
+            $student->status='registered';
             // Save the changes
             $student->save();
         }

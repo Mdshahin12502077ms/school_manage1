@@ -43,7 +43,7 @@ return new class extends Migration
             $table->string('student_photo');
             $table->string('id_document');
             $table->string('edu_certificate');
-            $table->string('status')->default('Active');
+            $table->string('status')->default('pending');
             $table->timestamps();
         });
     }
