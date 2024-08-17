@@ -16,11 +16,14 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
         $schedule->command('command:name')->everyMinute();
+        $schedule->command('register:limit')->everyMinute();
 
         // $schedule->call(function () {
 
         //     // var_dump('hello');
         // })->everyMinute();
+
+
     }
 
     /**

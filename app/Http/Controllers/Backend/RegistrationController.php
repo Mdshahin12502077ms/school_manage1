@@ -25,19 +25,9 @@ public function register_time_insert(Request $request){
 
     // dd($request->all());
     $getSession=Session::where('id',$request->session_id)->first();
-    $sessionStatus=$getSession->status;
-     if($sessionStatus=='Active'){
-       $getSession->status="Deactive";
-       $getSession->update();
-     }
+
 
     $education=EducationYear::where('status','Active')->first();
-    //  $newSession=new Session();
-    //  $newSession->session_name=$getSession->session_name;
-    //  $newSession->eduyear_id=$education->id;
-    //  $newSession->course_id=$getSession->course_id;
-    //  $newSession->status="Active";
-    //  $newSession->save();
     $registration=new RegistrationSession();
     $registration->session_id = $request->session_id;
     $registration->time_setup_type=$request->time_setup_type;

@@ -12,4 +12,9 @@ class EducationYear extends Model
     public function session(){
         return $this->hasMany(Session::class,'eduyear_id','id');
      }
+
+     public function registrationLimit(){
+
+        return $this->hasMany(EducationYear::class,'eduyear_id','id');
+    }
 }

@@ -42,7 +42,7 @@
                                     <select name="session_id" class="select2">
                                         <option value="">Please Select Course</option>
                                       @foreach ($session as $session)
-                                      <option value={{$session->id}}>{{$session->session_name}},{{$education->education_year}}</option>
+                                      <option value={{$session->id}}> {{$session->session_name}},{{$education->education_year}}</option>
                                       @endforeach
                                     </select>
                                 </div>
@@ -114,7 +114,8 @@
 
                                     <tr>
                                      <td>{{$loop->iteration}}</td>
-                                     <td>{{$dataReg->session->session_name}},{{$dataReg->session->eduyear->education_year}}</td>
+                                     <td>{{$dataReg->session->session_name}},
+                                        {{$education->education_year}}</td>
                                      <td>{{$dataReg->time_setup_type}}</td>
                                      <td>{{$dataReg->start_date}}</td>
                                      <td>{{$dataReg->ending_date}}</td>

@@ -105,7 +105,7 @@ Route::prefix('Student/')->group(function(){
     Route::get('addmission/registration/page',[StudentController::class,'Addmission_Registration']);
     Route::get('new/register',[StudentController::class,'newRegistration']);
      Route::post('registration/insert',[StudentController::class,'newRegistrationInsert']);
-
+     Route::get('register/cancel/{id}',[StudentController::class,'CancelRegister']);
 
      //ajax get session
      Route::get('get/session',[StudentController::class,'get_session']);

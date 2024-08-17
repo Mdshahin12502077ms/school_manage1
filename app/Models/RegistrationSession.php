@@ -14,4 +14,10 @@ class RegistrationSession extends Model
 
         return $this->belongsTo(Session::class,'session_id','id');
     }
+
+    public function eduyear(){
+
+        return $this->belongsTo(EducationYear::class,'eduyear_id','id');
+    }
+
 }
