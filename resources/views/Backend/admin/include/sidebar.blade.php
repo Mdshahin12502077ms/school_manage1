@@ -2,7 +2,11 @@
     <div class="sidebar-main sidebar-menu-one sidebar-expand-md sidebar-color">
         <div class="mobile-sidebar-header d-md-none">
             <div class="header-logo">
-                <a href="index.html"><img src="{{ asset('Backend/img/logo1.png') }}" alt="logo"></a>
+                @php
+                    $backend_setting=App\Models\BackendSettings::first();
+                @endphp
+
+                <a href="index.html"><img src="{{asset($backend_setting->logo)}}" alt="logo"></a>
             </div>
         </div>
         <div class="sidebar-menu-content">
@@ -160,9 +164,11 @@
                                 class="fas fa-angle-right"></i>Education Year Settings</a>
                     </li>
                     <li class="nav-item">
-                        <a href="student-promotion.html" class="nav-link"><i
-                                class="fas fa-angle-right"></i>Student Promotion</a>
+                        <a href="{{url('Settings/Backend/Settings')}}" class="nav-link"><i
+                                class="fas fa-angle-right"></i>Backend Settings</a>
                     </li>
+
+
                 </ul>
             </li>
 

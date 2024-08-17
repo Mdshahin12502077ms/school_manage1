@@ -1,0 +1,27 @@
+<?php
+
+namespace Database\Seeders;
+
+use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use Illuminate\Database\Seeder;
+use App\Models\BackendSettings;
+class BackendSetting extends Seeder
+{
+    /**
+     * Run the database seeds.
+     *
+     * @return void
+     */
+    public function run()
+    {
+        $Backend=[
+            [
+                'logo'=>'test.jpg',
+                'institute_name'=>'Institute',
+                'starting_year'=>'2024',
+            ],
+
+        ];
+          BackendSettings::insert($Backend);
+    }
+}

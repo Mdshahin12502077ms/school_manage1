@@ -2,9 +2,11 @@
  <div class="navbar navbar-expand-md header-menu-one bg-light">
     <div class="nav-bar-header-one">
         <div class="header-logo">
-            <a href="index.html">
-                <img src="{{ asset('Backend/img/logo.png') }}" alt="logo">
-            </a>
+            @php
+                    $backend_setting=App\Models\BackendSettings::first();
+                @endphp
+
+                <a href="index.html"><img src="{{asset($backend_setting->logo)}}" alt="logo"></a>
         </div>
         <div class="toggle-button sidebar-toggle">
             <button type="button" class="item-link">
@@ -42,19 +44,41 @@
             <li class="navbar-item dropdown header-admin">
                 <a class="navbar-nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown"
                     aria-expanded="false">
+                    @php
+                    if(Auth::user()->admin_role=='instituteadmin'){
+                        $getAdmin=App\Models\Branch::where('id',Auth::user()->branch_id)->first();
+                        $other=App\Models\BranchDetails::where('branch_id',Auth::user()->branch_id)->first();
+                    }
+                     if(Auth::user()->admin_role=='superadmin'){
+                        $getAdmin=App\Models\User::where('id',Auth::user()->id)->get();
+                     }
+                    @endphp
+
+                    @if(Auth::user()->admin_role=='superadmin')
                     <div class="admin-title">
-                        <h5 class="item-title">Stevne Zone</h5>
+                        <h5 class="item-title">{{Auth::user()->admin_role}}</h5>
                         <span>Admin</span>
                     </div>
+                    @else
+                    <div class="admin-title">
+                        <h5 class="item-title">{{$getAdmin->Propietor_Name}}</h5>
+                        <span>{{Auth::user()->admin_role}}</span>
+                    </div>
+                    @endif
+
+                    @if(Auth::user()->admin_role!='superadmin')
                     <div class="admin-img">
-                        <img src="{{ asset('Backend/img/figure/admin.jpg') }}" alt="Admin">
+                        <img src="{{ asset($other->ceo_profile)}}" alt="Admin" style="height:70px;width:70px">
 
                     </div>
+                    @endif
                 </a>
                 <div class="dropdown-menu dropdown-menu-right">
+                    @if(Auth::user()->admin_role=='superadmin')
                     <div class="item-header">
                         <h6 class="item-title">Steven Zone</h6>
                     </div>
+                    @endif
                     <div class="item-content">
                         <ul class="settings-list">
                             <li><a href="#"><i class="flaticon-user"></i>My Profile</a></li>

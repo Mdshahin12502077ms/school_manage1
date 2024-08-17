@@ -8,6 +8,7 @@ use App\Models\CourseModel;
 use App\Models\Session;
 use App\Models\Student;
 use App\Models\EducationYear;
+use App\Models\RegistrationSession;
 use Nette\Utils\Random;
 use Auth;
 
@@ -277,6 +278,7 @@ class StudentController extends Controller
 
 public function Addmission_Registration(){
 
+
     return view('Backend.admin.Student.Addmission_Registration');
 }
 
@@ -391,7 +393,7 @@ public function newRegistration()
     $data['course']=CourseModel::all();
     $data['session']=Session::with('eduyear')->where('status','Active')->get();
     $data['year']=EducationYear::All();
-
+    $data['get_reg_limit']=RegistrationSession::orderBy('id','desc')->first();
     return view('Backend.admin.student.student_register',$data);
 
 }

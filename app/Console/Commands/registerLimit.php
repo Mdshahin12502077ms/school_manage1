@@ -4,6 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use App\Models\RegistrationSession;
+use App\Models\Student;
 use Carbon\Carbon;
 class registerLimit extends Command
 {
@@ -28,15 +29,22 @@ class registerLimit extends Command
      */
     public function handle()
     {
-        $registerLimit=RegistrationSession::all();
-
+        $registerLimit=RegistrationSession::where('time_setup_type','Registration')->where('status','Active')->get();
 
             foreach ($registerLimit as $registerLimit) {
+
                 if (Carbon::now() >$registerLimit->ending_date) {
+
+                    $getStudent=Student::all();
                     $RegistrationSession=RegistrationSession::where('id',$registerLimit->id)->update([
                         'status'=>'Deactive'
                     ]);
 
+                    foreach ($getStudent as $student) {
+                        $student=Student::where('status','registered')->update([
+                            'status'=>'downloaded'
+                        ]);
+                    }
                 }
             }
         return Command::SUCCESS;

@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Models\Division;
 use App\Models\District;
 use App\Models\EducationYear;
+use App\Models\BackendSettings;
 
 class settingController extends Controller
 {
@@ -143,6 +144,35 @@ class settingController extends Controller
     $eduYear=EducationYear::find($id);
     $eduYear->delete();
     toastr()->success('Delete Education Year Successfully');
+    return redirect()->back();
+  }
+
+  public function BackendEdit(){
+
+    $data['getBackend']=BackendSettings::where('id',1)->first();
+    return view('Backend.admin.settings.edit_backend',$data);
+  }
+
+  public function BackendUpdate(Request $request,$id){
+    $backend=BackendSettings::find($id);
+    $backend->institute_name=$request->name;
+    $backend->starting_year=$request->starting_year;
+
+    if(isset($request->logo)){
+
+        if($backend->logo && file_exists($backend->logo)){
+            unlink($backend->logo);
+        }
+
+        $file = $request->file('logo');
+        $extension = 'logo'.$file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $path = 'Backend/image/BackendSetting/';
+        $file->move($path, $filename);
+        $backend->logo = $path . $filename;
+        }
+    $backend->save();
+    toastr()->success('Update Backend Successfully');
     return redirect()->back();
   }
 }
