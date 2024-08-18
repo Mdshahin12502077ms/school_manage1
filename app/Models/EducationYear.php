@@ -17,4 +17,9 @@ class EducationYear extends Model
 
         return $this->hasMany(EducationYear::class,'eduyear_id','id');
     }
+
+    public function student(){
+
+        return $this->hasMany(Student::class,'eduyear_id','id');
+    }
 }

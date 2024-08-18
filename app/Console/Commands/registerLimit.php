@@ -41,7 +41,7 @@ class registerLimit extends Command
                     ]);
 
                     foreach ($getStudent as $student) {
-                        $student=Student::where('status','registered')->update([
+                        $student=Student::where('status','registered')->where('session_id',$registerLimit->session_id)->update([
                             'status'=>'downloaded'
                         ]);
                     }

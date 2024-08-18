@@ -2159,10 +2159,16 @@ ul {
 .sidebar-menu-one .sidebar-menu-content .nav-sidebar-menu > .nav-item .nav-link.menu-active span {
   color: #ffa901;
 }
-.sidebar-menu-one .sidebar-menu-content .nav-sidebar-menu > .nav-item .sub-group-menu {
+.sidebar-menu-one .sidebar-menu-content .nav-sidebar-menu > .nav-item .sub-group-menu{
   display: none;
   background-color: #051f3e;
   padding: 10px 0;
+}
+
+.list{
+    display: none;
+    background-color: #051f3e;
+    padding: 10px 0;
 }
 .sidebar-menu-one .sidebar-menu-content .nav-sidebar-menu > .nav-item .sub-group-menu > .nav-item .nav-link {
   font-size: 14px;

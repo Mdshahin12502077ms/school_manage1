@@ -111,6 +111,11 @@ Route::prefix('Student/')->group(function(){
      Route::get('get/session',[StudentController::class,'get_session']);
      Route::get('get/Search',[StudentController::class,'search_student']);
 
+        //print
+
+    Route::get('Print/Student',[StudentController::class,'print_student']);
+
+
   });
 
 

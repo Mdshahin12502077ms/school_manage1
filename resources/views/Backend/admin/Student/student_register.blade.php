@@ -114,7 +114,7 @@
 
 
                         </div>
-                     <form action="{{url('Student/registration/insert')}}" method="POST" enctype="multipart/form-data" >
+                     <form action="{{url('Student/registration/insert')}}" method="POST" id="student-form" enctype="multipart/form-data" >
                           @csrf
                           <div class="col-md-6 d-flex pb-3">
                             <div class="col-xl-5 col-lg-6 col-12 form-group">
@@ -125,16 +125,18 @@
                                     <option value="Registered_Student">Registered List</option>
                                 </select>
                             </div>
-                            @if($get_reg_limit->time_setup_type =='Registration'&& $get_reg_limit->status =='Active')
+                            @if($get_reg_limit->time_setup_type == 'Registration' && $get_reg_limit->status == 'Active')
+                            <div class="mt-5 form-group d-flex">
+                                <button type="submit" class="fw-btn-fill btn-gradient-yellow" name="action" value="register">Register</button>
+                            </div>
+                        @else
                             <div class="mt-5 form-group">
-                                <button type="submit" class="fw-btn-fill btn-gradient-yellow">Registraion</button>
-                             </div>
-                            @else
-                            <div class="mt-5 form-group">
-                                <button type="submit" class="fw-btn-fill btn-gradient-yellow" disabled>Registraion</button>
-                             </div>
-                            @endif
-
+                                <button type="submit" class="fw-btn-fill btn-gradient-yellow" name="action" value="register" disabled>Register</button>
+                            </div>
+                        @endif
+                        <div class="mt-5 form-group">
+                            <button type="submit" class="fw-btn-fill btn-gradient-yellow" target="__blank"name="action" onclick="openInNewTab()" style="margin-left: 5%" value="print">Print</button>
+                        </div>
                           </div>
 
 
@@ -241,7 +243,7 @@
                                 <tr data-student-id="${student.id}">
                                     <td>
                                         <div class="form-check">
-                                            <input type="checkbox" name="St_reg[${student.id}]" value="${student.id}" class="form-check-input">
+                                            <input type="checkbox" name="St_reg[${student.id}]" class="student-checkbox" value="${student.id}" id="select-all" class="form-check-input">
                                             <label class="form-check-label"></label>
                                         </div>
                                     </td>
@@ -309,9 +311,27 @@
         });
     </script>
 
+<script>
+    function openInNewTab() {
+        var selectedIds = [];
+    document.querySelectorAll('.student-checkbox:checked').forEach(function(checkbox) {
+        selectedIds.push(checkbox.value);
+    });
 
+    // Check if any IDs are selected
+    if (selectedIds.length === 0) {
+        alert('No students selected for printing.');
+        return;
+    }
 
+    // Build the URL with query parameters
+    var url = "{{ url('Student/Print/Student') }}";
+    var queryString = 'ids=' + encodeURIComponent(selectedIds.join(','));
+    var fullUrl = url + '?' + queryString;
 
-
+    // Open the URL in a new tab
+    window.open(fullUrl, '_blank');
+    }
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection

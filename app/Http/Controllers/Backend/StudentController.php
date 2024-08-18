@@ -11,7 +11,7 @@ use App\Models\EducationYear;
 use App\Models\RegistrationSession;
 use Nette\Utils\Random;
 use Auth;
-
+use Barryvdh\DomPDF\Facade\Pdf;
 class StudentController extends Controller
 {
 
@@ -393,15 +393,20 @@ public function newRegistration()
     $data['course']=CourseModel::all();
     $data['session']=Session::with('eduyear')->where('status','Active')->get();
     $data['year']=EducationYear::All();
-    $data['get_reg_limit']=RegistrationSession::orderBy('id','desc')->first();
+    $data['get_reg_limit']=RegistrationSession::orderBy('id','desc')->with('session')->first();
+
     return view('Backend.admin.student.student_register',$data);
 
 }
 
 public function newRegistrationInsert(Request $request){
-    $studentIds = $request->St_reg;
 
-    foreach ($studentIds as $studentId) {
+
+        $action = $request->input('action');
+
+        if ($action == 'register') {
+            $studentIds = $request->St_reg;
+             foreach ($studentIds as $studentId) {
         // Retrieve the student model by ID
         $student = Student::find($studentId);
 
@@ -413,10 +418,20 @@ public function newRegistrationInsert(Request $request){
             $student->status='registered';
             // Save the changes
             $student->save();
+            toastr()->success('Student Registration Successfully Done');
+            return redirect()->back();
         }
     }
-    toastr()->success('students Register Successfully');
-   return redirect()->back();
+            // Process the registration
+        }
+
+        elseif ($action == 'print') {
+            toastr()->success('Printed Data Successfully');
+            return redirect()->back();
+        }
+
+
+
 }
 
 public function CancelRegister(Request $request,$id){
@@ -426,5 +441,18 @@ public function CancelRegister(Request $request,$id){
     toastr()->success('Register Cancel Successfully');
     return redirect()->back();
 }
+
+public function print_student(Request $request){
+
+    $ids = $request->input('ids', '');
+    $idsArray = explode(',', $ids);
+
+    // Fetch students based on IDs
+    $students = Student::whereIn('id', $idsArray)->get();
+
+    // Return view with students or handle print logic
+    return view('Backend.admin.student.print_student', compact('students'));
+}
+
 
 }

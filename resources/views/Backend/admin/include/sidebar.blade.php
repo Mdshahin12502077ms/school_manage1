@@ -61,12 +61,12 @@
 
 
                @if(Auth::user()->admin_role=='instituteadmin')
-               <li class="nav-item sidebar-nav-item">
 
-                <a href="{{url('Student/addmission/registration/page')}}" class="nav-item"><i
-                    class="flaticon-classmates"></i><span>Addmission & Registration</span></a>
-
-                {{-- <ul class="nav sub-group-menu">
+                        <li class="nav-item  d-flex">
+                            <a href="{{url('Student/addmission/registration/page')}}" class="nav-link"><i
+                                    class="flaticon-classmates"></i><span>Addmission & Registration</span></a> <i class="fas fa-angle-right mt-5" onclick="getItem()" style="margin-right: 8%;color:white"></i>
+                                </li>
+                <ul class="nav list" style="display:none" id="group">
 
                     <li class="nav-item">
                         <a href="{{url('Student/all')}}" class="nav-link"><i class="fas fa-angle-right"></i>All
@@ -88,8 +88,8 @@
                         <a href="student-promotion.html" class="nav-link"><i
                                 class="fas fa-angle-right"></i>Student Promotion</a>
                     </li>
-                </ul> --}}
-            </li>
+                </ul>
+
         @endif
 
                 <li class="nav-item sidebar-nav-item">
@@ -331,3 +331,16 @@
         </div>
     </div>
     <!-- Sidebar Area End Here -->
+
+<script>
+
+function   getItem(){
+    var group = document.getElementById('group');
+        if (group.style.display === "none") {
+            group.style.display = "block";
+        } else {
+            group.style.display = "none";
+        }
+}
+</script>
+

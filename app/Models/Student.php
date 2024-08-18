@@ -17,4 +17,8 @@ class Student extends Model
     public function course(){
         return $this->belongsTo(CourseModel::class,'course_id','id');
     }
+
+    public function eduyear(){
+        return $this->belongsTo(EducationYear::class,'eduyear_id','id');
+    }
 }
