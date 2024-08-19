@@ -24,7 +24,8 @@
                         </div>
 
 
-
+                        <form action="{{url('Student/registration/insert')}}" method="POST" id="student-form" enctype="multipart/form-data" >
+                            @csrf
                         <div class="row">
 
                             @if (Auth::user()->admin_role=='superadmin')
@@ -44,33 +45,33 @@
                                 @endif
                             </div>
                             @endif
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+
+                            <div class="col-xl-3 col-lg-6 col-12  form-group">
                                 <label>Course*</label>
-                                <select name="course_id" class="form-control" id="search_course" >
+                                <select name="course_id" class="form-control" id="course_id" style="font-size:20px;padding:5px">
                                     <option value="">Please Select Course</option>
                                     @foreach ($course as $course)
                                     <option value="{{$course->id}}">{{$course->course_name}}</option>
                                     @endforeach
                                 </select>
                                 @if($errors->has('course_id'))
-                                   <div class="error" style="color:red">{{ $errors->first('course_id') }}</div>
-                                @endif
+                            <div class="error" style="color:red">{{ $errors->first('course_id') }}</div>
+                              @endif
                             </div>
 
 
 
                             <div class="col-xl-3 col-lg-6 col-12  form-group">
                                 <label>Session*</label>
-                                <select name="session_id"  class="form-control" id="search_session" >
-                                    <option value="">Please Select Session</option>
-                                    @foreach ($session as $session)
-                                    <option value="{{$session->id}}">{{$session->session_name}}</option>
-                                    @endforeach
-                                </select>
+                                <select name="session_id" class="form-control"
+                                id="session"style="font-size:20px">
+                                <option value="">select Session </option>
+                            </select>
                                 @if($errors->has('course_id'))
                                 <div class="error" style="color:red">{{ $errors->first('course_id') }}</div>
                              @endif
                             </div>
+
                             <div class="col-xl-3 col-lg-6 col-12 form-group">
                                 <label>Year*</label>
                                 <select name="year" class="form-control" id="search_year" >
@@ -88,7 +89,7 @@
 
 
 
-                            <div class="col-xl-3 col-lg-6 col-12  form-group">
+                            {{-- <div class="col-xl-3 col-lg-6 col-12  form-group">
                                 <label></label>
                                 <form class="mg-b-20" action="{{url('course/search')}}" method="get">
                                     @csrf
@@ -103,7 +104,7 @@
                                         </div>
                                     </div>
                                 </form>
-                            </div>
+                            </div> --}}
 
 
                               {{-- <div >
@@ -114,9 +115,11 @@
 
 
                         </div>
-                     <form action="{{url('Student/registration/insert')}}" method="POST" id="student-form" enctype="multipart/form-data" >
-                          @csrf
+
+
+
                           <div class="col-md-6 d-flex pb-3">
+
                             <div class="col-xl-5 col-lg-6 col-12 form-group">
                                 <label>Register Status</label>
                                 <select name="registration" class="form-control" id="registration" >
@@ -125,6 +128,7 @@
                                     <option value="Registered_Student">Registered List</option>
                                 </select>
                             </div>
+
                             @if($limit->time_setup_type == 'Registration' && $limit->status == 'Active')
                             <div class="mt-5 form-group d-flex">
                                 <button type="submit" class="fw-btn-fill btn-gradient-yellow" name="action" value="register">Register</button>
@@ -134,6 +138,7 @@
                                 <button type="submit" class="fw-btn-fill btn-gradient-yellow" name="action" value="register" disabled>Register</button>
                             </div>
                         @endif
+
                         <div class="mt-5 form-group">
                             <button type="submit" class="fw-btn-fill btn-gradient-yellow" target="__blank"name="action" onclick="openInNewTab()" style="margin-left: 5%" value="print">Print</button>
                         </div>
@@ -215,11 +220,11 @@
     <script>
 
         $(document).ready(function () {
-            $('#search_branch,#search_course,#search_year,#search_session,#registration').change(function () {
+            $('#search_branch,#course_id,#search_year,#session,#registration').change(function () {
               var branch_id=$('#search_branch').val();
-              var course_id=$('#search_course').val();
+              var course_id=$('#course_id').val();
               var eduyear_id=$('#search_year').val();
-              var session_id=$('#search_session').val();
+              var session_id=$('#session').val();
               var registration=$('#registration').val();
             $.ajax({
             url:'{{ url('Student/get/Search') }}',
@@ -333,5 +338,29 @@
     window.open(fullUrl, '_blank');
     }
 </script>
+<script>
+    $(document).ready(function(){
+
+    $('#course_id').change(function(){
+
+    var course_id=$(this).val();
+
+                $.ajax({
+                    url:'{{ url('Student/get/session') }}',
+                    type: 'GET',
+                    data: {course_id: course_id},
+                    success: function(response){
+
+                        $('#session').html(response);
+                    }
+                });
+
+
+
+
+    });
+
+    });
+    </script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 @endsection

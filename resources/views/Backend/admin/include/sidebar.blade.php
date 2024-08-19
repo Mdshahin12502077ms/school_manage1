@@ -93,22 +93,7 @@
 
         @endif
 
-                <li class="nav-item sidebar-nav-item">
-                    <a href="#" class="nav-link"><i
-                            class="flaticon-classmates"></i><span>Registration Management</span></a>
-                    <ul class="nav sub-group-menu">
 
-                        <li class="nav-item">
-                            <a href="{{url('Registration/session/time')}}" class="nav-link"><i class="fas fa-angle-right"></i>Registration limit
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a href="{{ url('add_branch') }}" class="nav-link"><i
-                                    class="fas fa-angle-right"></i>Add Institute</a>
-                        </li>
-
-                    </ul>
-                </li>
 
                @if (Auth::user()->admin_role=='superadmin')
                <li class="nav-item sidebar-nav-item">
@@ -146,7 +131,22 @@
 
                 </ul>
             </li>
+            <li class="nav-item sidebar-nav-item">
+                <a href="#" class="nav-link"><i
+                        class="flaticon-classmates"></i><span>Registration Management</span></a>
+                <ul class="nav sub-group-menu">
 
+                    <li class="nav-item">
+                        <a href="{{url('Registration/session/time')}}" class="nav-link"><i class="fas fa-angle-right"></i>Registration limit
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ url('add_branch') }}" class="nav-link"><i
+                                class="fas fa-angle-right"></i>Add Institute</a>
+                    </li>
+
+                </ul>
+            </li>
 
             <li class="nav-item sidebar-nav-item">
                 <a href="#" class="nav-link"><i

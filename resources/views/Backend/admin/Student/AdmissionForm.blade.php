@@ -15,18 +15,6 @@
         <div>
             <div class="container col-lg-12">
 
-
-                <div class="dashboard-content-one">
-                    <!-- Breadcubs Area Start Here -->
-                    <div class="breadcrumbs-area">
-                        <h3>Students</h3>
-                        <ul>
-                            <li>
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li>Student Admit Form</li>
-                        </ul>
-                    </div>
                     <!-- Breadcubs Area End Here -->
                     <!-- Admit Form Area Start Here -->
 
@@ -197,20 +185,13 @@
                                      @endif
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                        <label>Id Number</label>
+                                        <label>NId/Birth Certificate Number</label>
                                         <input type="text" name="id_number" placeholder="" class="form-control">
                                         @if($errors->has('id_number'))
                                         <div class="error" style="color:red">{{ $errors->first('id_number') }}</div>
                                      @endif
                                     </div>
 
-                                    <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                        <label>Student Id Number</label>
-                                        <input type="text" name="st_id_number" disabled placeholder="" class="form-control">
-                                        @if($errors->has('st_id_number'))
-                                        <div class="error" style="color:red">{{ $errors->first('st_id_number') }}</div>
-                                     @endif
-                                    </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Class Roll</label>
                                         <input type="text" name="class_roll" placeholder="" class="form-control">

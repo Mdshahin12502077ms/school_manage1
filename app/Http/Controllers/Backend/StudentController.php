@@ -181,7 +181,7 @@ class StudentController extends Controller
     $student->st_name = $request->st_name;
     $student->f_name = $request->f_name;
     $student->m_name = $request->m_name;
-    $student->status = $request->status;
+    // $student->status = $request->status;
     $student->blood_group = $request->blood_group;
     $student->gender = $request->gender;
     $student->created_by=Auth::user()->id;
@@ -389,7 +389,7 @@ public function get_session(Request $request){
 
 public function newRegistration(Request $request)
 {
-    
+
     $data['student'] = Student::with('course','session')->get();
     $data['course']=CourseModel::all();
     $data['session']=Session::with('eduyear')->where('status','Active')->get();
@@ -415,33 +415,49 @@ public function newRegistrationInsert(Request $request){
 
 
         $action = $request->input('action');
+        $session=$request->session_id;
 
-        if ($action == 'register') {
-            $studentIds = $request->St_reg;
-             foreach ($studentIds as $studentId) {
-        // Retrieve the student model by ID
-        $student = Student::find($studentId);
+        $registration=RegistrationSession::where('session_id',$session)->where('time_setup_type','Registration')->where('status','Active')->first();
+        // dd( $registration);
+        if($registration!=null){
+            if( $registration->session->status=='Active'){
+                                  if ($action == 'register') {
+                                      $studentIds = $request->St_reg;
+                                      if($studentIds!=null){
+                                          foreach ($studentIds as $studentId) {
+                                              // Retrieve the student model by ID
+                                              $student = Student::find($studentId);
 
-         $st_registration='1432'.+ $student->id;
-        // Check if student exists
-        if ($student) {
-            // Update the property
-            $student->st_course_reg =$st_registration;
-            $student->status='registered';
-            // Save the changes
-            $student->save();
-            toastr()->success('Student Registration Successfully Done');
-            return redirect()->back();
+                                               $st_registration='42700'.+ $student->id;
+                                              // Check if student exists
+                                              if ($student) {
+                                                  // Update the property
+                                                  $student->st_course_reg =$st_registration;
+                                                  $student->status='registered';
+                                                  // Save the changes
+                                                  $student->save();
+                                                  toastr()->success('Student Registration Successfully Done');
+                                                  return redirect()->back();
+                                              }
+                                          }
+                                      }
+                                         else{
+                                           toastr()->error('No Student Selected For Registration');
+                                           return redirect()->back();
+                                         }
+                                      // Process the registration
+                                  }
+
+                                  elseif ($action == 'print') {
+                                      toastr()->success('Printed Data Successfully');
+                                      return redirect()->back();
+                                  }
         }
     }
-            // Process the registration
-        }
-
-        elseif ($action == 'print') {
-            toastr()->success('Printed Data Successfully');
+        else{
+            toastr()->error('Registration Time Expired');
             return redirect()->back();
         }
-
 
 
 }
@@ -458,12 +474,17 @@ public function print_student(Request $request){
 
     $ids = $request->input('ids', '');
     $idsArray = explode(',', $ids);
+    if($ids!=null){
+        $students = Student::whereIn('id', $idsArray)->get();
 
-    // Fetch students based on IDs
-    $students = Student::whereIn('id', $idsArray)->get();
+        // Return view with students or handle print logic
+        return view('Backend.admin.student.print_student', compact('students'));
+    }
+   else{
+     toastr()->error('No Student Selected For Print');
+     return redirect()->back();
+   }
 
-    // Return view with students or handle print logic
-    return view('Backend.admin.student.print_student', compact('students'));
 }
 
 

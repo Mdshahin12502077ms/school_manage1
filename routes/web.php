@@ -11,6 +11,7 @@ use  App\Http\Controllers\Backend\AuthController;
 use  App\Http\Controllers\BranchController;
 use  App\Http\Controllers\Backend\BranchSubsController;
 use  App\Http\Controllers\Backend\RegistrationController;
+use  App\Http\Controllers\Backend\StudentRgisterFundController;
 use App\Http\Controllers\SMTPController;
 use  App\Http\Middleware\superAdmin;
 
@@ -126,6 +127,8 @@ Route::prefix('Student/')->group(function(){
     Route::get('edit/{id}',[RegistrationController::class,'register_time_edit']);
     Route::post('Update/{id}',[RegistrationController::class,'update']);
     Route::post('delete/{id}',[RegistrationController::class,'delete']);
+      //add Registration Fund
+    Route::get('add/fund',[StudentRgisterFundController::class,'add_fund']);
   });
   //district all url
   Route::get('add_division',[settingController::class,'division_add']);

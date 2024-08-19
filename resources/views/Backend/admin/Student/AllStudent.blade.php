@@ -186,90 +186,104 @@
 
     @endsection
     @section('js')
-       <script>
+    <script>
 
-            $(document).ready(function () {
-                $('#search_branch,#search_course,#search_year,#search_session').change(function () {
-                  var branch_id=$('#search_branch').val();
-                  var course_id=$('#search_course').val();
-                  var eduyear_id=$('#search_year').val();
-                  var session_id=$('#search_session').val();
-                $.ajax({
-                url:'{{ url('Student/get/Search') }}',
-                type: 'GET',
-                data: {
-                    branch_id: branch_id,
-                    course_id:course_id,
-                    eduyear_id:eduyear_id,
-                    session_id:session_id,
-                  },
-                  success: function(data) {
-                            let html = '';
-                            if(data.length > 0) {
-                                data.forEach(function(student) {
-                                    html += `
-                                        <tr data-student-id="${student.id}">
-                                        <td>
-                                            <div class="form-check">
-                                                <input type="checkbox" name="St_reg[${student.id}]" value="${student.id}" class="form-check-input">
-                                                <label class="form-check-label"></label>
-                                            </div>
-                                        </td>
+        $(document).ready(function () {
+            $('#search_branch,#search_course,#search_year,#search_session,#registration').change(function () {
+              var branch_id=$('#search_branch').val();
+              var course_id=$('#search_course').val();
+              var eduyear_id=$('#search_year').val();
+              var session_id=$('#search_session').val();
+              var registration=$('#registration').val();
+            $.ajax({
+            url:'{{ url('Student/get/Search') }}',
+            type: 'GET',
+            data: {
+                branch_id: branch_id,
+                course_id:course_id,
+                eduyear_id:eduyear_id,
+                session_id:session_id,
+                registration:registration,
+              },
+              success: function(data) {
 
 
-                                        <td><img src="${student.student_photo}" alt="Photo of ${student.st_name}" height="50" width="50"></td>
+                    let adminRole = data.auth_role;
+                    let html = '';
 
-                                         <td class="table_cell">
-                                <b>${student.st_id_number}</b><br>
-                                <b>${student.st_name}</b><br>
-                                <b>${student.f_name}</b><br>
-                                <b>${student.m_name}</b>
-                            </td>
-                            <td class="table_cell">
-                                <b>${student.Date_of_birth}</b><br>
-                                <b>${student.religion}</b><br>
-                                <b>${student.gender}</b><br>
-                                <b>${student.id_number}</b>
-                            </td>
-                            <td class="table_cell">
-                                <b>${student.course_name}</b><br>
-                                <b>${student.session_name}</b><br>
-                                <b>${student.class_roll}</b>
-                            </td>
-                            <td class="table_cell">
-                                <b>${student.edu_qualification}</b><br>
-                                <b>${student.reg_board}/${student.passing_year}</b><br>
-                                <b>${student.reg_no}</b>
-                            </td>
-                            <td style="display: flex">
-                                <a href="/Student/info/${student.id}" class="mt-2 btn btn-info btn-lg font_icon"><i class="fa fa-eye" aria-hidden="true"></i></a>
-                                <a href="/Student/edit/${student.id}" class="mt-2 btn btn-info btn-lg font_icon"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                <form action="/Student/delete/${student.id}" method="post" class="mt-2">
-                                    <input type="hidden" name="_token" value="{{ csrf_token() }}">
-                                    <button type="submit" class="btn btn-danger btn-lg font_icon" onclick="return confirm('Are you sure to delete this item?')" style="font-size:15px"><i class="fas fa-trash"></i></button>
-                                </form>
-                            </td>
-                                    </tr>
-                                    `;
-                                });
-                            } else {
-                                html = `
-                                    <tr>
-                                        <td colspan="7">No students found for this course.</td>
-                                    </tr>
-                                `;
-                            }
+                    if (data.data.length > 0) {
+                        data.data.forEach(function(student) {
+                            html += `
+                                <tr data-student-id="${student.id}">
+                                    <td>
+                                        <div class="form-check">
+                                            <input type="checkbox" name="St_reg[${student.id}]" class="student-checkbox" value="${student.id}" id="select-all" class="form-check-input">
+                                            <label class="form-check-label"></label>
+                                        </div>
+                                    </td>
+                                    <td><img src="{{asset('${student.student_photo}')}}" alt="Photo of ${student.st_name}" height="100" width="100"></td>
+                                    <td class="table_cell">
+                                        <b>${student.st_id_number}</b><br>
+                                        <b>${student.st_name}</b><br>
+                                        <b>${student.f_name}</b><br>
+                                        <b>${student.m_name}</b>
+                                    </td>
+                                    <td class="table_cell">
+                                        <b>${student.Date_of_birth}</b><br>
+                                        <b>${student.religion}</b><br>
+                                        <b>${student.gender}</b><br>
+                                        <b>${student.id_number}</b>
+                                    </td>
+                                    <td class="table_cell">
+                                        <b>${student.course.course_name}</b><br>
+                                        <b>${student.session.session_name}</b><br>
+                                        <b>${student.class_roll}</b><br>
 
-                            $('#students-table tbody').html(html);
-                            $('#students-table').show();
-                        },
-                        error: function(error) {
-                            console.error(error);
-                        }
+                                    </td>
+                                    <td class="table_cell">
+                                        <b>${student.edu_qualification}</b><br>
+                                        <b>${student.reg_board}/${student.passing_year}</b><br>
+                                        <b>${student.reg_no}</b>
+                                    </td>`;
+
+                               if(student.status==='registered' && adminRole==='instituteadmin'){
+                                      html += `<td>
+                                        <a href="/Student/register/cancel/${student.id}" class="mt-2 btn btn-info btn-lg font_icon text-center" style="background-color:red"><i class="fa fa-times" aria-hidden="true"></i></a>
+
+                                        `;
+                                        }
+                                        else{
+                                            html += `<td style="display: flex">
+                                        <a href="/Student/info/${student.id}" class="mt-2 btn btn-info btn-lg font_icon"><i class="fa fa-eye" aria-hidden="true"></i></a>
+                                        <a href="/Student/edit/${student.id}" class="mt-2 btn btn-info btn-lg font_icon"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                        <form action="/Student/delete/${student.id}" method="post" class="mt-2">
+                                            <input type="hidden" name="_token" value="{{ csrf_token() }}">
+                                            <button type="submit" class="btn btn-danger btn-lg font_icon" onclick="return confirm('Are you sure to delete this item?')" style="font-size:15px"><i class="fas fa-trash"></i></button>
+                                        </form>
+                                    </td>
+                                </tr>
+                            `;
+                                        }
+
+                        });
+                    } else {
+                        html = `
+                            <tr>
+                                <td colspan="7">No students found for this course.</td>
+                            </tr>
+                        `;
+                    }
+
+                    $('#students-table tbody').html(html);
+                    $('#students-table').show();
+                },
+                error: function(error) {
+                    console.error('Error fetching data:', error);
+                }
+        });
             });
-                });
-            });
-        </script>
+        });
+    </script>
 
 
 

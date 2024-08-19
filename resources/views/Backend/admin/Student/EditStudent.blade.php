@@ -15,18 +15,6 @@
         <div>
             <div class="container col-lg-12">
 
-
-                <div class="dashboard-content-one">
-                    <!-- Breadcubs Area Start Here -->
-                    <div class="breadcrumbs-area">
-                        <h3>Students</h3>
-                        <ul>
-                            <li>
-                                <a href="index.html">Home</a>
-                            </li>
-                            <li>Student Admit Form</li>
-                        </ul>
-                    </div>
                     <!-- Breadcubs Area End Here -->
                     <!-- Admit Form Area Start Here -->
 
@@ -139,15 +127,7 @@
                                         </select>
                                     </div>
 
-                                    <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                        <label>status *</label>
-                                        <select name="status" class="select2">
-                                            <option value="{{$student->status}}">{{$student->status}}</option>
-                                            <option value="Active">Active</option>
-                                            <option value="Inactive">Inactive</option>
 
-                                        </select>
-                                    </div>
 
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Id Type *</label>
@@ -158,21 +138,15 @@
                                             <option value="3">Others</option>
                                         </select>
                                     </div>
-
+                                    <div class="col-xl-6 col-lg-6 col-12 form-group">
+                                        <label>NID/Birth Certificate Number</label>
+                                        <input type="text" name="id_number" value="{{$student->id_number}}" class="form-control">
+                                    </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Date Of Birth *</label>
                                         <input name="Date_of_birth"type="text" value="{{$student->Date_of_birth}}" class="form-control air-datepicker"
                                             data-position='bottom right'>
                                         <i class="far fa-calendar-alt"></i>
-                                    </div>
-                                    <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                        <label>Id Number</label>
-                                        <input type="text" name="id_number" value="{{$student->id_number}}" class="form-control">
-                                    </div>
-
-                                    <div class="col-xl-6 col-lg-6 col-12 form-group">
-                                        <label>Student Id Number</label>
-                                        <input type="text" name="st_id_number" value="{{$student->st_id_number}}"  placeholder="" class="form-control">
                                     </div>
                                     <div class="col-xl-6 col-lg-6 col-12 form-group">
                                         <label>Class Roll</label>
@@ -243,7 +217,7 @@
                                         <img src="{{asset($student->edu_certificate)}}" alt="" height="100" width="100">
                                     </div>
                                     <div class="col-12 form-group mg-t-8">
-                                        <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Save</button>
+                                        <button type="submit" class="btn-fill-lg btn-gradient-yellow btn-hover-bluedark">Update</button>
                                         <button type="reset" class="btn-fill-lg bg-blue-dark btn-hover-yellow">Reset</button>
                                     </div>
                                 </div>
