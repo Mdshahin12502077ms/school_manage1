@@ -387,13 +387,25 @@ public function get_session(Request $request){
     echo $session_name;
 }
 
-public function newRegistration()
+public function newRegistration(Request $request)
 {
+    
     $data['student'] = Student::with('course','session')->get();
     $data['course']=CourseModel::all();
     $data['session']=Session::with('eduyear')->where('status','Active')->get();
     $data['year']=EducationYear::All();
-    $data['get_reg_limit']=RegistrationSession::orderBy('id','desc')->with('session')->first();
+    $data['get_reg_limit']=RegistrationSession::orderBy('id','desc')->with('session')->get();
+
+    foreach($data['get_reg_limit'] as $limit){
+        if($limit->time_setup_type=='Register'&& $limit->session->status=='Active'&& $limit->status=='Active'){
+           $data['limit']= RegistrationSession::orderBy('id','desc')->with('session')->first();
+
+        }
+        else{
+            $data['limit']= RegistrationSession::orderBy('id','desc')->with('session')->first();
+        }
+
+    }
 
     return view('Backend.admin.student.student_register',$data);
 

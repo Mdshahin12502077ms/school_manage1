@@ -2105,7 +2105,7 @@ ul {
   background-color: #f6f6f6;
 }
 /*=============== 5.5 Sidebar Menu ==================*/
-.sidebar-menu-one {
+ .sidebar-menu-one {
   width: 26rem;
   position: fixed;
   top: 0;
@@ -2125,6 +2125,7 @@ ul {
   overflow-y: scroll;
   width: inherit;
 }
+
 .sidebar-menu-one .sidebar-menu-content .nav-sidebar-menu {
   -webkit-box-orient: vertical;
   -webkit-box-direction: normal;
@@ -2134,6 +2135,7 @@ ul {
 .sidebar-menu-one .sidebar-menu-content .nav-sidebar-menu > .nav-item {
   border-bottom: 1px solid #021933;
 }
+
 .sidebar-menu-one .sidebar-menu-content .nav-sidebar-menu > .nav-item > .nav-link {
   position: relative;
   padding: 12px 25px;
@@ -2144,6 +2146,7 @@ ul {
   margin-right: 15px;
   margin-left: 0;
 }
+
 .sidebar-menu-one .sidebar-menu-content .nav-sidebar-menu > .nav-item > .nav-link span {
   font-size: 15px;
   color: #9ea8b5;
@@ -2177,6 +2180,27 @@ ul {
   -webkit-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
   transition: all 0.3s ease-in-out;
+}
+
+.nav1{
+    font-size: 14px;
+    color: #a3aab3;
+    padding: 8px 20px 8px 60px;
+    -webkit-transition: all 0.3s ease-in-out;
+    -o-transition: all 0.3s ease-in-out;
+    transition: all 0.3s ease-in-out;
+
+}
+
+.nav1:hover{
+ background-color: #2a86f0;
+  color: #ffffff;
+}
+.nav1 i{
+    margin-right: 10px;
+}
+.sub{
+    background-color: #02254d;
 }
 .sidebar-menu-one .sidebar-menu-content .nav-sidebar-menu > .nav-item .sub-group-menu > .nav-item .nav-link i {
   margin-right: 10px;

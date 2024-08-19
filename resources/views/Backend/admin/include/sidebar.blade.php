@@ -64,28 +64,29 @@
 
                         <li class="nav-item  d-flex">
                             <a href="{{url('Student/addmission/registration/page')}}" class="nav-link"><i
-                                    class="flaticon-classmates"></i><span>Addmission & Registration</span></a> <i class="fas fa-angle-right mt-5" onclick="getItem()" style="margin-right: 8%;color:white"></i>
+                                    class="flaticon-classmates"></i><span>Addmission & Registration</span></a> <i class="fas fa-angle-right mt-5" onclick="getItem()" id="right"style="margin-right: 8%;color:white"></i>
+                                    <i class="fas fa-angle-down mt-5" onclick="getItem()" id="down"style="margin-right: 8%; color: #ffa901;display:none;"></i>
                                 </li>
-                <ul class="nav list" style="display:none" id="group">
+                <ul class="nav sub-group-menu sub" style="display:none;" id="group">
 
-                    <li class="nav-item">
-                        <a href="{{url('Student/all')}}" class="nav-link"><i class="fas fa-angle-right"></i>All
+                    <li class="nav-item" >
+                        <a href="{{url('Student/all')}}" class="nav-link nav1"style=" "><i class="fas fa-angle-right"></i>All
                             Students</a>
                     </li>
 
 
                     <li class="nav-item">
-                        <a href="{{url('Student/addmission/form')}}" class="nav-link"><i
+                        <a href="{{url('Student/addmission/form')}}" class="nav-link nav1" ><i
                                 class="fas fa-angle-right"></i>Admission Form</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="student-details.html" class="nav-link"><i
+                        <a href="student-details.html" class="nav-link nav1" ><i
                                 class="fas fa-angle-right"></i>Student Details</a>
                     </li>
 
                     <li class="nav-item">
-                        <a href="student-promotion.html" class="nav-link"><i
+                        <a href="student-promotion.html" class="nav-link nav1" ><i
                                 class="fas fa-angle-right"></i>Student Promotion</a>
                     </li>
                 </ul>
@@ -338,8 +339,12 @@ function   getItem(){
     var group = document.getElementById('group');
         if (group.style.display === "none") {
             group.style.display = "block";
+            down.style.display="block";
+            right.style.display="none";
         } else {
             group.style.display = "none";
+            down.style.display="none";
+            right.style.display="block";
         }
 }
 </script>

@@ -125,7 +125,7 @@
                                     <option value="Registered_Student">Registered List</option>
                                 </select>
                             </div>
-                            @if($get_reg_limit->time_setup_type == 'Registration' && $get_reg_limit->status == 'Active')
+                            @if($limit->time_setup_type == 'Registration' && $limit->status == 'Active')
                             <div class="mt-5 form-group d-flex">
                                 <button type="submit" class="fw-btn-fill btn-gradient-yellow" name="action" value="register">Register</button>
                             </div>
