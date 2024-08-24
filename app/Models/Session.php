@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\CourseModel;
+use  App\Http\Controllers\Backend\StudentRgisterFundController;
 class Session extends Model
 {
     use HasFactory;
@@ -25,5 +26,9 @@ class Session extends Model
     public function registration(){
 
         return $this->hasMany(RegistrationSession::class,'session_id','id');
+    }
+
+    public function regFund(){
+        return $this->hasMany(StudentRgisterFundController::class,'course_id','id');
     }
 }

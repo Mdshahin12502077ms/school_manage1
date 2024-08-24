@@ -20,6 +20,7 @@ return new class extends Migration
             $table->bigInteger('institute_id');
             $table->string('pay_for');
             $table->double('amount');
+            $table->string('status');
             $table->timestamps();
         });
     }

@@ -129,7 +129,13 @@ Route::prefix('Student/')->group(function(){
     Route::post('delete/{id}',[RegistrationController::class,'delete']);
       //add Registration Fund
     Route::get('add/fund',[StudentRgisterFundController::class,'add_fund']);
+    Route::get('student/all/fund/view',[StudentRgisterFundController::class,'allFund']);
+        //get fund result
+        Route::get('reg/fund',[StudentRgisterFundController::class,'getFund']);
+
   });
+
+
   //district all url
   Route::get('add_division',[settingController::class,'division_add']);
   Route::post('add_division/insert',[settingController::class,'division_insert']);

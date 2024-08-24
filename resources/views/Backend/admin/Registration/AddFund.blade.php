@@ -26,7 +26,7 @@
                             </div>
 
                             <div class="card-body text-center">
-                              <a href="{{url('Registration/student/add/fund')}}" class="text-center" style="color:black">Add Fund</a>
+                              <a href="{{url('Registration/student/all/fund/view')}}" class="text-center" style="color:black">Add Fund</a>
                             </div>
                           </div>
                           </div>
