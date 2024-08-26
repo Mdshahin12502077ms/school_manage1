@@ -130,8 +130,10 @@ Route::prefix('Student/')->group(function(){
       //add Registration Fund
     Route::get('add/fund',[StudentRgisterFundController::class,'add_fund']);
     Route::get('student/all/fund/view',[StudentRgisterFundController::class,'allFund']);
+    Route::post('Fund/Insert',[StudentRgisterFundController::class,'fundInsert']);
         //get fund result
-        Route::get('reg/fund',[StudentRgisterFundController::class,'getFund']);
+    Route::get('reg/fund',[StudentRgisterFundController::class,'getFund']);
+
 
   });
 

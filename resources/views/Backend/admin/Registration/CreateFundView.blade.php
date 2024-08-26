@@ -28,7 +28,7 @@
                         <div class="row">
 
 
-                            <div class="col-xl-3 col-lg-6 col-12 form-group">
+                            <div class="col-xl-4 col-lg-6 col-12 form-group">
                                 <label>Course*</label>
                                 <select name="course_id" class="form-control" id="search_course" >
                                     <option value="">Please Select Course</option>
@@ -44,7 +44,7 @@
 
 
 
-                            <div class="col-xl-3 col-lg-6 col-12  form-group">
+                            <div class="col-xl-4 col-lg-6 col-12  form-group">
                                 <label>Session*</label>
                                 <select name="session_id"  class="form-control" id="search_session" >
                                     <option value="">Please Select Session</option>
@@ -56,10 +56,8 @@
                                 <div class="error" style="color:red">{{ $errors->first('course_id') }}</div>
                              @endif
                             </div>
-                              <div id="Available_blance" style="display:none">
-                                <div class="pb-3 mt-5">
-                                   {{-- <input type="text" value="{{$available_payment->amount}}"> --}}
-                                 </div>
+                              <div class="col-xl-4 col-lg-6 col-12  form-group" align="center"  id="Available_blance">
+
                               </div>
 
 
@@ -135,18 +133,19 @@
                         session_id: session_id,
                     },
                     success: function(data) {
-        let tableBody = '';
+                    //    console.log(data.data);
+            let tableBody = '';
 
-        if (data.length > 0) {
-            data.forEach(function(item, index) {
+        if (data.data.length > 0) {
+            data.data.forEach(function(item, index) {
                 tableBody += `
                     <tr>
                         <td>${index + 1}</td>
-                        <td>${item.course_name}</td>
-                        <td>${item.session_name}</td>
+                        <td>${item.course.course_name}</td>
+                        <td>${item.session.session_name}</td>
                         <td>${item.pay_for}</td>
                         <td>${item.amount}</td>
-                        <td>${item.pay_status}</td>
+                        <td>${item.status}</td>
                         <td><a href="${item.voucher_url}" target="_blank">Print Voucher</a></td>
                     </tr>`;
             });
@@ -155,6 +154,12 @@
         }
 
         $('#students-table tbody').html(tableBody); // Insert the rows into the tbody
+
+        let availaable_balance=data.amount;
+        if(availaable_balance!=null){
+            $('#Available_blance').html(`<div class=" mt-3 form-group"><p class=" mt-5 form-group" style="margin:right">Available Balance: ${availaable_balance}</p></div>`);
+        }
+
     },
     error: function() {
         $('#students-table tbody').html('<tr><td colspan="7" class="text-center">Error fetching data</td></tr>');
@@ -165,7 +170,6 @@
        });
     });
  </script>
-
 
  <script>
 
