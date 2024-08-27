@@ -89,6 +89,7 @@
                                   <th style="width:10%; vertical-align: middle;color:black;font-size:15px">Pay For</th>
                                   <th style="width:10%; vertical-align: middle;color:black;font-size:15px">Amount</th>
                                   <th style="width:10%; vertical-align: middle;color:black;font-size:15px">Pay Status</th>
+                                  <th style="width:10%; vertical-align: middle;color:black;font-size:15px">Pay Online</th>
                                   <th style="width:10%; vertical-align: middle;color:black;font-size:15px">Print Paid Voucher</th>
                                 </thead>
                                 <tbody style="color:black;font-size:13px" id="">
@@ -135,8 +136,17 @@
                     success: function(data) {
                     //    console.log(data.data);
             let tableBody = '';
-
+            let available_balance = data.amount;
+            if(available_balance!==null){
+                $('#Available_blance').html(`
+                    <div class="mt-3 form-group">
+                        <p class="mt-5 form-group" style="margin-right:5px">
+                            Available Balance: ${available_balance}
+                        </p>
+                    </div>`);
+            }
         if (data.data.length > 0) {
+
             data.data.forEach(function(item, index) {
                 tableBody += `
                     <tr>
@@ -146,7 +156,8 @@
                         <td>${item.pay_for}</td>
                         <td>${item.amount}</td>
                         <td>${item.status}</td>
-                        <td><a href="${item.voucher_url}" target="_blank">Print Voucher</a></td>
+                       <td></td>
+                        <td><a href="/Registration/fund/voucher/Pdf/${item.id}" target="_blank">Print Voucher</a></td>
                     </tr>`;
             });
         } else {
@@ -155,10 +166,6 @@
 
         $('#students-table tbody').html(tableBody); // Insert the rows into the tbody
 
-        let availaable_balance=data.amount;
-        if(availaable_balance!=null){
-            $('#Available_blance').html(`<div class=" mt-3 form-group"><p class=" mt-5 form-group" style="margin:right">Available Balance: ${availaable_balance}</p></div>`);
-        }
 
     },
     error: function() {

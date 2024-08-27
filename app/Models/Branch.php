@@ -32,4 +32,8 @@ class Branch extends Model
     public function user(){
         return $this->hasOne(User::class,'branch_id','id');
     }
+
+   public function stfund(){
+     return $this->hasMany(StRegistrationFund::class,'branch_id','id');
+   }
 }

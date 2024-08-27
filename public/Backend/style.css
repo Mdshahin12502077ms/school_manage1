@@ -1519,6 +1519,8 @@ ul {
   justify-content: space-between;
   align-items: center;
   min-width: 26rem;
+  max-width: 26rem;
+  max-height: 70px;
   margin-top: -5px;
   margin-bottom: -5px;
   margin-left: -1rem;

@@ -158,6 +158,13 @@ class settingController extends Controller
     $backend->institute_name=$request->name;
     $backend->starting_year=$request->starting_year;
 
+    $backend->site_title=$request->site_title;
+    $backend->sub_title=$request->sub_title;
+    $backend->address=$request->address;
+    $backend->phone=$request->phone;
+    $backend->email=$request->email;
+
+
     if(isset($request->logo)){
 
         if($backend->logo && file_exists($backend->logo)){
@@ -170,6 +177,21 @@ class settingController extends Controller
         $path = 'Backend/image/BackendSetting/';
         $file->move($path, $filename);
         $backend->logo = $path . $filename;
+        }
+
+
+    if(isset($request->favicon)){
+
+        if($backend->favicon && file_exists($backend->favicon)){
+            unlink($backend->favicon);
+        }
+
+        $file = $request->file('favicon');
+        $extension = 'favicon'.$file->getClientOriginalExtension();
+        $filename = time() . '.' . $extension;
+        $path = 'Backend/image/BackendSetting/';
+        $file->move($path, $filename);
+        $backend->favicon = $path . $filename;
         }
     $backend->save();
     toastr()->success('Update Backend Successfully');

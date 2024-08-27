@@ -60,11 +60,36 @@ class StudentRgisterFundController extends Controller
       $data->course_id=$request->course_id;
       $data->session_id=$request->session_id;
       $data->amount=$request->amount;
-      $data->available_amount=$data->amount+$request->amount;
+      $invoice=StRegistrationFund::orderBy('id', 'DESC')->first();
+
+      if( $invoice==null){
+        $data->invoice_number='1632'.+1;
+      }
+      else{
+        $last_invoice_number=StRegistrationFund::orderBy('id', 'DESC')->first();
+        $data->invoice_number=$last_invoice_number->invoice_number+1;
+      }
+      $av_amount=StRegistrationFund::where('course_id',$request->course_id)->where('session_id',$request->session_id)->orderBy('id', 'DESC')->first();
+
+      if($av_amount==null){
+        $data->available_amount=$request->amount;
+      }
+      else{
+        $data->available_amount=$av_amount->available_amount+$request->amount;
+       }
+
       $data->pay_for=$request->pay_for;
       $data->status='Pending';
       $data->save();
         toastr()->success('Add Fund Successfully Done');
       return redirect()->back();
+    }
+
+    public function fundVoucherPdf($id){
+        // dd($id);
+       $data['voucher']=StRegistrationFund::find($id);
+       $data['year']=EducationYear::where('status','Active')->first();
+       $pdf = PDF::loadView('Backend.admin.Registration.FundVoucherPdf', $data);
+       return $pdf->stream('FundVoucher.pdf');
     }
 }

@@ -44,8 +44,8 @@ aria-hidden="true">
                     <label> Pay For*</label>
                     <select name="pay_for" class="form-control" id="search_course" >
                         <option value="">Please Select Paying For</option>
-                        <option value="Registration_Fee">Registration Fee</option>
-                        <option value="Institute_Fine">Institute Fine</option>
+                        <option value="Registration Fee">Registration Fee</option>
+                        <option value="Institute Fine">Institute Fine</option>
                     </select>
                     @if($errors->has('pay_for'))
                        <div class="error" style="color:red">{{ $errors->first('pay_for') }}</div>

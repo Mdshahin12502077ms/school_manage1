@@ -18,6 +18,12 @@ class BackendSetting extends Seeder
             [
                 'logo'=>'test.jpg',
                 'institute_name'=>'Institute',
+                'favicon'=>'Icon',
+                'site_title'=>'Site Title',
+                'sub_title'=>'Sub Title',
+                'address'=>'Address',
+                'phone'=>'Phone',
+                'email'=>'Email',
                 'starting_year'=>'2024',
             ],
 

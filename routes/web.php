@@ -133,7 +133,7 @@ Route::prefix('Student/')->group(function(){
     Route::post('Fund/Insert',[StudentRgisterFundController::class,'fundInsert']);
         //get fund result
     Route::get('reg/fund',[StudentRgisterFundController::class,'getFund']);
-
+    Route::get('fund/voucher/Pdf/{id}',[StudentRgisterFundController::class,'fundVoucherPdf']);
 
   });
 

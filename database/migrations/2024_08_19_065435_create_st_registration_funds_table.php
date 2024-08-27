@@ -18,6 +18,8 @@ return new class extends Migration
             $table->bigInteger('session_id');
             $table->bigInteger('course_id');
             $table->bigInteger('institute_id');
+            $table->string('invoice_number')->nullable();
+            $table->string('pay_mode')->nullable();
             $table->string('pay_for');
             $table->double('amount');
             $table->double('available_amount');

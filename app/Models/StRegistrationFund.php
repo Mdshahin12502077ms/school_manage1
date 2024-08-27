@@ -16,4 +16,8 @@ class StRegistrationFund extends Model
     public function session(){
         return $this->belongsTo(Session::class,'session_id','id');
     }
+
+    public function branch(){
+        return $this->belongsTo(Branch::class,'branch_id','id');
+    }
 }

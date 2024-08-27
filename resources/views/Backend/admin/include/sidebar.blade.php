@@ -148,30 +148,7 @@
                 </ul>
             </li>
 
-            <li class="nav-item sidebar-nav-item">
-                <a href="#" class="nav-link"><i
-                        class="flaticon-classmates"></i><span>Settings</span></a>
-                <ul class="nav sub-group-menu">
-                    <li class="nav-item">
-                        <a href="{{ url('add_division') }}" class="nav-link"><i class="fas fa-angle-right"></i>Add Division</a>
-                    </li>
 
-                    <li class="nav-item">
-                        <a href="{{ url('add_district') }}" class="nav-link"><i class="fas fa-angle-right"></i>Add District</a>
-                    </li>
-
-                    <li class="nav-item">
-                        <a href="{{url('education_year/add')}}" class="nav-link"><i
-                                class="fas fa-angle-right"></i>Education Year Settings</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{url('Settings/Backend/Settings')}}" class="nav-link"><i
-                                class="fas fa-angle-right"></i>Backend Settings</a>
-                    </li>
-
-
-                </ul>
-            </li>
 
             <li class="nav-item sidebar-nav-item">
                 <a href="#" class="nav-link"><i
@@ -195,25 +172,8 @@
                     </li>
                 </ul>
             </li>
-            <li class="nav-item sidebar-nav-item">
-                <a href="#" class="nav-link"><i
-                        class="flaticon-couple"></i><span>Parents</span></a>
-                <ul class="nav sub-group-menu">
-                    <li class="nav-item">
-                        <a href="all-parents.html" class="nav-link"><i class="fas fa-angle-right"></i>All
-                            Parents</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="parents-details.html" class="nav-link"><i
-                                class="fas fa-angle-right"></i>Parents Details</a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="add-parents.html" class="nav-link"><i class="fas fa-angle-right"></i>Add
-                            Parent</a>
-                    </li>
-                </ul>
-            </li>
-            <li class="nav-item sidebar-nav-item">
+
+            {{-- <li class="nav-item sidebar-nav-item">
                 <a href="#" class="nav-link"><i class="flaticon-books"></i><span>Library</span></a>
                 <ul class="nav sub-group-menu">
                     <li class="nav-item">
@@ -226,7 +186,7 @@
                             Book</a>
                     </li>
                 </ul>
-            </li>
+            </li> --}}
             <li class="nav-item sidebar-nav-item">
                 <a href="#" class="nav-link"><i
                         class="flaticon-technological"></i><span>Acconunt</span></a>
@@ -313,6 +273,30 @@
             <li class="nav-item">
                 <a href="{{url('smtp/setting')}}" class="nav-link"><i
                         class="flaticon-chat"></i><span>Smtp Setting</span></a>
+            </li>
+            <li class="nav-item sidebar-nav-item">
+                <a href="#" class="nav-link"><i
+                        class="flaticon-classmates"></i><span>Settings</span></a>
+                <ul class="nav sub-group-menu">
+                    <li class="nav-item">
+                        <a href="{{ url('add_division') }}" class="nav-link"><i class="fas fa-angle-right"></i>Add Division</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{ url('add_district') }}" class="nav-link"><i class="fas fa-angle-right"></i>Add District</a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a href="{{url('education_year/add')}}" class="nav-link"><i
+                                class="fas fa-angle-right"></i>Education Year Settings</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{url('Settings/Backend/Settings')}}" class="nav-link"><i
+                                class="fas fa-angle-right"></i>Site Settings</a>
+                    </li>
+
+
+                </ul>
             </li>
                @endif
 

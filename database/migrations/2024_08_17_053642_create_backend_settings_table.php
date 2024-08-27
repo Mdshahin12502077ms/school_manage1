@@ -18,6 +18,12 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->string('institute_name')->nullable();
             $table->string('starting_year')->nullable();
+            $table->string('favicon')->nullable();
+            $table->string('site_title')->nullable();
+            $table->string('sub_title')->nullable();
+            $table->string('address')->nullable();
+            $table->string('phone')->nullable();
+            $table->string('email')->nullable();
             $table->timestamps();
         });
     }
