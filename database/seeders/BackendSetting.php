@@ -25,6 +25,13 @@ class BackendSetting extends Seeder
                 'phone'=>'Phone',
                 'email'=>'Email',
                 'starting_year'=>'2024',
+                'meta_title'=>'meta title',
+                'meta_description'=>'meta description',
+                'meta_keywords'=>'meta Keywords',
+                'facebook'=>'facebook',
+                'twitter'=>'twitter',
+                'linkedin'=>'linkedin',
+                'instragram'=>'instragram',
             ],
 
         ];

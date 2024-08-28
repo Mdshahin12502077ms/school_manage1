@@ -154,7 +154,7 @@
                                             </div>
                                             <div class="col-lg-6 col-12 form-group ">
                                                 <label class="text-dark-medium">Instragram</label>
-                                               <input type="text" name="linkedin" class="form-control" value="{{$getBackend->linkedin}}">
+                                               <input type="text" name="instragram" class="form-control" value="{{$getBackend->Instragram}}">
                                             </div>
                                            </div>
                                         </div>

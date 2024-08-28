@@ -116,6 +116,8 @@
         <!-- Social Media End Here -->
         @include('Backend.admin.Registration.addFundModal')
 
+        @include('Frontend.Payment.paymentModule')
+
     @endsection
 
     @section('js')
@@ -156,7 +158,15 @@
                         <td>${item.pay_for}</td>
                         <td>${item.amount}</td>
                         <td>${item.status}</td>
-                       <td></td>
+                       <td> <a type="button" href=""
+                                class="btn btn-info btn-lg addFund" style="font-size:15px; margin:4%;"
+                                data-toggle="modal"
+                                // data-course="{{$course->course_name}}"
+                                // data-session="{{$session->id}}"
+
+                                data-target="#payment-modal">
+                                Pay
+                               </a></td>
                         <td><a href="/Registration/fund/voucher/Pdf/${item.id}" target="_blank">Print Voucher</a></td>
                     </tr>`;
             });
