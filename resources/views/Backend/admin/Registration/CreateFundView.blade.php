@@ -158,15 +158,16 @@
                         <td>${item.pay_for}</td>
                         <td>${item.amount}</td>
                         <td>${item.status}</td>
-                       <td> <a type="button" href=""
-                                class="btn btn-info btn-lg addFund" style="font-size:15px; margin:4%;"
+                        <td>
+                                <a type="button" href=""
+                                class="btn btn-info btn-lg Payment" style="font-size:15px; margin:4%;"
                                 data-toggle="modal"
-                                // data-course="{{$course->course_name}}"
-                                // data-session="{{$session->id}}"
-
+                                data-id="${item.id}"
+                                data-amount="${item.amount}"
                                 data-target="#payment-modal">
                                 Pay
-                               </a></td>
+                                </a>
+                        </td>
                         <td><a href="/Registration/fund/voucher/Pdf/${item.id}" target="_blank">Print Voucher</a></td>
                     </tr>`;
             });
@@ -205,7 +206,29 @@
      $('#sessionName').val(sessionName);
 });
 </script>
+<script>
+$(document).on('click', '.Payment', function() {
+    var id = $(this).data('id');
+    var amount = $(this).data('amount');
 
+    // Send the data to the server
+    $.ajax({
+        url: '/store-payment-data',  // URL to send the request to
+        method: 'POST',
+        data: {
+            id: id,
+            amount: amount,
+            _token: '{{ csrf_token() }}'  // CSRF token for security
+        },
+        success: function(response) {
+            console.log('Payment data stored in session');
+        },
+        error: function(xhr) {
+            console.error('Error:', xhr.responseText);
+        }
+    });
+});
+</script>
 
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>

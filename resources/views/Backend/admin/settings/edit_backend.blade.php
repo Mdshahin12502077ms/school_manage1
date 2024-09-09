@@ -154,11 +154,21 @@
                                             </div>
                                             <div class="col-lg-6 col-12 form-group ">
                                                 <label class="text-dark-medium">Instragram</label>
-                                               <input type="text" name="instragram" class="form-control" value="{{$getBackend->Instragram}}">
+                                               <input type="text" name="instragram" class="form-control" value="{{$getBackend->instragram}}">
                                             </div>
                                            </div>
                                         </div>
+                                        <div class="col-lg-12 col-12 form-group ">
+                                            <h4><b>Footer</b></h4>
+                                            <hr>
+                                           <div class="row">
 
+                                            <div class="col-lg-6 col-12 form-group ">
+                                                <label class="text-dark-medium">Footer</label>
+                                               <textarea type="text" name="footer" class="form-control" value="{{$getBackend->footer}}">{{$getBackend->footer}}</textarea>
+                                            </div>
+
+                                        </div>
                                     </div>
 
 

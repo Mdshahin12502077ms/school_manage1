@@ -14,7 +14,7 @@ use  App\Http\Controllers\Backend\RegistrationController;
 use  App\Http\Controllers\Backend\StudentRgisterFundController;
 use App\Http\Controllers\SMTPController;
 use  App\Http\Middleware\superAdmin;
-
+use App\Http\Controllers\Backend\BkashPaymentController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -163,6 +163,30 @@ Route::prefix('Student/')->group(function(){
     Route::get('Backend/Settings',[settingController::class,'BackendEdit']);
     Route::POST('update/{id}',[settingController::class,'BackendUpdate']);
   });
+
+
+  Route::group(['middleware' => ['web']], function () {
+    // Payment Routes for bKash
+    Route::get('/bkash/payment', [App\Http\Controllers\BkashTokenizePaymentController::class,'index']);
+    Route::get('/bkash/create-payment', [App\Http\Controllers\BkashTokenizePaymentController::class,'createPayment'])->name('bkash-create-payment');
+    Route::get('/bkash/callback', [App\Http\Controllers\BkashTokenizePaymentController::class,'callBack'])->name('bkash-callBack');
+
+
+
+    //search payment
+    Route::get('/bkash/search/{trxID}', [App\Http\Controllers\BkashTokenizePaymentController::class,'searchTnx'])->name('bkash-serach');
+
+
+
+    //refund payment routes
+    Route::get('/bkash/refund', [App\Http\Controllers\BkashTokenizePaymentController::class,'refund'])->name('bkash-refund');
+    Route::get('/bkash/refund/status', [App\Http\Controllers\BkashTokenizePaymentController::class,'refundStatus'])->name('bkash-refund-status');
+
+});
+//catch for b-kash pay amaount
+
+
+Route::post('/store-payment-data', [BkashPaymentController::class, 'catchAmountPay']);
 
 
   //default settings

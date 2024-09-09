@@ -172,6 +172,7 @@ class settingController extends Controller
     $backend->linkedin=$request->linkedin;
     // dd($request->instragram);
     $backend->instragram=$request->instragram;
+    $backend->footer=$request->footer;
 
     if(isset($request->logo)){
 

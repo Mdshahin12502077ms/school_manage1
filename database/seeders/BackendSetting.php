@@ -29,6 +29,7 @@ class BackendSetting extends Seeder
                 'meta_description'=>'meta description',
                 'meta_keywords'=>'meta Keywords',
                 'facebook'=>'facebook',
+                'footer'=>'footer',
                 'twitter'=>'twitter',
                 'linkedin'=>'linkedin',
                 'instragram'=>'instragram',

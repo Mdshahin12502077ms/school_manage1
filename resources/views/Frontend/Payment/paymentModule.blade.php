@@ -10,12 +10,22 @@ aria-hidden="true">
             </button>
         </div>
         <div class="modal-body">
+            <?php
+                    $id=session(['payment_id']);
+                    $amount=session(['payment_amount']);
+
+            ?>
 
                 <div class="d-flex mt-5 mb-5">
                     <div class="row">
                         <div class="mb-3 col-md-6  form-group">
                             <a href=""class="text-center " ><img src="{{asset('Backend/image/logo/bkash_logo.png')}}" alt="" class="mx-auto d-block"  style="box-shadow: 10px 5px 5px rgb(128, 108, 108); height:100px;width:70%;">
                               <h4 >Bkash</h4>
+                              <form action="{{ route('bkash-create-payment') }}" method="get">
+                                 <input type="hidden" name="amount" id="item_amount" value="{{ session(['payment_amount'])}}">
+                                  <input type="hidden" name="amountId" id="item_id" value="{{session(['payment_id'])}}">
+                                 <button type="submit">BKASH</button>
+                            </form>
                             </a>
                         </div>
 

@@ -28,6 +28,7 @@
 <!-- Date Picker CSS -->
 <link rel="stylesheet" href="{{asset('Backend/css/datepicker.min.css')}}">
 <!-- Modernize js -->
+<meta name="csrf-token" content="{{ csrf_token() }}">
 
 <script src="{{asset('Backend/js/modernizr-3.6.0.min.js')}}"></script>
 
